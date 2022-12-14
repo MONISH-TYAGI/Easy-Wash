@@ -1,32 +1,12 @@
 import React from 'react'
-import HowItWorks from './HowItWorks'
 
-function Carousel() {
+function SignUp() {
   return (
-    <div className='z-30 h-full bg-white' style={{paddingTop:"8.5%"}}>
-   
-    <div className='h-3/4  flex '>
-        <div className='FirstHalf w-1/2 h-full  flex items-center justify-center'>
-            <div className='OuterBox  h-3/4 w-3/4 '>
-                <div className='h-28 w-full  flex items-end justify-center  text-2xl font-bold'>
-                    <h1>Best Wash & Iron service in your doorstep</h1>
-                </div>
-                <div className='h-52 w-full  flex items-center justify-center p-10'>
-                    <p>
-                    Easy Wash is the first Online Laundry Platform in DIU with the latest technology in washing, dry cleaning and laundry. Our services combine our expertise and experience acquired over a period of time to provide you with clean laundry in the shortest possible turnaround time.
-
-
-                    </p>
-                </div>
-                <div className='h-20 w-full  flex items-center justify-center'>
-                    <button className='bg-drymeBlue text-white p-2 rounded-md'>View Services</button>
-                </div>
-                
-            </div>
-        </div>
-        <div className='SecondHalf w-1/2 h-full '>
+    <div className='w-full h-screen  flex bg-white'>
+      <div className='FirstHalf w-3/5 h-full  p-16'>
+        <div className='CustomCaraousel  w-full h-full'>
         <div id="carouselExampleCaptions" className="carousel slide relative h-full" data-bs-ride="carousel">
-  <div className="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-end p-0 mb-4 h-full ">
+  <div className="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4 h-full flex items-end">
     <button
       type="button"
       data-bs-target="#carouselExampleCaptions"
@@ -54,7 +34,7 @@ function Carousel() {
         src="https://i.ibb.co/xLz698n/Pic1.jpg"
         class="block w-full h-full"
         alt="..."
-        style={{height:"27.8rem"}} />
+        style={{height:"36.8rem"}} />
       <div class="carousel-caption hidden md:block absolute text-center  ">
         <h5 class="text-xl">First slide label</h5>
         <p>Some representative placeholder content for the first slide.</p>
@@ -65,7 +45,7 @@ function Carousel() {
         src="https://i.ibb.co/VCGBqLr/Pic3.jpg"
         class="block w-full h-full"
         alt="..."
-        style={{height:"27.8rem"}}
+        style={{height:"36.8rem"}}
       />
       <div class="carousel-caption hidden md:block absolute text-center">
         <h5 class="text-xl">Second slide label</h5>
@@ -77,7 +57,7 @@ function Carousel() {
         src="https://i.ibb.co/9qG8dny/Pic2.webp"
         class="block w-full h-full"
         alt="..."
-        style={{height:"27.8rem"}}
+        style={{height:"36.8rem"}}
          />
       <div class="carousel-caption hidden md:block absolute text-center">
         <h5 class="text-xl">Third slide label</h5>
@@ -105,12 +85,48 @@ function Carousel() {
   </button>
 </div>
         </div>
+      </div>
+      <div className='SecondHalf w-2/5 h-full  p-20'>
+      <div className='CustomCaraousel  w-full h-5/6 mt-4'>
+        <div className='w-full h-1/6 bg-white flex items-center justify-center'>
+            <span className='font-bold text-5xl text-drymeBlue'>Easy<span className='text-select'>Wash</span></span>
             </div>
-            <div className='h-1/4 bg-gray-400'>
-                <HowItWorks></HowItWorks>
+        <div className='w-full h-3/6 '>
+            <div className='Email h-1/3 flex flex-column items-start px-2 '>
+                <span className=''>Name</span>
+                <input type='text ' className='w-full h-1/2 rounded-md  p-2 outline outline-1' 	></input>
             </div>
+            <div className='PhoneNumber h-1/3 flex flex-column items-start px-2'>
+                <span>PhoneNumber</span>
+                <input type='number' className='w-full h-1/2 rounded-md outline outline-1 p-2'></input>
+            </div>
+            <div className='Password h-1/3 flex flex-column items-start px-2'>
+                <span>Password</span>
+                <input type='password' className='w-full h-1/2 rounded-md outline outline-1 p-2'></input>
+            </div>
+            
+        </div>
+        <div className='w-full h-1/6  flex flex-column items-center px-2 '>
+            <button  className='bg-drymeBlue w-full text-white h-2/4 mt-2 rounded-md'>SignUp</button>
+            <span>Already Registered ? Login <span className='text-drymeBlue underline'> Here</span></span>
+        </div>
+        <div className='w-full h-1/6 '>
+            <div className='w-full h-2/4  flex items-center justify-center text-3xl'>
+                <span>OR</span>
+                </div>
+                <div className='h-2/4 flex  justify-center '>
+                <div class="social-icon flex  rounded-xl h-full items-center border border-2 border-drymeBlue">
+                    <img src="https://cdn-teams-slug.flaticon.com/google.jpg"  className="rounded-xl h-full w-fit"width="25px"/>
+                        <span class="mx-2 ">SignUp In with Google</span>
+                        </div>
+                        </div>
+        </div>
+       
+      </div>
+      </div>
+
     </div>
   )
 }
 
-export default Carousel
+export default SignUp

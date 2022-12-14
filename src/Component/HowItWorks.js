@@ -1,6 +1,6 @@
 import React from 'react'
 import Process from './Process'
-import Reviews from './Reviews'
+import Review from './Review'
 import Services from './Services'
 import Footer from './Footer'
 
@@ -15,7 +15,7 @@ function HowItWorks() {
           <Services></Services>
         </div>
         <div className='bg-gray-400 h-2/3'>
-          <Reviews></Reviews>
+          <Review></Review>
         </div>
         <div className='bg-black h-1/3'>
           <Footer></Footer>
