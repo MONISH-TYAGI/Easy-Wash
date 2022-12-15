@@ -1,7 +1,12 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import Navbar from './Navbar'
 
 function Login() {
+  const navigate=useNavigate();
+  const goToSignUp=()=>{
+navigate("/signUp")
+  }
   return (
     <div className='w-full h-screen  flex bg-white'>
       <div className='FirstHalf w-3/5 h-full  p-16'>
@@ -104,7 +109,7 @@ function Login() {
         </div>
         <div className='w-full h-1/6  flex flex-column items-center px-2 '>
             <button  className='bg-drymeBlue w-full text-white h-2/4 mt-2 rounded-md'>Login</button>
-            <span>Not Registered Yet? SignUp <span className='text-drymeBlue underline'> Here</span></span>
+            <span>Not Registered Yet? SignUp <span className='text-drymeBlue underline cursor-pointer' onClick={goToSignUp}> Here</span></span>
         </div>
         <div className='w-full h-2/6 '>
             <div className='w-full h-2/4  flex items-center justify-center text-3xl'>

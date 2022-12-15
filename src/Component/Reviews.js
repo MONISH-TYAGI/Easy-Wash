@@ -2,6 +2,10 @@ import React from 'react'
 import Navbar from './Navbar'
 
 function Reviews() {
+    const handleInput=()=>{
+        let upload=document.getElementById("file");
+        upload.click();
+    }
   return (
     <div className="h-full bg-white">
         <Navbar></Navbar>
@@ -130,7 +134,12 @@ function Reviews() {
                        
         </div>
         <div className='w-1/3 bg-white h-full '>
-          <img className='w-1/3 h-1/3 bg-red-200 uploadImg drop-shadow-2xl' src="https://smart-dhopa-online-laundry-app.web.app/static/media/customer-1.f217f346.jpg" style={{borderRadius:"50%"}}></img>
+          <img className='w-full h-full bg-red-200 uploadImg drop-shadow-2xl' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLlQ9DL2jP_heI_mtZXdw8cxNdGunsejk7FQ&usqp=CAU" style={{borderRadius:"50%"}}></img>
+          <div className="file bg-red-200 inline   fixed z-20 imageUploadIcon" onClick={handleInput}>
+          <i class="fa-solid fa-camera text-3xl"></i>
+  <input type="file" id="file" style={{display:"none"}} />
+  <i class="fa-solid fa-plus"></i>
+</div>
           <div className='OuterCommentBox w-1/4 h-1/3 bg-white mt-2 m-auto fixed top-1/2 pt-8 drop-shadow-2xl' style={{right:"5%"}} >
             
             <div className='First  h-1/5  flex items-center justify-center  '>

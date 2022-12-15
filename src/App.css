@@ -5,6 +5,13 @@
   margin:0%;
   padding:0%;
 }
+.imageUploadIcon{
+  top: 50%;
+    right: 12%;
+    background-color: white;
+    border: none;
+    background: transparent;
+}
 .uploadImg{
   position: fixed;
     border-radius: 50%;

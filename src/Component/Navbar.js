@@ -15,6 +15,9 @@ function Navbar() {
   const handleReviews=()=>{
     navigate("/reviews")
   }
+  const handleLogin=()=>{
+    navigate("/login");
+  }
   return (
     <div className='fixed z-40'>
     <div className='h-20 bg-drymeBlue fixed top-0 w-full z-30'>Head 1</div>
@@ -27,7 +30,7 @@ function Navbar() {
        <div className='h-full w-1/6  flex items-center justify-center hover:text-select' onClick={handleServices}><i className="fa-solid fa-gear"></i><span>Services</span></div>
        <div className='h-full w-1/6  flex items-center justify-center hover:text-select ' onClick={handleReviews}><i className="fa-solid fa-heart"></i><span>Reviews</span></div>
        <div className='h-full w-1/6 flex items-center justify-center hover:text-select' onClick={handleBag}><i className="fa-solid fa-bag-shopping"></i><span>Bag</span></div>
-       <div className='h-full w-1/6  flex  items-center justify-center hover:text-select'><i className="fa-solid fa-user m-1"></i><span>LogIn</span></div>
+       <div className='h-full w-1/6  flex  items-center justify-center hover:text-select' onClick={handleLogin}><i className="fa-solid fa-user m-1"></i><span>LogIn</span></div>
      </div>
      </div>
      </div>

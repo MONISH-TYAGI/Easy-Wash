@@ -10,11 +10,14 @@ import EnterDetails from './Component/EnterDetails';
 import Review from './Component/Reviews';
 import Login from './Component/Login';
 import SignUp from './Component/SignUp';
+import { CartContextProvider } from './Context/CartContextProvider';
+import ViewDetails from './Component/ViewOrders';
 
 function App() {
   return (
-    <div className="App  bg-gray-200 h-full ">
+    <div className="App  ">
  <BrowserRouter>
+ <CartContextProvider>
  <Routes>
   <Route path="/Services" element={<Products></Products>}></Route>
   <Route path="/Cart" element={<Cart></Cart>}></Route>
@@ -23,8 +26,10 @@ function App() {
   <Route path="/Reviews" element={<Review></Review>}></Route>
   <Route path="/Login" element={<Login></Login>}></Route>
   <Route path="/signUp" element={<SignUp></SignUp>}></Route>
+  <Route path="/Bill" element={<ViewDetails/>}/>
   <Route path="*" element={<Home></Home>}></Route>
  </Routes>
+ </CartContextProvider>
  </BrowserRouter>
     </div>
   );
