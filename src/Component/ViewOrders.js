@@ -6,10 +6,15 @@ import JsPDF from 'jspdf';
 import { collection, getDocs } from "firebase/firestore";
 import { setDoc,doc, updateDoc,getDoc } from 'firebase/firestore';
 import {db,storage} from '../firebase'
+import { AuthContext } from '../Context/AuthContext';
  function  ViewDetails() {
-     const {BillId}=useContext(CartContext);
+    // document.getElementById("App").style.zoom="80%";
+    let BillId=localStorage.getItem("BillId");
   console.log("BillId ",BillId);
-
+  const {user}=useContext(AuthContext);
+  let i=1
+  let userEmailId=localStorage.getItem("email");
+  console.log("email ->"+userEmailId);
 const [DetailsArr,setDetailsArr]=useState([]);
 const [run,setRun]=useState(false);
 const [name,setName]=useState("");
@@ -19,10 +24,15 @@ const [Id,setId]=useState("0");
 const [date,setDate]=useState("0");
 const [amount,setAmount]=useState(0);
 useEffect(()=>{
+    if(user==null)
+    {
+        navigator("/login");
+        return ;
+    }
   let localArr=[];
   async function fetchData(){
     // console.log("getDoc")
-            const querySnapshot = await getDocs(collection(db, "EmailOrders"));
+            const querySnapshot = await getDocs(collection(db, userEmailId));
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
     //   console.log(doc.id, " => ", doc.data());
@@ -49,23 +59,25 @@ setRun(true);
  
     fetchData();
  
-},[run]);
+},[]);
 const [hide,sethide]=useState(false);
 // console.log(" final details -> "+name);
 // console.log("DetailsArr Len ",DetailsArr.length);
     console.log(JSON.stringify(DetailsArr));
     const generatePDF = () => {
+        document.getElementById("App").style.zoom="90%";
 console.log("generating");
 sethide(true);
 console.log("hide ",hide);
-      const report = new JsPDF('potrait','pt','a1');
+      const report = new JsPDF('potrait','pt','a0');
       report.html(document.querySelector('#report')).then(() => {
           report.save('report.pdf');
       });
+      document.getElementById("App").style.zoom="100%";
     }
   return (
 
-    <div id='report'>
+    <div id='report' >
         <div class="page-content container">
     <div class="page-header text-blue-d2">
         <h1 class="page-title text-secondary-d1 ">
@@ -128,9 +140,9 @@ console.log("hide ",hide);
                             <div class="my-1">
                                 {address}
                             </div>
-                            <div class="my-1">
+                            {/* <div class="my-1">
                                 State, Country
-                            </div>
+                            </div> */}
                             <div class="my-1"><i class="fa fa-phone fa-flip-horizontal text-secondary"></i> <b class="text-600">{cell}</b></div>
                         </div>
                     </div>
@@ -154,10 +166,11 @@ console.log("hide ",hide);
                 </div>
 
                 <div class="mt-4">
-                    <div class="row text-600 text-white bgc-default-tp1 py-25">
+                    <div class="row text-600 text-white bgc-default-tp1 py-25 ">
                         <div class="d-none d-sm-block col-1">#</div>
                         <div class="col-9 col-sm-5">Description</div>
-                        <div class="d-none d-sm-block col-4 col-sm-2">Qty</div>
+                        <div class="d-none d-sm-block col-2 col-sm-1">Qty</div>
+                        <div class="d-none d-sm-block col-2 col-sm-1">Category</div>
                         <div class="d-none d-sm-block col-sm-2">Unit Price</div>
                         <div class="col-2">Amount</div>
                     </div>
@@ -168,9 +181,10 @@ DetailsArr.map((obj)=>{
 
                     <div class="text-95 text-secondary-d3">
                         <div class="row mb-2 mb-sm-0 py-25">
-                            <div class="d-none d-sm-block col-1">1</div>
+                            <div class="d-none d-sm-block col-1">{i++}</div>
                             <div class="col-9 col-sm-5">{obj.Name}</div>
-                            <div class="d-none d-sm-block col-2">{obj.Quantity}</div>
+                            <div class="d-none d-sm-block col-1">{obj.Quantity}</div>
+                            <div class="d-none d-sm-block col-1">{obj.Category}</div>
                             <div class="d-none d-sm-block col-2 text-95">{obj.Price/obj.Quantity}</div>
                             <div class="col-2 text-secondary-d2">{obj.Price}</div>
                         </div>

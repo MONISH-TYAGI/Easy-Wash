@@ -1,12 +1,51 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import Navbar from './Navbar'
+import React, { useState ,useContext, useEffect} from 'react'
+import {db,storage,auth} from '../firebase'
+import { Link ,useNavigate} from 'react-router-dom'
+import { AuthContext } from '../Context/AuthContext';
+
 
 function Login() {
   const navigate=useNavigate();
-  const goToSignUp=()=>{
-navigate("/signUp")
+  useEffect(()=>{
+    let button=document.getElementById("next");
+    setTimeout(function() {button.click()}, 3000);
+    },[])
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+// const navigate=useNavigate();
+// const {login}=useContext(AuthContext);
+const {user,setUserEmail,userEmailId,login}=useContext(AuthContext);
+  const doLogin = async(e) => {
+      e.preventDefault();
+      console.log("Log In");
+      
+      try{
+      let userObj = await login(email,password)
+      setUserEmail(email);
+      console.log("email->"+email);
+      localStorage.setItem("email", email);
+      setEmail('')
+    setPassword('')
+    console.log("outerEmail"+userEmailId)
+    // alert("successful Login")
+    navigate("/Products");
+      }catch(err)
+      {
+        console.log("fail");
+        setError("Wrong EmailId Or Password");
+        setTimeout(()=>{
+setError('')
+        },3000)
+        // alert("Fail Login")
+      }finally{
+    console.log("done");
+    
+      }
   }
+  const goToSignUp=()=>{
+    navigate("/signUp")
+      }
   return (
     <div className='w-full h-screen  flex bg-white'>
       <div className='FirstHalf w-3/5 h-full  p-16'>
@@ -85,6 +124,7 @@ navigate("/signUp")
     type="button"
     data-bs-target="#carouselExampleCaptions"
     data-bs-slide="next"
+    id="next"
   >
     <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
@@ -99,16 +139,21 @@ navigate("/signUp")
             </div>
         <div className='w-full h-2/6 '>
             <div className='Email h-1/2 flex flex-column items-start px-2 '>
-                <span className=''>Name</span>
-                <input type='text ' className='w-full h-1/2 rounded-md  p-2 outline outline-1' 	></input>
+                <span className=''>Email</span>
+                <input type='email ' className='w-full h-1/2 rounded-md  p-2 outline outline-1'
+                onChange={(e) => setEmail(e.target.value)} value={email} 
+                ></input>
             </div>
             <div className='Password h-1/2 flex flex-column items-start px-2'>
                 <span>Password</span>
-                <input type='password' className='w-full h-1/2 rounded-md outline outline-1 p-2'></input>
+                <input type='password' className='w-full h-1/2 rounded-md outline outline-1 p-2'
+                  onChange={(e) => setPassword(e.target.value)} value={password}
+                  ></input>
             </div>
         </div>
+        {error && <span className='error-msg text-red-400'>{error}</span>}
         <div className='w-full h-1/6  flex flex-column items-center px-2 '>
-            <button  className='bg-drymeBlue w-full text-white h-2/4 mt-2 rounded-md'>Login</button>
+            <button  className='bg-drymeBlue w-full text-white h-2/4 mt-2 rounded-md' onClick={doLogin}>Login</button>
             <span>Not Registered Yet? SignUp <span className='text-drymeBlue underline cursor-pointer' onClick={goToSignUp}> Here</span></span>
         </div>
         <div className='w-full h-2/6 '>
@@ -120,6 +165,7 @@ navigate("/signUp")
                     <img src="https://cdn-teams-slug.flaticon.com/google.jpg"  className="rounded-xl h-full w-fit"width="25px"/>
                         <span class="mx-2 ">Login In with Google</span>
                         </div>
+                   
                         </div>
         </div>
        

@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import HowItWorks from './HowItWorks'
 
 function Carousel() {
+  useEffect(()=>{
+  let button=document.getElementById("next");
+  setTimeout(function() {button.click()}, 3000);
+  },[])
   return (
     <div className='z-30 h-full bg-white' style={{paddingTop:"8.5%"}}>
    
@@ -90,6 +94,7 @@ function Carousel() {
     type="button"
     data-bs-target="#carouselExampleCaptions"
     data-bs-slide="prev"
+    
   >
     <span class="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
@@ -99,6 +104,7 @@ function Carousel() {
     type="button"
     data-bs-target="#carouselExampleCaptions"
     data-bs-slide="next"
+    id="next"
   >
     <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>

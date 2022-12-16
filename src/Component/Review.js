@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Context/AuthContext';
 
 function Reviews() {
+  
   return (
     <div className='w-full h-full'>
       <div className='bg-white h-20 flex items-center justify-center '>

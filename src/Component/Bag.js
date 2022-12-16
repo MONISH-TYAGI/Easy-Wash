@@ -6,16 +6,22 @@ import { setDoc,doc, updateDoc,getDoc } from 'firebase/firestore';
 import {db,storage} from '../firebase'
 // import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../Context/CartContextProvider';
+import { AuthContext } from '../Context/AuthContext';
 
 function Bag() {
     const [arr,setArr]=useState([]);
    const [change,setChange]=useState(false);
+   const {user}=useContext(AuthContext);
+   let userEmailId=localStorage.getItem("email");
+   console.log("userEmailId"+userEmailId);
     const navigate=useNavigate();
+    console.log("userOuter"+userEmailId)
  const {setObj,BigObj,BillId,setBillId}=useContext(CartContext);
  const getData=async()=>{
     // console.log("getDoc")
     let arr=[];
-            const querySnapshot = await getDocs(collection(db, "EmailOrders"));
+    console.log("user"+userEmailId);
+            const querySnapshot = await getDocs(collection(db, userEmailId+""));
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
     //   console.log(doc.id, " => ", doc.data());
@@ -28,6 +34,12 @@ function Bag() {
     setArr([...arr]);
         }
    useEffect(()=>{
+    console.log("user Navigate ->",user);
+    if(user==null)
+    {
+      navigate("/Login");
+      return ;
+    }else
     getData();
    },[])
    const handleViewDetails=(Id)=>{
@@ -35,6 +47,7 @@ function Bag() {
 
     setBillId(Id);
     console.log("Id ",Id);
+    localStorage.setItem("BillId",Id);
     navigate("/Bill")
     // console.log(JSON.stringify(arr));
         }

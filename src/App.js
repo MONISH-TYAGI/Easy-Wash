@@ -12,11 +12,14 @@ import Login from './Component/Login';
 import SignUp from './Component/SignUp';
 import { CartContextProvider } from './Context/CartContextProvider';
 import ViewDetails from './Component/ViewOrders';
+import { AuthProvider } from './Context/AuthContext';
 
 function App() {
+  
   return (
-    <div className="App  ">
+    <div className="App" id="App">
  <BrowserRouter>
+ <AuthProvider>
  <CartContextProvider>
  <Routes>
   <Route path="/Services" element={<Products></Products>}></Route>
@@ -30,6 +33,7 @@ function App() {
   <Route path="*" element={<Home></Home>}></Route>
  </Routes>
  </CartContextProvider>
+ </AuthProvider>
  </BrowserRouter>
     </div>
   );

@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Context/AuthContext';
 import Navbar from './Navbar'
 
 function Reviews() {
@@ -6,6 +8,15 @@ function Reviews() {
         let upload=document.getElementById("file");
         upload.click();
     }
+    const navigate=useNavigate();
+    const {user}=useContext(AuthContext);
+    useEffect(()=>{
+        if(user==null)
+        {
+            navigate("/login");
+            return ;
+        }
+    },[])
   return (
     <div className="h-full bg-white">
         <Navbar></Navbar>

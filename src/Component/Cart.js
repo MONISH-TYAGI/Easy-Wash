@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Context/AuthContext';
 import { CartContext } from '../Context/CartContextProvider';
 import Navbar from './Navbar'
 
 function Bag() {
     const {setObj,BigObj,BillId,setBillId,totalItems,setItems,totalAmt,setAmt}=useContext(CartContext);
-    
+    const {user}=useContext(AuthContext);
   const navigate=useNavigate();
     const [change,setChange]=useState("1");
 const EditQuantiy=(e)=>{
@@ -39,6 +40,11 @@ const handleItemsChange=(e)=>{
     //  setObj(newBigObj);
 }
 useEffect(()=>{
+  console.log("user Navigate ->",user);
+    if(user==null)
+    {
+      navigate("/Login");
+    }else{
     let Items=0;
     let Amt=0;
     let currName=""
@@ -53,6 +59,7 @@ useEffect(()=>{
 //  console.log("Amt ",Amt);
  setItems(Items);
  setAmt(Amt);
+}
 //  setName(name);
 },[BigObj])
   return (

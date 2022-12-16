@@ -3,11 +3,14 @@ import Navbar from './Navbar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../Context/CartContextProvider';
+import { AuthContext } from '../Context/AuthContext';
 
 function Products() {
   const {setObj,BigObj,BillId,setBillId,totalItems,setItems,totalAmt,setAmt}=useContext(CartContext);
   const [visibleCat,setVisibleCat]=useState(true);
   const [visibleSer,setVisibleSer]=useState(false);
+  const [cart,setCart]=useState(false);
+  const [categoryName,setCategoryName]=useState("Male");
   const [currPage,setCurrPage]=useState(1);
   const [value1,setValue1]=useState("gray");
   const [value2,setValue2]=useState("white");
@@ -39,7 +42,7 @@ setCurrPage(currPage-1);
   const handleVisibleSer=()=>{
     setVisibleSer(!visibleSer)
   }
- 
+  const {user}=useContext(AuthContext);
 
  const handlePage=(e)=>{
   setCurrPage(e);
@@ -48,11 +51,13 @@ setCurrPage(currPage-1);
   if(e=="male")
   {
  setCategory(maleApi);
+ setCategoryName("Male");
  setVal1("gray");
  setVal2("white");
   }else
   {
 setCategory(femaleApi);
+setCategoryName("Female");
 setVal2("gray");
 setVal1("white");
   }
@@ -88,12 +93,17 @@ setValue4("white");
     setValue4("gray");  }
  }
  useEffect(()=>{
+  if(user==null){
+    navigate("/login");
+    return;
+  }
   fetch(category).then(
     (res)=>{
       let data=res.json()
       // console.log(data);
       return data;
     }
+  
   
   ).then((data)=>{
 setProducts([...data]);
@@ -108,6 +118,8 @@ console.log("len"+products.length);
 },[category]);
   
   const addToBag=(obj)=>{
+    if(cart==false)
+    setCart(true);
     let val=document.getElementById(obj.ProdId).value;
     console.log("Prev BigObj"+BigObj.length);
  BigObj.push({
@@ -116,7 +128,8 @@ console.log("len"+products.length);
     Price:obj.Price,
     Image:obj.Image,
     ProdId:100 ,
-    Quantity:val
+    Quantity:val,
+    Category:categoryName
   
  })
  console.log("Updated BigObj"+BigObj.length);
@@ -142,7 +155,13 @@ const handleCart=()=>{
  </button>
    
    <button className='bg-drymeBlue  text-white w-1/6 h-12 rounded-lg  mx-2'onClick={handleVisibleSer}>Select Service <i class="ml-2   fa-sharp fa-solid fa-caret-down"></i></button> 
-   <button className='bg-drymeBlue  text-white w-1/6 h-12 rounded-lg  mx-2' onClick={handleCart}>PlaceOrder </button> 
+   <button className='bg-drymeBlue  text-white w-1/6 h-12 rounded-lg  mx-2 text-3xl' onClick={handleCart}>
+    {
+      (cart==false)?
+    <i class="fa-solid fa-cart-shopping"></i>
+    :<i class="fa-solid fa-cart-plus"></i>
+}
+     </button> 
    {/* <div class="dropdown">
 {/* <div class="dropdown1 w-56">
   <button class="dropbtn">Category 

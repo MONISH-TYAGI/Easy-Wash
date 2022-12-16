@@ -1,6 +1,17 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Context/AuthContext';
 
 function Services() {
+    const navigate=useNavigate();
+    const {user}=useContext(AuthContext);
+    useEffect(()=>{
+        if(user==null)
+        {
+            navigate("/login");
+            return ;
+        }
+    },[])
   return (
     <div className='h-full w-full  '>
      <div className='h-1/5 bg-white flex items-end justify-center'>

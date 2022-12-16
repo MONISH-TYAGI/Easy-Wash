@@ -1,11 +1,59 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+// import { auth, db } from '../Config/Config'
+import {db,storage,auth} from '../firebase'
+import { Link ,useNavigate} from 'react-router-dom'
+// import { getAuth, createUserWithEmailAndPassword } from "../firebase";
+// import { doc, setDoc,getDoc } from "../firebase/firestore";
+import { setDoc,doc, updateDoc,getDoc } from 'firebase/firestore';
+import { AuthContext } from '../Context/AuthContext';
+import {useContext} from 'react'
+// import { Navigate, useNavigate } from 'react-router-dom';
 
 function SignUp() {
   const navigate=useNavigate();
+  useEffect(()=>{
+    let button=document.getElementById("next");
+    setTimeout(function() {button.click()}, 3000);
+    },[])
+  const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const {signUp}=useContext(AuthContext);
+    const {user}=useContext(AuthContext);
   const goToLogin=()=>{
 navigate("/login")
   }
+  const signup = async(e) => {
+    e.preventDefault();
+    // alert("Sign In");
+    try{
+        let userObj = await signUp(email,password)
+    setError('')
+        setEmail('')
+      setPassword('')
+      alert("Successful signIn")
+navigate("/login");
+        }catch(err)
+        {
+          console.log("eror->"+err.message);
+          if(err.message=="Firebase: Error (auth/email-already-in-use).")
+          setError("Email Already In Use");
+          else if(err.message=="Firebase: Password should be at least 6 characters (auth/weak-password).")
+          setError('Password should be at least 6 characters')
+          else
+          setError("Check Email and PassWord Again");
+          setTimeout(()=>{
+            setError('')
+
+          },4000);
+          console.log("fail");
+          // alert("Fail signIn")
+        }finally{
+      console.log("done");
+      
+        }
+}
   return (
     <div className='w-full h-screen  flex bg-white'>
       <div className='FirstHalf w-3/5 h-full  p-16'>
@@ -84,6 +132,7 @@ navigate("/login")
     type="button"
     data-bs-target="#carouselExampleCaptions"
     data-bs-slide="next"
+    id="next"
   >
     <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
@@ -99,20 +148,27 @@ navigate("/login")
         <div className='w-full h-3/6 '>
             <div className='Email h-1/3 flex flex-column items-start px-2 '>
                 <span className=''>Name</span>
-                <input type='text ' className='w-full h-1/2 rounded-md  p-2 outline outline-1' 	></input>
+                <input type='text ' className='w-full h-1/2 rounded-md  p-2 outline outline-1' 
+                onChange={(e) => setName(e.target.value)} value={name} 
+                ></input>
             </div>
             <div className='PhoneNumber h-1/3 flex flex-column items-start px-2'>
-                <span>PhoneNumber</span>
-                <input type='number' className='w-full h-1/2 rounded-md outline outline-1 p-2'></input>
+                <span>Email</span>
+                <input type='email' className='w-full h-1/2 rounded-md outline outline-1 p-2' 
+                 onChange={(e) => setEmail(e.target.value)} value={email} 
+                ></input>
             </div>
             <div className='Password h-1/3 flex flex-column items-start px-2'>
                 <span>Password</span>
-                <input type='password' className='w-full h-1/2 rounded-md outline outline-1 p-2'></input>
+                <input type='password' className='w-full h-1/2 rounded-md outline outline-1 p-2'
+                 onChange={(e) => setPassword(e.target.value)} value={password}
+                ></input>
             </div>
             
         </div>
+        {error && <span className='error-msg text-red-400'>{error}</span>}
         <div className='w-full h-1/6  flex flex-column items-center px-2 '>
-            <button  className='bg-drymeBlue w-full text-white h-2/4 mt-2 rounded-md '>SignUp</button>
+            <button  className='bg-drymeBlue w-full text-white h-2/4 mt-2 rounded-md 'onClick={signup}>SignUp</button>
             <span>Already Registered ? Login <span className='text-drymeBlue underline cursor-pointer'onClick={goToLogin}> Here</span></span>
         </div>
         <div className='w-full h-1/6 '>

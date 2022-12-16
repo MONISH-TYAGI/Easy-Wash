@@ -1,22 +1,28 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../Context/CartContextProvider';
 import { setDoc,doc, updateDoc,getDoc } from 'firebase/firestore';
 import {db,storage} from '../firebase'
 
 import Navbar from './Navbar'
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Context/AuthContext';
+import { Email } from '@mui/icons-material';
 
 function EnterDetails() {
     // const {setObj,BigObj,BillId,setBillId,totalItems,setItems,totalAmt,setAmt}=useContext(CartContext);
     const [name,setName]=useState("");
     const [cell,setCell]=useState("");
     const [address,setAddress]=useState("");
-   
+    const {user}=useContext(AuthContext);
     const {setObj,BigObj,BillId,setBillId,totalItems,setItems,totalAmt,setAmt}=useContext(CartContext)
-    console.log("totalQuan-> ",totalItems);
-    console.log("totalAmt-> ",totalAmt);
+    // console.log("totalQuan-> ",totalItems);
+    // console.log("totalAmt-> ",totalAmt);
     
     const navigate=useNavigate();
+    useEffect(()=>{
+if(user==null)
+navigate("/login");
+    },[])
 const saveOrderInDB= async()=>{
   console.log("Save");
     let common=new Date();
@@ -24,6 +30,7 @@ const saveOrderInDB= async()=>{
     // console.log("date ",date);
     let time=common.getHours()+":"+common.getMinutes()+":"+common.getSeconds();
     let Id=common.getFullYear()+common.getMonth()+common.getDate()+time;
+    let userEmailId=localStorage.getItem("email");
     // console.log("name ",name);
     // console.log("email",address);
     // console.log("phone ",cell)
@@ -41,26 +48,27 @@ const saveOrderInDB= async()=>{
 
 try{
 
-        const docRef = doc(db, "EmailOrders", "email");
+        const docRef = doc(db, userEmailId, "email");
         const docSnap = await getDoc(docRef);
       ;
         if(docSnap.exists())
         {
-            let res=await updateDoc(doc(db, "EmailOrders", Id), subData);
+            let res=await updateDoc(doc(db, userEmailId, Id), subData);
             console.log("save update success");
             alert("Booking Done Returning to Home")
           
         }else
         {
-            let res=await setDoc(doc(db, "EmailOrders", Id), subData);
+            let res=await setDoc(doc(db,userEmailId, Id), subData);
             console.log("save set success");
-            alert("Failed in Booking")
+            alert("Booking Done Returning to Home")
         }
     navigate("/Bag");
 }
 catch(err)
 {
 console.log("Fail save");
+alert("Fail Save");
 console.log(err);
 }
 finally{

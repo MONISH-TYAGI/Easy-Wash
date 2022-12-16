@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Context/AuthContext';
 
 function Navbar() {
+  const { logout } = useContext(AuthContext);
   const navigate=useNavigate();
   const handleServices=()=>{
     navigate("/services");
@@ -15,8 +17,12 @@ function Navbar() {
   const handleReviews=()=>{
     navigate("/reviews")
   }
-  const handleLogin=()=>{
-    navigate("/login");
+  const handleLogout=async()=>{
+    await logout();
+    alert("LogOut")    
+    localStorage.clear();
+    navigate("/login")
+
   }
   return (
     <div className='fixed z-40'>
@@ -30,7 +36,7 @@ function Navbar() {
        <div className='h-full w-1/6  flex items-center justify-center hover:text-select' onClick={handleServices}><i className="fa-solid fa-gear"></i><span>Services</span></div>
        <div className='h-full w-1/6  flex items-center justify-center hover:text-select ' onClick={handleReviews}><i className="fa-solid fa-heart"></i><span>Reviews</span></div>
        <div className='h-full w-1/6 flex items-center justify-center hover:text-select' onClick={handleBag}><i className="fa-solid fa-bag-shopping"></i><span>Bag</span></div>
-       <div className='h-full w-1/6  flex  items-center justify-center hover:text-select' onClick={handleLogin}><i className="fa-solid fa-user m-1"></i><span>LogIn</span></div>
+       <div className='h-full w-1/6  flex  items-center justify-center hover:text-select cursor-pointer' onClick={handleLogout}><i className="fa-solid fa-user m-1"></i><span>Logout</span></div>
      </div>
      </div>
      </div>
