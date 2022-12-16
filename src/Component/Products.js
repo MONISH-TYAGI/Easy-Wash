@@ -140,9 +140,10 @@ const handleCart=()=>{
   navigate("/cart");
 }
   return (
+    
     <div className='w-full h-full '>
       <Navbar></Navbar>
-      <div className='bg-white w-full h-1/3 flex items-end justify-start fixed z-10'>
+      <div className='bg-white w-full h-1/4 flex items-end justify-start fixed z-10'>
      
    <div className="w-11/12  h-12  flex items-center  rounded mx-2 "style={{border:"solid"}}>
  
@@ -179,7 +180,7 @@ const handleCart=()=>{
 
 
       </div>
-      <div className='bg-white w-full h-max flex flex-wrap ' style={{paddingTop:"16%"}}>
+      <div className='bg-white w-full h-max flex flex-wrap ' style={{paddingTop:"12%"}}>
   
       {
   (visibleCat==false)?<div className='Box1 bg-drymeBlue  fixed  rounded-b-lg z-10 h-auto'>

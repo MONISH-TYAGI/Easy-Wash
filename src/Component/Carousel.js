@@ -1,11 +1,16 @@
 import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import HowItWorks from './HowItWorks'
 
 function Carousel() {
   useEffect(()=>{
   let button=document.getElementById("next");
-  setTimeout(function() {button.click()}, 3000);
+  setTimeout(function() {button.click()}, 2000);
   },[])
+  const navigate=useNavigate();
+  const handleServices=()=>{
+navigate("/services");
+  }
   return (
     <div className='z-30 h-full bg-white' style={{paddingTop:"8.5%"}}>
    
@@ -23,7 +28,7 @@ function Carousel() {
                     </p>
                 </div>
                 <div className='h-20 w-full  flex items-center justify-center'>
-                    <button className='bg-drymeBlue text-white p-2 rounded-md'>View Services</button>
+                    <button className='bg-drymeBlue text-white p-2 rounded-md' onClick={handleServices}>View Services</button>
                 </div>
                 
             </div>

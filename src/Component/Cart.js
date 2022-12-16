@@ -6,6 +6,9 @@ import Navbar from './Navbar'
 
 function Bag() {
     const {setObj,BigObj,BillId,setBillId,totalItems,setItems,totalAmt,setAmt}=useContext(CartContext);
+    localStorage.setItem("totalItems",totalItems);
+    localStorage.setItem("totalAmt",totalAmt);
+    localStorage.setItem("BigObj",JSON.stringify(BigObj));
     const {user}=useContext(AuthContext);
   const navigate=useNavigate();
     const [change,setChange]=useState("1");
@@ -15,6 +18,11 @@ const EditQuantiy=(e)=>{
 
 }
 const handleCart=()=>{
+  localStorage.setItem("BigObj",JSON.stringify(BigObj));
+  localStorage.setItem("totalItems",totalItems);
+  localStorage.setItem("totalAmt",totalAmt);
+console.log("save");
+console.log("BigObj"+localStorage.getItem("BigObj"));
     navigate("/EnterDetails");
   }
 const handleItemsChange=(e)=>{
@@ -67,6 +75,8 @@ useEffect(()=>{
   <Navbar></Navbar>
   <div className='w-full mt-40   p-4 flex  OuterMarginBox'>
    <div className='OuterMarginBoxFirstHalf h-full  w-3/6 '> 
+
+   
    {
     BigObj.map((obj)=>{
         return (
@@ -99,6 +109,8 @@ useEffect(()=>{
         )
   })
 }
+
+
 
 
 

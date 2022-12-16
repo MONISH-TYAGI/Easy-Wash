@@ -13,7 +13,7 @@ function SignUp() {
   const navigate=useNavigate();
   useEffect(()=>{
     let button=document.getElementById("next");
-    setTimeout(function() {button.click()}, 3000);
+    setTimeout(function() {button.click()}, 2000);
     },[])
   const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -21,6 +21,38 @@ function SignUp() {
     const [error, setError] = useState('');
     const {signUp}=useContext(AuthContext);
     const {user}=useContext(AuthContext);
+    const saveEmailIdAndItsName=async()=>{
+      try{
+
+        const docRef = doc(db, "SignUpUserData", "email");
+        const docSnap = await getDoc(docRef);
+      ;
+        if(docSnap.exists())
+        {
+            let res=await updateDoc(doc(db, "SignUpUserData", email), {name});
+            console.log("save update email and name success");
+            
+          
+        }else
+        {
+            let res=await setDoc(doc(db, "SignUpUserData", email), {name});
+            console.log("save set email and name success");
+            
+        }
+    
+}
+catch(err)
+{
+console.log("Fail name and email save");
+console.log(err);
+
+console.log(err);
+}
+finally{
+console.log("finally");
+}
+
+    }
   const goToLogin=()=>{
 navigate("/login")
   }
@@ -29,9 +61,12 @@ navigate("/login")
     // alert("Sign In");
     try{
         let userObj = await signUp(email,password)
+
     setError('')
+    let res= await saveEmailIdAndItsName();
         setEmail('')
       setPassword('')
+      
       alert("Successful signIn")
 navigate("/login");
         }catch(err)

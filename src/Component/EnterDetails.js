@@ -14,10 +14,16 @@ function EnterDetails() {
     const [cell,setCell]=useState("");
     const [address,setAddress]=useState("");
     const {user}=useContext(AuthContext);
-    const {setObj,BigObj,BillId,setBillId,totalItems,setItems,totalAmt,setAmt}=useContext(CartContext)
+    let email=localStorage.getItem("email");
+    const {setObj,BigObj,BillId,setBillId,setItems,setAmt}=useContext(CartContext)
     // console.log("totalQuan-> ",totalItems);
     // console.log("totalAmt-> ",totalAmt);
+    let totalItems=localStorage.getItem("totalItems");
+    let totalAmt=localStorage.getItem("totalAmt");
+    console.log("Arr->"+JSON.parse(localStorage.getItem("BigObj")));
     
+    let newArr=[...JSON.parse(localStorage.getItem("BigObj"))];
+    console.log("newArr"+newArr.length);
     const navigate=useNavigate();
     useEffect(()=>{
 if(user==null)
@@ -35,7 +41,7 @@ const saveOrderInDB= async()=>{
     // console.log("email",address);
     // console.log("phone ",cell)
     const subData={
-        BigObj:BigObj,
+        BigObj:newArr,
         UniqueId:Id,
         Date:date,
         Time:time,
@@ -90,7 +96,7 @@ console.log("finally");
             <div className='flex flex-column items-start '>
             <span  className='ml-1'>Email</span>
             <input type="email" className='form-control rounded-md' required
-                name="Email" disabled />
+                name="Email" value={email} />
                 </div>
             <br />
             <div className='flex flex-column items-start '>

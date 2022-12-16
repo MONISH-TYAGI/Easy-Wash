@@ -230,7 +230,7 @@ DetailsArr.map((obj)=>{
                                     Total Amount
                                 </div>
                                 <div class="col-5">
-                                    <span class="text-150 text-success-d3 opacity-2">{amount+(0.1*amount)}</span>
+                                    <span class="text-150 text-success-d3 opacity-2">{parseInt(amount)+parseInt(0.1*parseInt(amount))}</span>
                                 </div>
                             </div>
                         </div>
