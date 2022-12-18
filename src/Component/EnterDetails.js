@@ -62,12 +62,14 @@ try{
             let res=await updateDoc(doc(db, userEmailId, Id), subData);
             console.log("save update success");
             alert("Booking Done Returning to Home")
+            localStorage.setItem(BigObj,[]);
           
         }else
         {
             let res=await setDoc(doc(db,userEmailId, Id), subData);
             console.log("save set success");
             alert("Booking Done Returning to Home")
+            localStorage.setItem(BigObj,[]);
         }
     navigate("/Bag");
 }

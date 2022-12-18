@@ -29,7 +29,7 @@ const {user,setUserEmail,userEmailId,login}=useContext(AuthContext);
     setPassword('')
     console.log("outerEmail"+userEmailId)
     // alert("successful Login")
-    navigate("/Products");
+    navigate("/");
       }catch(err)
       {
         console.log("fail");

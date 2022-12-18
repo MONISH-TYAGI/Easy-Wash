@@ -8,15 +8,17 @@ function Bag() {
     const {setObj,BigObj,BillId,setBillId,totalItems,setItems,totalAmt,setAmt}=useContext(CartContext);
     localStorage.setItem("totalItems",totalItems);
     localStorage.setItem("totalAmt",totalAmt);
-    localStorage.setItem("BigObj",JSON.stringify(BigObj));
+ const [run,setRun]=useState(true);
     const {user}=useContext(AuthContext);
   const navigate=useNavigate();
     const [change,setChange]=useState("1");
 const EditQuantiy=(e)=>{
-    // console.log("edit"+e);
+    console.log("edit1"+change);
     setChange(e);   
-
+    console.log("edit2"+e);
+setRun(!run);
 }
+console.log("edit3"+change);
 const handleCart=()=>{
   localStorage.setItem("BigObj",JSON.stringify(BigObj));
   localStorage.setItem("totalItems",totalItems);
@@ -24,8 +26,10 @@ const handleCart=()=>{
 console.log("save");
 console.log("BigObj"+localStorage.getItem("BigObj"));
     navigate("/EnterDetails");
+    setRun(!run);
   }
 const handleItemsChange=(e)=>{
+  console.log(JSON.stringify(BigObj));
     function findObjIndex(obj)
     {
         if(obj.ProdId==e) 
@@ -39,9 +43,18 @@ const handleItemsChange=(e)=>{
     console.log("index"+index);
     let val=document.getElementById(e).value;
     BigObj[index].Quantity=val;
+    let newBigObj=BigObj;
+    if(val==0)
+    {
+       newBigObj=BigObj.filter((obj)=>{
+        return (obj.ProdId!=e);
+      })
+    }
     console.log("Try"+BigObj[index].Quantity);
-    setObj([...BigObj]);
+    setObj([...newBigObj]);
     setChange("1");
+    localStorage.setItem("BigObj",JSON.stringify(newBigObj));
+    setRun(!run);
     // let newBigObj=BigObj.filter((obj)=>{
     //     return (obj.Quantity!=0)
     //  })
@@ -53,6 +66,8 @@ useEffect(()=>{
     {
       navigate("/Login");
     }else{
+      if(localStorage.getItem("BigObj")!=null)
+ setObj([...JSON.parse(localStorage.getItem('BigObj'))])
     let Items=0;
     let Amt=0;
     let currName=""
@@ -67,10 +82,12 @@ useEffect(()=>{
 //  console.log("Amt ",Amt);
  setItems(Items);
  setAmt(Amt);
+ 
 }
 //  setName(name);
-},[BigObj])
+},[change])
   return (
+ 
     <div className='w-full h-full bg-white'>
   <Navbar></Navbar>
   <div className='w-full mt-40   p-4 flex  OuterMarginBox'>
@@ -136,6 +153,7 @@ useEffect(()=>{
   </div>
   </div>
     </div>
+   
   )
 }
 

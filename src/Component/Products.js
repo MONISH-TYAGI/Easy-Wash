@@ -127,7 +127,7 @@ console.log("len"+products.length);
     Name:obj.Name,
     Price:obj.Price,
     Image:obj.Image,
-    ProdId:100 ,
+    ProdId:obj.ProdId ,
     Quantity:val,
     Category:categoryName
   
@@ -137,6 +137,7 @@ console.log("len"+products.length);
  
 
 const handleCart=()=>{
+  localStorage.setItem("BigObj",JSON.stringify(BigObj));
   navigate("/cart");
 }
   return (

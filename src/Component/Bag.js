@@ -52,7 +52,7 @@ function Bag() {
     // console.log(JSON.stringify(arr));
         }
   return (
-    
+    (arr.length!=0)?
     <div className='w-full h-screen bg-white pt-36 Main 'style={{backgroundColor:"white"}}>
         <Navbar></Navbar>
         <div className='   p-4 flex justify-center OrdersMainDiv'>
@@ -92,8 +92,16 @@ function Bag() {
 </div>
  </div> 
  
-    
+ :
+ <div className='w-full h-screen bg-white pt-36 Main 'style={{backgroundColor:"white"}}>
+        <Navbar></Navbar>
+        <div className='h-full w-full  flex flex-column items-center  '>
+            <img className='w-2/5 h-4/6   ' src="https://i.pinimg.com/originals/25/90/37/259037de078c698b1322486404632e01.png" style={{opacity: "7.9%"}}></img>
+            <span className='text-4xl font-bold text-gray-300'>No Orders Till Yet</span>
+        </div>
+        </div>
   )
+  
 }
 
 export default Bag
