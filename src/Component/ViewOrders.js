@@ -93,9 +93,9 @@ console.log("hide ",hide);
               {/* <button className='bg-black text-white' onClick={generatePDF}>Print</button> */}
               {
               (hide==false)?
-              <button onClick={generatePDF}>
+              <button onClick={generatePDF} className="">
                 <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="Print">
-                <i class="mr-1 fa fa-file-pdf-o text-danger-m1 text-120 w-2"></i>
+                <i class="mr-1 fa fa-file-pdf-o text-danger-m1 text-120  w-2"></i>
                     {/* <i class="mr-1 fa fa-print text-primary-m1 text-120 w-2"></i> */}
                     Print
                 </a>
@@ -185,8 +185,8 @@ DetailsArr.map((obj)=>{
                             <div class="col-9 col-sm-5">{obj.Name}</div>
                             <div class="d-none d-sm-block col-1">{obj.Quantity}</div>
                             <div class="d-none d-sm-block col-1">{obj.Category}</div>
-                            <div class="d-none d-sm-block col-2 text-95">{obj.Price/obj.Quantity}</div>
-                            <div class="col-2 text-secondary-d2">{obj.Price}</div>
+                            <div class="d-none d-sm-block col-2 text-95">{obj.Price}</div>
+                            <div class="col-2 text-secondary-d2">{obj.Price*obj.Quantity}</div>
                         </div>
 
                   

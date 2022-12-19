@@ -202,9 +202,9 @@ navigate("/login");
             
         </div>
         {error && <span className='error-msg text-red-400'>{error}</span>}
-        <div className='w-full h-1/6  flex flex-column items-center px-2 '>
-            <button  className='bg-drymeBlue w-full text-white h-2/4 mt-2 rounded-md 'onClick={signup}>SignUp</button>
-            <span>Already Registered ? Login <span className='text-drymeBlue underline cursor-pointer'onClick={goToLogin}> Here</span></span>
+        <div className='w-full h-1/6  flex flex-column items-center px-2  text-white'>
+            <button  className=' w-full  h-2/4 mt-2 rounded-md bg-drymeBlue  border-2 border-drymeBlue hover:bg-white hover:text-drymeBlue'onClick={signup}>SignUp</button>
+            <span className='text-black'>Already Registered ? Login <span className='text-drymeBlue underline cursor-pointer'onClick={goToLogin}> Here</span></span>
         </div>
         <div className='w-full h-1/6 '>
             <div className='w-full h-2/4  flex items-center justify-center text-3xl'>

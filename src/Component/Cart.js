@@ -6,8 +6,8 @@ import Navbar from './Navbar'
 
 function Bag() {
     const {setObj,BigObj,BillId,setBillId,totalItems,setItems,totalAmt,setAmt}=useContext(CartContext);
-    localStorage.setItem("totalItems",totalItems);
-    localStorage.setItem("totalAmt",totalAmt);
+    // localStorage.setItem("totalItems",totalItems);
+    // localStorage.setItem("totalAmt",totalAmt);
  const [run,setRun]=useState(true);
     const {user}=useContext(AuthContext);
   const navigate=useNavigate();
@@ -66,12 +66,15 @@ useEffect(()=>{
     {
       navigate("/Login");
     }else{
-      if(localStorage.getItem("BigObj")!=null)
+      let currArr=[];
+      if(localStorage.getItem("BigObj")!=null){
  setObj([...JSON.parse(localStorage.getItem('BigObj'))])
+  currArr=[...JSON.parse(localStorage.getItem('BigObj'))];
+      }
     let Items=0;
     let Amt=0;
     let currName=""
- BigObj.map((obj)=>{
+ currArr.map((obj)=>{
     Items+=parseInt(obj.Quantity);
     Amt+=obj.Quantity*obj.Price;
     // currName=obj.Name;
@@ -104,6 +107,7 @@ useEffect(()=>{
     <div className='w-4/6    '>
         <div className='secondHalfFirst w-full  h-2/3 flex justify-around '> 
     <span className='text-xl'>{obj.Name}</span>
+    <span className='text-xl'>{obj.Price}</span>
         <span className='text-xl'>X</span>
         <span className='text-xl'>{obj.Quantity}</span>
         <span className='text-xl'>=</span>

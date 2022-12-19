@@ -31,6 +31,7 @@ function Reviews() {
     }
     const [change,setChange]=useState(false);
     const [star,setStar]=useState(0);
+    const [image,setImage]=useState("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLlQ9DL2jP_heI_mtZXdw8cxNdGunsejk7FQ&usqp=CAU");
     const handleStar=(val)=>{
       setStar(val);
     }
@@ -112,7 +113,7 @@ function Reviews() {
         if(docSnap.exists())
         {
             let res=await updateDoc(doc(db, "Reviews", userEmailId), subData);
-            alert("data update");
+            // alert("data update");
             
           
         }else
@@ -121,6 +122,7 @@ function Reviews() {
             console.log("data set");
             
         }
+        alert("Please Wait & Refresh");
     
 }
 catch(err)
@@ -135,13 +137,19 @@ console.log("finally");
 }
 
     }
+   const handleDisplayImage=(e)=>{
+    console.log("hello");
+    setFile(e.target.files[0]);
+    setImage(URL.createObjectURL(e.target.files[0]));
+
+   }
     const SaveImage=async()=>{
         const storageRef = ref(storage, `${user.email}/Profile`);
         const uploadTask = uploadBytesResumable(storageRef, file);
   
         // // Listen for state changes, errors, and completion of the upload.
         try{
-          alert("Uploading Started");
+            // alert("Uploading Started");
         uploadTask.on(
           "state_changed",
           (snapshot) => {
@@ -161,13 +169,14 @@ console.log("finally");
             // Upload completed successfully, now we can get the download URL
             getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
               console.log("File available at", downloadURL);
-              alert("Upload Successfull");
+              // alert("Upload Successfull");
               // console.log("Star"+star);
               // console.log("text"+text);
 let res=await saveReviews(downloadURL);
 setStar(0);
 setText('');
 setFile(null);
+setImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLlQ9DL2jP_heI_mtZXdw8cxNdGunsejk7FQ&usqp=CAU")
               // let userData = {
               //   fullName,
               //   email,
@@ -242,7 +251,7 @@ setFile(null);
               return  (
         <div className='w-5/6  h-48 ml-12 mt-4 flex drop-shadow-2xl mb-4 '>
                 <div className='w-1/3 h-full  '>
-                    <img className='w-full h-full' src={obj.Image} style={{borderRadius:"50%"}}></img>
+                    <img className='w-full h-full ' src={obj.Image} style={{borderRadius:"50%"}}></img>
                 </div>
                 <div className='w-2/3 h-full bg-white'>
                     <div className="Text w-full h-2/3  flex items-center  ">
@@ -276,10 +285,10 @@ setFile(null);
                        
         </div>
         <div className='w-1/3 bg-white h-full '>
-          <img className='w-full h-full  uploadImg drop-shadow-2xl' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLlQ9DL2jP_heI_mtZXdw8cxNdGunsejk7FQ&usqp=CAU" style={{borderRadius:"50%"}}></img>
+          <img className='w-3/4 h-3/4  uploadImg drop-shadow-2xl setImage' src={image} style={{borderRadius:"50%"}}></img>
           <div className="file  inline   fixed z-20 imageUploadIcon" onClick={handleInput}>
           <i class="fa-solid fa-camera text-3xl"></i>
-  <input type="file" id="file" style={{display:"none"}} onChange={(e)=>setFile(e.target.files[0])} />
+  <input type="file" id="file" style={{display:"none"}} onChange={handleDisplayImage} />
   <i class="fa-solid fa-plus"></i>
 </div>
           <div className='OuterCommentBox w-1/4 h-1/3 bg-white mt-2 m-auto fixed top-1/2 pt-8 drop-shadow-2xl' style={{right:"5%"}} >
@@ -297,7 +306,7 @@ setFile(null);
               <textarea className='w-full h-full p-2' autoFocus onChange={(e)=>setText(e.target.value)} value={text}></textarea>
             </div>
             <div className='First w-full h-1/5 bg-drymeBlue text-white'>
-           <button className='w-full h-full text-3xl' onClick={SaveImage}>Add Review</button>
+           <button className='w-full h-full text-3xl hover:bg-white hover:text-drymeBlue'  onClick={SaveImage}>Add Review</button>
             </div>
           </div>
         </div>

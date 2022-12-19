@@ -9,13 +9,16 @@ function Products() {
   const {setObj,BigObj,BillId,setBillId,totalItems,setItems,totalAmt,setAmt}=useContext(CartContext);
   const [visibleCat,setVisibleCat]=useState(true);
   const [visibleSer,setVisibleSer]=useState(false);
+  const [val,setVal]=useState(99);
   const [cart,setCart]=useState(false);
+  
   const [categoryName,setCategoryName]=useState("Male");
   const [currPage,setCurrPage]=useState(1);
   const [value1,setValue1]=useState("gray");
   const [value2,setValue2]=useState("white");
   const [value3,setValue3]=useState("white");
   const [value4,setValue4]=useState("white");
+  let i=0;
   // const [all,setAll]=useState(true); 
   let maleApi="https://monish-tyagi.github.io/CustomApi/Men.json";
   let femaleApi="https://monish-tyagi.github.io/CustomApi/Female.json";
@@ -26,8 +29,10 @@ function Products() {
   const [pagesArr,setPagesArr]=useState([]);
   const [val1,setVal1]=useState("gray");
   const [val2,setVal2]=useState("white");
+  const [searchValue,setSearch]=useState("");
+  const [selectedItems,setSelectedItems]=useState(0);
   const handleVisibleCat=()=>{
-    console.log(visibleCat)
+    // console.log(visibleCat)
    setVisibleCat(!visibleCat)
   }
   const handlePrevious=()=>{
@@ -44,6 +49,22 @@ setCurrPage(currPage-1);
   }
   const {user}=useContext(AuthContext);
 
+  const handleSearch=()=>{
+    // setTimeout(()=>{},1000);
+    let curr=document.getElementById("search").value;
+    // console.log("curr "+curr)
+       setSearch(curr);
+      // console.log("searchVal"+curr.length); 
+     let  currproducts=JSON.parse(localStorage.getItem("products"));
+      //  console.log("search 1 "+products.length);
+     let newProd = currproducts.filter((obj)=>{
+        return(curr.length==0||obj.Name.toUpperCase().substring(0,curr.length)==curr.toUpperCase());
+       });
+      //  console.log("search 2"+newProd.length);
+       i=0;
+       setProducts([...newProd])
+       
+  }
  const handlePage=(e)=>{
   setCurrPage(e);
  }
@@ -52,6 +73,7 @@ setCurrPage(currPage-1);
   {
  setCategory(maleApi);
  setCategoryName("Male");
+ setVal(99);
  setVal1("gray");
  setVal2("white");
   }else
@@ -60,6 +82,7 @@ setCategory(femaleApi);
 setCategoryName("Female");
 setVal2("gray");
 setVal1("white");
+setVal(199);
   }
 setVisibleCat(!visibleCat);
 setCurrPage(1); 
@@ -91,6 +114,7 @@ setValue4("white");
     setValue2("white");
     setValue3("white");
     setValue4("gray");  }
+
  }
  useEffect(()=>{
   if(user==null){
@@ -112,16 +136,16 @@ let arr=[1];
 for(let i=2;i<=val;i++)
 arr.push(i);
 setPagesArr([...arr]);
-
+localStorage.setItem("products",JSON.stringify([...data]));
 })
-console.log("len"+products.length);
+
 },[category]);
   
   const addToBag=(obj)=>{
     if(cart==false)
     setCart(true);
     let val=document.getElementById(obj.ProdId).value;
-    console.log("Prev BigObj"+BigObj.length);
+    // console.log("Prev BigObj"+BigObj.length);
  BigObj.push({
   
     Name:obj.Name,
@@ -132,16 +156,17 @@ console.log("len"+products.length);
     Category:categoryName
   
  })
- console.log("Updated BigObj"+BigObj.length);
+//  console.log("Updated BigObj"+BigObj.length);
+ setSelectedItems(BigObj.length);
   }
  
 
 const handleCart=()=>{
-  localStorage.setItem("BigObj",JSON.stringify(BigObj));
+  // localStorage.setItem("BigObj",JSON.stringify(BigObj));
   navigate("/cart");
 }
   return (
-    
+   
     <div className='w-full h-full '>
       <Navbar></Navbar>
       <div className='bg-white w-full h-1/4 flex items-end justify-start fixed z-10'>
@@ -149,21 +174,21 @@ const handleCart=()=>{
    <div className="w-11/12  h-12  flex items-center  rounded mx-2 "style={{border:"solid"}}>
  
  <button ><i class="fa-solid fa-magnifying-glass ml-4"></i></button>
-   <input type="search"  className=" w-full h-1/2 p-2 outline-none  " placeholder="Search Here "  />
-   <button className='bg-drymeBlue text-white  rounded-lg px-4 h-3/4'>Search</button>
+   <input type="search"  id="search" className=" w-full h-1/2 p-2 outline-none  " placeholder="Search Here " onChange={handleSearch} value={searchValue} />
+   <button className='bg-drymeBlue text-white  rounded-lg px-4 h-3/4'onClick={handleSearch} >Search</button>
    </div>
-   
-   <button className='bg-drymeBlue text-white w-1/6  h-12 rounded-lg mx-2' onClick={handleVisibleCat}>Category <i class="ml-2 fa-sharp fa-solid fa-caret-down "></i>
- </button>
-   
-   <button className='bg-drymeBlue  text-white w-1/6 h-12 rounded-lg  mx-2'onClick={handleVisibleSer}>Select Service <i class="ml-2   fa-sharp fa-solid fa-caret-down"></i></button> 
-   <button className='bg-drymeBlue  text-white w-1/6 h-12 rounded-lg  mx-2 text-3xl' onClick={handleCart}>
+   <button className='bg-white  text-white w-1/6 h-12 rounded-lg  mx-2 text-3xl ' onClick={handleCart} style={{border:"solid",borderColor:"#194376"}}>
     {
       (cart==false)?
-    <i class="fa-solid fa-cart-shopping"></i>
-    :<i class="fa-solid fa-cart-plus"></i>
+    <i class="fa-solid fa-cart-shopping text-drymeBlue"></i>
+    :<i class="fa-solid fa-cart-plus text-drymeBlue " style={{color:"#46C6CE"}}><span className='text-lg'>{selectedItems}</span></i>
 }
      </button> 
+   <button className='bg-white text-drymeBlue w-1/6  h-12 rounded-lg mx-2 text-md' onClick={handleVisibleCat} style={{border:"solid",borderColor:"#194376"}}>Category <i class="ml-2 fa-sharp fa-solid fa-caret-down "></i>
+ </button>
+   
+   <button className='bg-white  text-drymeBlue w-1/6 h-12 rounded-lg  mx-2'onClick={handleVisibleSer} style={{border:"solid",borderColor:"#194376"}}>Select Service <i class="ml-2   fa-sharp fa-solid fa-caret-down"></i></button> 
+ 
    {/* <div class="dropdown">
 {/* <div class="dropdown1 w-56">
   <button class="dropbtn">Category 
@@ -256,9 +281,12 @@ const handleCart=()=>{
 })
 }   */}
 {
+  
   products.map((obj)=>{
+    // {console.log(JSON.stringify(products))}
+//  {console.log("currPage->"+currPage+" and i-> "+i)}
     return (
-      ((obj.ProdId>((currPage-1)*8+99))&&(obj.ProdId<(currPage*8+99)))?
+      (i<currPage*8&&i++>=(currPage-1)*8)?
 <div className='w-1/5 bg-red-400 h-1/2 m-8 justify-center drop-shadow-2xl	'>
 <div className='bg-gray-400 w-full h-64'>
   <img src={obj.Image} className='w-full h-full'></img>
