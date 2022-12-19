@@ -6,14 +6,23 @@ import { CartContext } from '../Context/CartContextProvider';
 import { AuthContext } from '../Context/AuthContext';
 
 function Products() {
-  const {setObj,BigObj,BillId,setBillId,totalItems,setItems,totalAmt,setAmt}=useContext(CartContext);
+  const {setObj,BillId,setBillId,totalItems,setItems,totalAmt,setAmt,cart,setCart}=useContext(CartContext);
   const [visibleCat,setVisibleCat]=useState(true);
   const [visibleSer,setVisibleSer]=useState(false);
   const [val,setVal]=useState(99);
-  const [cart,setCart]=useState(false);
-  
+  let cartVal=false;
+  if(localStorage.getItem("cart")!=null){
+  cartVal=localStorage.getItem("cart");
+  console.log("cartValA"+cartVal);
+  }
+  // setCart(false);
+  let BigObj=(localStorage.getItem("BigObj")!=null)?[...JSON.parse(localStorage.getItem("BigObj"))]:[];
+ 
+  // let cart=false;
   const [categoryName,setCategoryName]=useState("Male");
   const [currPage,setCurrPage]=useState(1);
+
+  
   const [value1,setValue1]=useState("gray");
   const [value2,setValue2]=useState("white");
   const [value3,setValue3]=useState("white");
@@ -30,7 +39,12 @@ function Products() {
   const [val1,setVal1]=useState("gray");
   const [val2,setVal2]=useState("white");
   const [searchValue,setSearch]=useState("");
-  const [selectedItems,setSelectedItems]=useState(0);
+
+  let select=0;
+  if(localStorage.getItem("selectedItems")!=null)
+  select=localStorage.getItem("selectedItems");
+  const [selectedItems,setSelectedItems]=useState(select);
+ 
   const handleVisibleCat=()=>{
     // console.log(visibleCat)
    setVisibleCat(!visibleCat)
@@ -137,13 +151,17 @@ for(let i=2;i<=val;i++)
 arr.push(i);
 setPagesArr([...arr]);
 localStorage.setItem("products",JSON.stringify([...data]));
+console.log("CartVal"+cartVal)
+console.log("CartVal"+cart)
+setCart(cartVal);
+
 })
 
 },[category]);
   
   const addToBag=(obj)=>{
     if(cart==false)
-    setCart(true);
+   setCart(true);
     let val=document.getElementById(obj.ProdId).value;
     // console.log("Prev BigObj"+BigObj.length);
  BigObj.push({
@@ -158,6 +176,9 @@ localStorage.setItem("products",JSON.stringify([...data]));
  })
 //  console.log("Updated BigObj"+BigObj.length);
  setSelectedItems(BigObj.length);
+ localStorage.setItem("BigObj",JSON.stringify(BigObj));
+ localStorage.setItem("cart",true);
+localStorage.setItem("selectedItems",BigObj.length);
   }
  
 
@@ -166,7 +187,6 @@ const handleCart=()=>{
   navigate("/cart");
 }
   return (
-   
     <div className='w-full h-full '>
       <Navbar></Navbar>
       <div className='bg-white w-full h-1/4 flex items-end justify-start fixed z-10'>
@@ -179,9 +199,10 @@ const handleCart=()=>{
    </div>
    <button className='bg-white  text-white w-1/6 h-12 rounded-lg  mx-2 text-3xl ' onClick={handleCart} style={{border:"solid",borderColor:"#194376"}}>
     {
-      (cart==false)?
+      (BigObj.length==0)?
+      
     <i class="fa-solid fa-cart-shopping text-drymeBlue"></i>
-    :<i class="fa-solid fa-cart-plus text-drymeBlue " style={{color:"#46C6CE"}}><span className='text-lg'>{selectedItems}</span></i>
+    :<i class="fa-solid fa-cart-plus text-drymeBlue " style={{color:"#46C6CE"}}><span className='text-lg'>{BigObj.length}</span></i>
 }
      </button> 
    <button className='bg-white text-drymeBlue w-1/6  h-12 rounded-lg mx-2 text-md' onClick={handleVisibleCat} style={{border:"solid",borderColor:"#194376"}}>Category <i class="ml-2 fa-sharp fa-solid fa-caret-down "></i>

@@ -14,10 +14,11 @@
 }
 .sort{
   
-  width: 8rem;
+  width: auto;
     font-size: 1ren;
-    left: 59%;
-    top: 26%;
+    left: 58.4%;
+    top: 28.7%;
+    z-index: 30;
 
 }
 .uploadImg{

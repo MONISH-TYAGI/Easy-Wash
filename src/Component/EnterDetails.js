@@ -15,7 +15,10 @@ function EnterDetails() {
     const [address,setAddress]=useState("");
     const {user}=useContext(AuthContext);
     let email=localStorage.getItem("email");
-    const {setObj,BigObj,BillId,setBillId,setItems,setAmt}=useContext(CartContext)
+    const handleOnline=()=>{
+        alert("Server Down Please Choose Cash on Delivery")
+    }
+    const {setObj,BigObj,BillId,setBillId,setItems,setAmt,cart,setCart}=useContext(CartContext)
     // console.log("totalQuan-> ",totalItems);
     // console.log("totalAmt-> ",totalAmt);
     let totalItems=localStorage.getItem("totalItems");
@@ -30,6 +33,8 @@ if(user==null)
 navigate("/login");
     },[])
 const saveOrderInDB= async()=>{
+    document.getElementById("COD").classList.remove("bg-drymeBlue");
+    document.getElementById("COD").classList.add("bg-black");
   console.log("Save");
     let common=new Date();
     let date=common.getDate()+"-"+common.getMonth()+"-"+common.getFullYear();
@@ -61,22 +66,30 @@ try{
         {
             let res=await updateDoc(doc(db, userEmailId, Id), subData);
             console.log("save update success");
-            alert("Booking Done Returning to Home")
-            localStorage.setItem(BigObj,[]);
+            // alert("Booking Update Done Returning to Home")
+            localStorage.removeItem("BigObj");
+            localStorage.setItem("cart",false);
+            localStorage.setItem("selectedItems",0);
+            setCart(false);
           
         }else
         {
             let res=await setDoc(doc(db,userEmailId, Id), subData);
             console.log("save set success");
-            alert("Booking Done Returning to Home")
-            localStorage.setItem(BigObj,[]);
+            // alert("Booking Set Done Returning to Home")
+            localStorage.removeItem("BigObj");
+            localStorage.setItem("cart",false);
+            localStorage.setItem("selectedItems",0);
+            setCart(false);
         }
     navigate("/Bag");
 }
 catch(err)
 {
 console.log("Fail save");
-alert("Fail Save");
+// alert("Fail Save");
+document.getElementById("COD").classList.add("bg-drymeBlue");
+    document.getElementById("COD").classList.remove("bg-black");
 console.log(err);
 }
 finally{
@@ -125,8 +138,8 @@ console.log("finally");
                  name="Quantity" disabled defaultValue={totalItems}  />
                  </div>
             <br />
-            <button  className='bg-drymeBlue text-white hover:bg-red p-2 'onClick={saveOrderInDB} >Cash On Delivery</button>
-            <button  className='bg-drymeBlue     text-white ml-4 p-2      '>PayOnline</button>
+            <button  className='bg-drymeBlue text-white  p-2 ' id="COD" onClick={saveOrderInDB} >Cash On Delivery</button>
+            <button  className='bg-drymeBlue     text-white ml-4 p-2      'onClick={handleOnline}>PayOnline</button>
         
        
     </div>

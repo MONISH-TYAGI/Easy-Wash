@@ -4,12 +4,30 @@ import {
     createUserWithEmailAndPassword,
     onAuthStateChanged,
     signInWithEmailAndPassword,
-    signOut
+    signOut,
+    GoogleAuthProvider,
+    signInWithPopup,
+    signInWithRedirect
  } from "firebase/auth";
 export const AuthContext = createContext();
 
 
-
+function googleSignIn(){
+  let val=false;
+  const provider=new GoogleAuthProvider();
+let res=  signInWithPopup(auth,provider).then((result)=>{
+// console.log("Result -> "+JSON.stringify(result));
+console.log("Result Name"+result.user.displayName);
+localStorage.setItem("name",result.user.displayName)
+console.log("Result Email"+result.user.email);
+localStorage.setItem("email",result.user.email);
+return true;
+  }).catch((error)=>{
+    console.log("error signOut ->"+error);
+    return false;
+  });
+  return res;
+}
 export function AuthProvider({children}) {
     const [user,setUser]=useState("");
     const [userEmailId,setUserEmail]=useState("");
@@ -42,7 +60,7 @@ useEffect(() => {
 })
 
 const store={
-    signUp,login,logout,user,logout,userEmailId,setUserEmail
+    signUp,login,logout,user,logout,userEmailId,setUserEmail,googleSignIn
 }
   return (
     <AuthContext.Provider value={store}>

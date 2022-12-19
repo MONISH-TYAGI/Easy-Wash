@@ -20,8 +20,10 @@ function SignUp() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const {signUp}=useContext(AuthContext);
-    const {user}=useContext(AuthContext);
+    const {user,googleSignIn}=useContext(AuthContext);
     const saveEmailIdAndItsName=async()=>{
+     let name=localStorage.getItem("name");
+     let email=localStorage.getItem("email");
       try{
 
         const docRef = doc(db, "SignUpUserData", "email");
@@ -46,7 +48,7 @@ catch(err)
 console.log("Fail name and email save");
 console.log(err);
 
-console.log(err);
+// console.log(err);
 }
 finally{
 console.log("finally");
@@ -56,18 +58,54 @@ console.log("finally");
   const goToLogin=()=>{
 navigate("/login")
   }
+  const handelSignUp=async()=>{
+   
+      let response=await  googleSignIn();
+      console.log("response ->"+response);
+      if(response==true){
+        try{
+    let email=localStorage.getItem("email");
+    let name=localStorage.getItem("name");
+    // setEmail(email);
+    // setName(name);
+    let res= await saveEmailIdAndItsName();
+        }
+      catch(err){
+        console.log("errDB->"+err);
+      }
+    setEmail('')
+  setPassword('')
+    // alert("Successful signIn")
+navigate("/");
+      }else{
+        alert("google Auth  Fail");
+      }
+//       }).then((err)=>{
+//         console.log("error in response "+err)
+//       })
+  
+
+    
+//     }catch(error){
+//         console.log(error);
+//     }
+    }
   const signup = async(e) => {
     e.preventDefault();
+document.getElementById("signUp").classList.remove("bg-drymeBlue");
+document.getElementById("signUp").classList.add("bg-black");
     // alert("Sign In");
     try{
         let userObj = await signUp(email,password)
 
     setError('')
+    localStorage.setItem("email",email);
+    localStorage.setItem("name",name);
     let res= await saveEmailIdAndItsName();
         setEmail('')
       setPassword('')
       
-      alert("Successful signIn")
+      // alert("Successful signIn")
 navigate("/login");
         }catch(err)
         {
@@ -203,7 +241,7 @@ navigate("/login");
         </div>
         {error && <span className='error-msg text-red-400'>{error}</span>}
         <div className='w-full h-1/6  flex flex-column items-center px-2  text-white'>
-            <button  className=' w-full  h-2/4 mt-2 rounded-md bg-drymeBlue  border-2 border-drymeBlue hover:bg-white hover:text-drymeBlue'onClick={signup}>SignUp</button>
+            <button id="signUp" className=' w-full  h-2/4 mt-2 rounded-md bg-drymeBlue  border-2 border-drymeBlue'onClick={signup}>SignUp</button>
             <span className='text-black'>Already Registered ? Login <span className='text-drymeBlue underline cursor-pointer'onClick={goToLogin}> Here</span></span>
         </div>
         <div className='w-full h-1/6 '>
@@ -211,7 +249,7 @@ navigate("/login");
                 <span>OR</span>
                 </div>
                 <div className='h-2/4 flex  justify-center '>
-                <div class="social-icon flex  rounded-xl h-full items-center border border-2 border-drymeBlue">
+                <div class="social-icon flex  rounded-xl h-full items-center border border-2 border-drymeBlue cursor-pointer" onClick={handelSignUp}>
                     <img src="https://cdn-teams-slug.flaticon.com/google.jpg"  className="rounded-xl h-full w-fit"width="25px"/>
                         <span class="mx-2 ">SignUp In with Google</span>
                         </div>

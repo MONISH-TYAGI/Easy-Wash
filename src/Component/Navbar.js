@@ -20,7 +20,7 @@ function Navbar() {
   }
   const handleLogout=async()=>{
     await logout();
-    alert("LogOut")    
+    // alert("LogOut")    
     localStorage.clear();
     navigate("/login")
 
@@ -39,7 +39,7 @@ function Navbar() {
        <div className='h-full w-1/6 flex items-center justify-center hover:text-select' onClick={handleBag}><i className="fa-solid fa-bag-shopping"></i><span>Bag</span></div>
        
         
-        <div className='h-full w-2/6  flex  items-center justify-center hover:text-select cursor-pointer' onClick={handleLogout} >
+        <div className='h-full w-2/6  flex  items-center justify-center hover:text-select cursor-pointer' onClick={handleLogout} onMouseEnter={()=>setIcon(true)} onMouseLeave={()=>setIcon(false)}>
           {
           (icon==false)?
           <span onMouseEnter={()=>setIcon(true)}>

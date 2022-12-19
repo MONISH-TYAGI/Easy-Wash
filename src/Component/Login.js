@@ -15,10 +15,11 @@ function Login() {
   const [error, setError] = useState('');
 // const navigate=useNavigate();
 // const {login}=useContext(AuthContext);
-const {user,setUserEmail,userEmailId,login}=useContext(AuthContext);
+const {user,setUserEmail,userEmailId,login,googleSignIn}=useContext(AuthContext);
   const doLogin = async(e) => {
       e.preventDefault();
-      console.log("Log In");
+      document.getElementById("login").classList.add("bg-black");
+      // console.log("Log In");
       
       try{
       let userObj = await login(email,password)
@@ -33,6 +34,7 @@ const {user,setUserEmail,userEmailId,login}=useContext(AuthContext);
       }catch(err)
       {
         console.log("fail");
+        document.getElementById("login").classList.remove("bg-black");
         setError("Wrong EmailId Or Password");
         setTimeout(()=>{
 setError('')
@@ -42,6 +44,17 @@ setError('')
     console.log("done");
     
       }
+  }
+  const handelSignUp=async()=>{
+ 
+    let response=await  googleSignIn();
+    if(response==true){    
+  
+navigate("/");
+    }else{
+      // alert("google Auth  Fail");
+    }
+
   }
   const goToSignUp=()=>{
     navigate("/signUp")
@@ -153,7 +166,7 @@ setError('')
         </div>
         {error && <span className='error-msg text-red-400'>{error}</span>}
         <div className='w-full h-1/6  flex flex-column items-center px-2 '>
-            <button  className='bg-drymeBlue w-full text-white h-2/4 mt-2 rounded-md' onClick={doLogin}>Login</button>
+            <button  className='bg-drymeBlue w-full text-white h-2/4 mt-2 rounded-md' id="login" onClick={doLogin}>Login</button>
             <span>Not Registered Yet? SignUp <span className='text-drymeBlue underline cursor-pointer' onClick={goToSignUp}> Here</span></span>
         </div>
         <div className='w-full h-2/6 '>
@@ -161,7 +174,7 @@ setError('')
                 <span>OR</span>
                 </div>
                 <div className='h-2/4 flex  justify-center '>
-                <div class="social-icon flex  rounded-xl h-2/4 items-center border border-2 border-drymeBlue">
+                <div class="social-icon flex  rounded-xl h-2/4 items-center border border-2 border-drymeBlue cursor-pointer" onClick={handelSignUp}>
                     <img src="https://cdn-teams-slug.flaticon.com/google.jpg"  className="rounded-xl h-full w-fit"width="25px"/>
                         <span class="mx-2 ">Login In with Google</span>
                         </div>

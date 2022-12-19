@@ -7,8 +7,9 @@ export const  CartContextProvider=(props)=> {
   const [BigObj,setObj]=useState([]);
   const [totalItems,setItems]=useState(0);
     const [totalAmt,setAmt]=useState(0);
+    const [cart,setCart]=useState(false);
   return (
-    <CartContext.Provider value={{setObj,BigObj,BillId,setBillId,totalItems,setItems,totalAmt,setAmt}}>
+    <CartContext.Provider value={{setObj,BigObj,BillId,setBillId,totalItems,setItems,totalAmt,setAmt,cart,setCart}}>
     {props.children}
 </CartContext.Provider>
   )

@@ -11,12 +11,13 @@ import {  ref,uploadBytesResumable,getDownloadURL } from "firebase/storage";
 import Navbar from './Navbar'
 
 function Reviews() {
-    
+   
   const [val1,setVal1]=useState({
     fontSize: "0.8rem",
     
     
   })
+  
   const [val2,setVal2]=useState({
     fontSize:"0.8rem",
     
@@ -25,6 +26,7 @@ function Reviews() {
     fontSize:"0.8rem",
     
   })
+  const [change2,setChange2]=useState(false);
     const handleInput=()=>{
         let upload=document.getElementById("file");
         upload.click();
@@ -122,7 +124,7 @@ function Reviews() {
             console.log("data set");
             
         }
-        alert("Please Wait & Refresh");
+        // alert("Please Wait & Refresh");
     
 }
 catch(err)
@@ -144,61 +146,55 @@ console.log("finally");
 
    }
     const SaveImage=async()=>{
+      document.getElementById("saveReview").classList.remove("bg-drymeBlue");
+      document.getElementById("saveReview").classList.add("bg-black");
         const storageRef = ref(storage, `${user.email}/Profile`);
         const uploadTask = uploadBytesResumable(storageRef, file);
   
-        // // Listen for state changes, errors, and completion of the upload.
+      
         try{
-            // alert("Uploading Started");
+        
         uploadTask.on(
           "state_changed",
           (snapshot) => {
-            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
             const progress =
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             console.log("Upload is " + progress + "% done");
           },
           (error) => {
-            // A full list of error codes is available at
-            // https://firebase.google.com/docs/storage/web/handle-errors
+          
             alert("Upload fail");
               console.log(error)
           
           },
           () => {
-            // Upload completed successfully, now we can get the download URL
+           
             getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
               console.log("File available at", downloadURL);
-              // alert("Upload Successfull");
-              // console.log("Star"+star);
-              // console.log("text"+text);
+          
 let res=await saveReviews(downloadURL);
 setStar(0);
 setText('');
 setFile(null);
 setImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLlQ9DL2jP_heI_mtZXdw8cxNdGunsejk7FQ&usqp=CAU")
-              // let userData = {
-              //   fullName,
-              //   email,
-              //   password,
-              //   profilePhoto: downloadURL,
-              //   uid: userInfo.user.uid,
-              //   posts:[]
-              // };
-  
-              // await setDoc(doc(db, "users", ), userData);
+document.getElementById("saveReview").classList.remove("bg-black");
+document.getElementById("saveReview").classList.add("bg-drymeBlue");
+setChange2(!change2);
             });
           }
         );
         }
-          // console.log("user signed up");
+         
           catch (err) {
             console.log("err", err);
-            // setError(err.code);
-            setTimeout(() => {
-              // setError('')
-            }, 2000);
+       alert("Failed To Upload Review");
+       document.getElementById("saveReview").classList.remove("bg-black");
+       document.getElementById("saveReview").classList.add("bg-drymeBlue");
+            // setTimeout(() => {
+             
+            // }, 2000);
           }
+      
       }
       
     const {user}=useContext(AuthContext);
@@ -222,7 +218,7 @@ setImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLlQ9DL2jP_heI_m
     
       console.log("len1"+reviews.length);
 
-    },[])
+    },[change2])
     console.log("len2"+reviews.length);
     // console.log("star"+star);
   return (
@@ -306,7 +302,7 @@ setImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLlQ9DL2jP_heI_m
               <textarea className='w-full h-full p-2' autoFocus onChange={(e)=>setText(e.target.value)} value={text}></textarea>
             </div>
             <div className='First w-full h-1/5 bg-drymeBlue text-white'>
-           <button className='w-full h-full text-3xl hover:bg-white hover:text-drymeBlue'  onClick={SaveImage}>Add Review</button>
+           <button className='w-full h-full text-3xl ' id="saveReview"  onClick={SaveImage}>Add Review</button>
             </div>
           </div>
         </div>
