@@ -66,18 +66,31 @@ const [hide,sethide]=useState(false);
     console.log(JSON.stringify(DetailsArr));
     const generatePDF = () => {
         document.getElementById("App").style.zoom="90%";
+        document.getElementById("report").style.marginLeft="5rem";
+        
 console.log("generating");
 sethide(true);
 console.log("hide ",hide);
       const report = new JsPDF('potrait','pt','a0');
+    //   margin={
+    //     left:80,
+    //   };
+    
       report.html(document.querySelector('#report')).then(() => {
-          report.save('report.pdf');
+    //    report.line()
+    report.save('report.pdf');
+
+      }).then(()=>{
+        document.getElementById("report").style.marginLeft="0%";
+      }).catch((err)=>{
+        // document.getElementById("report").style.marginLeft="0%";
       });
       document.getElementById("App").style.zoom="100%";
+
     }
   return (
 
-    <div id='report' >
+    <div id='report' className='ml-1' >
         <div class="page-content container">
     <div class="page-header text-blue-d2">
         <h1 class="page-title text-secondary-d1 ">

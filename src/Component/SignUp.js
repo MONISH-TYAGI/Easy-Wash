@@ -13,7 +13,7 @@ function SignUp() {
   const navigate=useNavigate();
   useEffect(()=>{
     let button=document.getElementById("next");
-    setTimeout(function() {button.click()}, 2000);
+    setTimeout(function() {button.click()}, 1500);
     },[])
   const [name, setName] = useState('');
     const [email, setEmail] = useState('');

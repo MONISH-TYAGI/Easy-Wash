@@ -5,7 +5,7 @@ import HowItWorks from './HowItWorks'
 function Carousel() {
   useEffect(()=>{
   let button=document.getElementById("next");
-  setTimeout(function() {button.click()}, 2000);
+  setTimeout(function() {button.click()}, 1500);
   },[])
   const navigate=useNavigate();
   const handleServices=()=>{
