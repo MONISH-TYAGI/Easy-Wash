@@ -12,14 +12,14 @@ function Home() {
   console.log("Home1");
   const navigate=useNavigate();
   useEffect(()=>{
-    if(user==null)
-navigate("/login");
+//     if(user==null)
+// navigate("/login");
     async function fetchData() {
       console.log("Home2");
 let userEmailId=localStorage.getItem("email");
 const docRef = doc(db, "SignUpUserData", userEmailId);
 const docSnap = await getDoc(docRef);
-;
+
 let name="";
 const querySnapshot = await getDocs(collection(db, "SignUpUserData"));
 querySnapshot.forEach((doc) => {

@@ -7,8 +7,11 @@ import { AuthContext } from '../Context/AuthContext';
 
 function Products() {
   const {setObj,BillId,setBillId,totalItems,setItems,totalAmt,setAmt,cart,setCart}=useContext(CartContext);
-  const [visibleCat,setVisibleCat]=useState(true);
+  const [visibleCat,setVisibleCat]=useState(false);
   const [visibleSer,setVisibleSer]=useState(false);
+  const [open1,setOpen1]=useState(false);
+  const [open2,setOpen2]=useState(false);
+  const [service,setService]=useState("Wash");
   const [val,setVal]=useState(99);
   let cartVal=false;
   if(localStorage.getItem("cart")!=null){
@@ -29,8 +32,66 @@ function Products() {
   const [value4,setValue4]=useState("white");
   let i=0;
   // const [all,setAll]=useState(true); 
-  let maleApi="https://monish-tyagi.github.io/CustomApi/Men.json";
-  let femaleApi="https://monish-tyagi.github.io/CustomApi/Female.json";
+  let maleApi="https://monish-tyagi.github.io/CustomApi/Men/Men.json";
+  let femaleApi="https://monish-tyagi.github.io/CustomApi/Female/Female.json";
+  let maleIronApi="https://monish-tyagi.github.io/CustomApi/Men/IronMen.json";
+  let washandironMenApi="https://monish-tyagi.github.io/CustomApi/Men/Wash&IronMen.json";
+  let dryMenApi="https://monish-tyagi.github.io/CustomApi/Men/dryMen.json";
+  let femaleIronApi="https://monish-tyagi.github.io/CustomApi/Female/IronFemale.json";
+  let washandironFemaleApi="https://monish-tyagi.github.io/CustomApi/Female/Wash&IronFemale.json";
+  let dryFemaleApi="https://monish-tyagi.github.io/CustomApi/Female/dryFemale.json";
+
+
+  const handleService=(e)=>{
+    console.log("action"+e);
+    if(e=="Wash")
+    {
+  setValue1("gray");
+  setValue2("white");
+  setValue3("white");
+  setValue4("white");
+  setService("Wash");
+if(categoryName=="Male")
+setCategory(maleApi);
+else
+setCategory(femaleApi)
+    }else if(e=="Iron")
+    {
+      setValue1("white");
+      setValue2("gray");
+      setValue3("white");
+      setValue4("white");
+      setService("Iron")
+      if(categoryName=="Male")
+setCategory(maleIronApi);
+else
+setCategory(femaleIronApi)
+      
+      }else if(e=="Wash&Iron")
+    {
+      setValue1("white");
+      setValue2("white");
+      setValue3("gray");
+      setValue4("white");
+      setService("Wash&Iron")
+      if(categoryName=="Male")
+setCategory(washandironMenApi);
+else
+setCategory(washandironFemaleApi)
+      }else
+    {
+      setValue1("white");
+      setValue2("white");
+      setValue3("white");
+      setValue4("gray"); 
+      setService("DryCleaning")
+      if(categoryName=="Male")
+setCategory(dryMenApi);
+else
+setCategory(dryFemaleApi)
+     }
+  
+   }
   const [category,setCategory]=useState(maleApi);
   // const [pages,setPages]=useState(1);
   const navigate=useNavigate();
@@ -47,6 +108,7 @@ function Products() {
  
   const handleVisibleCat=()=>{
     // console.log(visibleCat)
+    setOpen1(!open1)
    setVisibleCat(!visibleCat)
   }
   const handlePrevious=()=>{
@@ -59,6 +121,7 @@ setCurrPage(currPage-1);
     setCurrPage(currPage+1);
   }
   const handleVisibleSer=()=>{
+    setOpen2(!open2)
     setVisibleSer(!visibleSer)
   }
   const {user}=useContext(AuthContext);
@@ -87,9 +150,11 @@ setCurrPage(currPage-1);
   {
  setCategory(maleApi);
  setCategoryName("Male");
+
  setVal(99);
  setVal1("gray");
  setVal2("white");
+ 
   }else
   {
 setCategory(femaleApi);
@@ -98,38 +163,15 @@ setVal2("gray");
 setVal1("white");
 setVal(199);
   }
-setVisibleCat(!visibleCat);
+// setVisibleCat(!visibleCat);  
 setCurrPage(1); 
+setValue1("gray");
+  setValue2("white");
+  setValue3("white");
+  setValue4("white");
 // setAll(!all);
  }
- const handleService=(e)=>{
-  console.log("action"+e);
-  if(e=="Wash")
-  {
-setValue1("gray");
-setValue2("white");
-setValue3("white");
-setValue4("white");
-  }else if(e=="Iron")
-  {
-    setValue1("white");
-    setValue2("gray");
-    setValue3("white");
-    setValue4("white");
-    }else if(e=="Wash&Iron")
-  {
-    setValue1("white");
-    setValue2("white");
-    setValue3("gray");
-    setValue4("white");
-    }else
-  {
-    setValue1("white");
-    setValue2("white");
-    setValue3("white");
-    setValue4("gray");  }
 
- }
  useEffect(()=>{
   if(user==null){
     navigate("/login");
@@ -171,7 +213,8 @@ setCart(cartVal);
     Image:obj.Image,
     ProdId:obj.ProdId ,
     Quantity:val,
-    Category:categoryName
+    Category:categoryName,
+    Service:service
   
  })
 //  console.log("Updated BigObj"+BigObj.length);
@@ -205,11 +248,19 @@ const handleCart=()=>{
     :<i class="fa-solid fa-cart-plus text-drymeBlue " style={{color:"#46C6CE"}}><span className='text-lg'>{BigObj.length}</span></i>
 }
      </button> 
-   <button className='bg-white text-drymeBlue w-1/6  h-12 rounded-lg mx-2 text-md' onClick={handleVisibleCat} style={{border:"solid",borderColor:"#194376"}}>Category <i class="ml-2 fa-sharp fa-solid fa-caret-down "></i>
+   <button className='bg-white text-drymeBlue w-1/6  h-12 rounded-lg mx-2 text-md' onClick={handleVisibleCat} style={{border:"solid",borderColor:"#194376"}}>Category 
+  {
+    (open1==false)?
+   <i class="ml-2 fa-sharp fa-solid fa-caret-down "></i>:<i class="ml-2 fa-solid fa-xmark font-bold"></i>
+  }
  </button>
    
-   <button className='bg-white  text-drymeBlue w-1/6 h-12 rounded-lg  mx-2'onClick={handleVisibleSer} style={{border:"solid",borderColor:"#194376"}}>Select Service <i class="ml-2   fa-sharp fa-solid fa-caret-down"></i></button> 
- 
+   <button className='bg-white  text-drymeBlue w-1/6 h-12 rounded-lg  mx-2'onClick={handleVisibleSer} style={{border:"solid",borderColor:"#194376"}}>Select Service 
+   {(open2==false)?
+   <i class="ml-2   fa-sharp fa-solid fa-caret-down"></i>:<i class="ml-2 fa-solid fa-xmark font-bold"></i>
+}
+   </button> 
+   
    {/* <div class="dropdown">
 {/* <div class="dropdown1 w-56">
   <button class="dropbtn">Category 
@@ -230,7 +281,7 @@ const handleCart=()=>{
       <div className='bg-white w-full h-max flex flex-wrap ' style={{paddingTop:"12%"}}>
   
       {
-  (visibleCat==false)?<div className='Box1 bg-drymeBlue  fixed  rounded-b-lg z-10 h-auto'>
+  (visibleCat==true)?<div className='Box1 bg-drymeBlue  fixed  rounded-b-lg z-10 h-auto'>
 
 <ul>
     <li className='underline text-gray-400 my-1 cursor-pointer' onClick={()=>handleCategory("male")} style={{color:val1}}>Men</li>
@@ -307,7 +358,7 @@ const handleCart=()=>{
     // {console.log(JSON.stringify(products))}
 //  {console.log("currPage->"+currPage+" and i-> "+i)}
     return (
-      (i<currPage*8&&i++>=(currPage-1)*8)?
+      (i<currPage*12&&i++>=(currPage-1)*12)?
 <div className='w-1/5 bg-red-400 h-1/2 m-8 justify-center drop-shadow-2xl	'>
 <div className='bg-gray-400 w-full h-64'>
   <img src={obj.Image} className='w-full h-full'></img>

@@ -8,8 +8,8 @@ function Services() {
     useEffect(()=>{
         if(user==null)
         {
-            navigate("/login");
-            return ;
+            // navigate("/login");
+            // return ;
         }
     },[])
   return (

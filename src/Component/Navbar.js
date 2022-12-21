@@ -25,6 +25,14 @@ function Navbar() {
     navigate("/login")
 
   }
+  const goToLoginPage=()=>{
+    navigate("/login")
+  }
+  let name;
+  if(localStorage.getItem("name")!=null)
+   name=localStorage.getItem("name");
+   else
+   name="LogIn"
   return (
     <div className='fixed z-40'>
     <div className='h-20 bg-drymeBlue fixed top-0 w-full z-30'>Head 1</div>
@@ -33,17 +41,17 @@ function Navbar() {
      </div>
      <div className='h-full w-2/4  flex  z-1'>
      
-       <div className='h-full w-1/6  flex items-center justify-center hover:text-select' onClick={handleHome}><i className="fa-solid fa-house"></i><span>Home</span></div>
-       <div className='h-full w-1/6  flex items-center justify-center hover:text-select' onClick={handleServices}><i className="fa-solid fa-gear"></i><span>Services</span></div>
-       <div className='h-full w-1/6  flex items-center justify-center hover:text-select ' onClick={handleReviews}><i className="fa-solid fa-heart"></i><span>Reviews</span></div>
-       <div className='h-full w-1/6 flex items-center justify-center hover:text-select' onClick={handleBag}><i className="fa-solid fa-bag-shopping"></i><span>Bag</span></div>
+       <div className='h-full w-1/6  flex items-center justify-center hover:text-select cursor-pointer' onClick={handleHome}><i className="fa-solid fa-house "></i><span>Home</span></div>
+       <div className='h-full w-1/6  flex items-center justify-center hover:text-select cursor-pointer' onClick={handleServices}><i className="fa-solid fa-gear "></i><span>Services</span></div>
+       <div className='h-full w-1/6  flex items-center justify-center hover:text-select  cursor-pointer' onClick={handleReviews}><i className="fa-solid fa-heart "></i><span>Reviews</span></div>
+       <div className='h-full w-1/6 flex items-center justify-center hover:text-select cursor-pointer' onClick={handleBag}><i className="fa-solid fa-bag-shopping "></i><span>Bag</span></div>
        
         
-        <div className='h-full w-2/6  flex  items-center justify-center hover:text-select cursor-pointer' onClick={handleLogout} onMouseEnter={()=>setIcon(true)} onMouseLeave={()=>setIcon(false)}>
+        <div className='h-full w-2/6  flex  items-center justify-center hover:text-select cursor-pointer'  onMouseEnter={()=>setIcon(true)} onMouseLeave={()=>setIcon(false)}>
           {
-          (icon==false)?
-          <span onMouseEnter={()=>setIcon(true)}>
-          <i className="fa-solid fa-user m-1" ></i>Monish Tyagi</span>:<span onMouseLeave={()=>setIcon(false)}><i class="fa-solid fa-lock-open pr-1"></i>LogOut</span>
+          (icon==false||name=="LogIn")?
+          <span onMouseEnter={()=>setIcon(true)} onClick={goToLoginPage} onMouseLeave={()=>setIcon(false)} >
+          <i className="fa-solid fa-user m-1" ></i>{name}</span>:<span onMouseLeave={()=>setIcon(false)} onClick={handleLogout}><i class="fa-solid fa-lock-open pr-1"></i>LogOut</span>
 }
           </div>
 

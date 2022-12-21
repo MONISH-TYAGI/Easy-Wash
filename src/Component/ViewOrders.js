@@ -181,10 +181,11 @@ console.log("hide ",hide);
                 <div class="mt-4">
                     <div class="row text-600 text-white bgc-default-tp1 py-25 ">
                         <div class="d-none d-sm-block col-1">#</div>
-                        <div class="col-9 col-sm-5">Description</div>
+                        <div class="col-9 col-sm-2">Description</div>
+                        <div class="col-9 col-sm-2">Service</div>
                         <div class="d-none d-sm-block col-2 col-sm-1">Qty</div>
                         <div class="d-none d-sm-block col-2 col-sm-1">Category</div>
-                        <div class="d-none d-sm-block col-sm-2">Unit Price</div>
+                        <div class="d-none d-sm-block col-sm-3">Unit Price</div>
                         <div class="col-2">Amount</div>
                     </div>
                     {
@@ -195,10 +196,11 @@ DetailsArr.map((obj)=>{
                     <div class="text-95 text-secondary-d3">
                         <div class="row mb-2 mb-sm-0 py-25">
                             <div class="d-none d-sm-block col-1">{i++}</div>
-                            <div class="col-9 col-sm-5">{obj.Name}</div>
+                            <div class="col-9 col-sm-2">{obj.Name}</div>
+                            <div class="col-9 col-sm-2">{obj.Service}</div>
                             <div class="d-none d-sm-block col-1">{obj.Quantity}</div>
                             <div class="d-none d-sm-block col-1">{obj.Category}</div>
-                            <div class="d-none d-sm-block col-2 text-95">{obj.Price}</div>
+                            <div class="d-none d-sm-block col-3 text-95">{obj.Price}</div>
                             <div class="col-2 text-secondary-d2">{obj.Price*obj.Quantity}</div>
                         </div>
 

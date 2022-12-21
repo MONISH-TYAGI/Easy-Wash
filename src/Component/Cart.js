@@ -105,7 +105,7 @@ useEffect(()=>{
        
     </img>
     <div className='w-4/6    '>
-        <div className='secondHalfFirst w-full  h-2/3 flex justify-around '> 
+        <div className='secondHalfFirst w-full  h-1/4 flex justify-around '> 
     <span className='text-xl'>{obj.Name}</span>
     <span className='text-xl'>{obj.Price}</span>
         <span className='text-xl'>X</span>
@@ -113,10 +113,15 @@ useEffect(()=>{
         <span className='text-xl'>=</span>
         <span className='text-xl'>{obj.Quantity*obj.Price}</span>
         </div>
-        <div className='secondHalfSecond w-full  h-1/3 flex justify-center items-center'>
+        <div className=' h-1/4 flex justify-between p-3'>
+          <span className='text-xl'>Service:</span>
+          <span className='text-xl'>{obj.Service}</span>
+          </div> 
+        <div className='secondHalfSecond w-full  h-2/4 flex justify-center items-center'>
+        
             {
             (change!=obj.ProdId)?
- <button className='w-1/4 bg-drymeBlue h-2/5 text-white rounded' onClick={()=>EditQuantiy(obj.ProdId)} style={{height:"60%"}}>Edit Quantity1</button> 
+ <button className='w-1/4 bg-drymeBlue h-4 text-white rounded' onClick={()=>EditQuantiy(obj.ProdId)} style={{height:"60%"}}>Edit Quantity1</button> 
  :
 <div className='ItemsChangeDiv flex row'>
 <input type='number' id={obj.ProdId} className='' autoFocus defaultValue={obj.Quantity}></input>
