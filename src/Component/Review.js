@@ -12,7 +12,7 @@ function Reviews() {
         <div className=' bg-white w-full h-full  flex space-x-12 justify-center px-16'>
         <div className="h-3/4 w-2/4 border border-drymeBlue rounded-lg">
             <div className='One h-2/5  flex items-center justify-center'>
-                <img className='Pic rounded-full  h-3/4 w-1/4' src="https://smart-dhopa-online-laundry-app.web.app/static/media/customer-1.f217f346.jpg">
+                <img className='Pic rounded-full  h-3/4 w-1/4 alt' src="https://smart-dhopa-online-laundry-app.web.app/static/media/customer-1.f217f346.jpg" >
                    
                 </img>
             </div>

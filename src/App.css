@@ -21,6 +21,9 @@
     z-index: 30;
 
 }
+.alt{
+  background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLlQ9DL2jP_heI_mtZXdw8cxNdGunsejk7FQ&usqp=CAU');
+}
 .uploadImg{
   position: fixed;
     border-radius: 50%;

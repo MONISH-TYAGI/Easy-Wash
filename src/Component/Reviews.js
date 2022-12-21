@@ -92,7 +92,7 @@ function Reviews() {
      
       setChange(!change);
     }
-    const saveReviews=async(downloadURL)=>{
+    const saveReviews=async(downloadURL,curr)=>{
       try{
         const docRef = doc(db, "Reviews", userEmailId);
         const docSnap = await getDoc(docRef);
@@ -153,6 +153,8 @@ finally{
       document.getElementById("saveReview").classList.remove("bg-drymeBlue");
       document.getElementById("saveReview").classList.add("bg-black");
         const storageRef = ref(storage, `${user.email}/Profile`);
+        // if(file==null)
+        // setFile("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLlQ9DL2jP_heI_mtZXdw8cxNdGunsejk7FQ&usqp=CAU")
         const uploadTask = uploadBytesResumable(storageRef, file);
   
       
@@ -175,8 +177,12 @@ finally{
            
             getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
               // console.log("File available at", downloadURL);
-          
-let res=await saveReviews(downloadURL);
+              
+         if(file==null)
+         downloadURL="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLlQ9DL2jP_heI_mtZXdw8cxNdGunsejk7FQ&usqp=CAU";
+let res=await saveReviews(downloadURL,false);
+
+
 setStar(0);
 setText('');
 setFile(null);
@@ -248,6 +254,7 @@ setChange2(!change2);
         <div className='w-2/3  h-full   flex flex-column pb-4 mt-48'>
           {
             reviews.map((obj)=>{
+              {console.log("obj"+obj.Image)}
               return  (
         <div className='w-5/6  h-44 ml-12 mt-4 flex drop-shadow-2xl mb-4 '>
                 <div className='w-1/4 h-full  '>
