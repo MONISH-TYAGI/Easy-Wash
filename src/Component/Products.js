@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useReducer, useState } from 'react'
 import Navbar from './Navbar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate } from 'react-router-dom';
@@ -106,11 +106,43 @@ setCategory(dryFemaleApi)
   select=localStorage.getItem("selectedItems");
   const [selectedItems,setSelectedItems]=useState(select);
  
-  const handleVisibleCat=()=>{
-    // console.log(visibleCat)
-    setOpen1(!open1)
-   setVisibleCat(!visibleCat)
+  const INITIAL_STATE={
+    open1:false,
+    open2:false,
+    visibleCat:false,
+    visibleSer:false
   }
+  
+  const reducer=(state,action)=>{
+   
+    console.log(action);
+    let a={};
+    switch(action.type)
+    {
+      case "handleVisibleCat":a=  {
+       ...state,
+        open1:!state.open1,
+        visibleCat:!state.visibleCat,
+       
+      }; 
+      break;
+      case "handleVisibleSer":a= {
+        ...state,
+    open2:!state.open2,
+    visibleSer:!state.visibleSer
+      }
+      break;
+      default:a={...state}
+    }
+    console.log("open1"+JSON.stringify(a));
+    return a;
+  }
+  const [state,dispatch]=useReducer(reducer,INITIAL_STATE);
+  // const handleVisibleCat=()=>{
+  //   // console.log(visibleCat)
+  //   setOpen1(!open1)
+  //  setVisibleCat(!visibleCat)
+  // }
   const handlePrevious=()=>{
 if(currPage!=1)
 setCurrPage(currPage-1);
@@ -120,10 +152,10 @@ setCurrPage(currPage-1);
     if(currPage!=pagesArr.length)
     setCurrPage(currPage+1);
   }
-  const handleVisibleSer=()=>{
-    setOpen2(!open2)
-    setVisibleSer(!visibleSer)
-  }
+  // const handleVisibleSer=()=>{
+  //   setOpen2(!open2)
+  //   setVisibleSer(!visibleSer)
+  // } 
   const {user}=useContext(AuthContext);
 
   const handleSearch=()=>{
@@ -248,15 +280,15 @@ const handleCart=()=>{
     :<i class="fa-solid fa-cart-plus text-drymeBlue " style={{color:"#46C6CE"}}><span className='text-lg'>{BigObj.length}</span></i>
 }
      </button> 
-   <button className='bg-white text-drymeBlue w-1/6  h-12 rounded-lg mx-2 text-md' onClick={handleVisibleCat} style={{border:"solid",borderColor:"#194376"}}>Category 
+   <button className='bg-white text-drymeBlue w-1/6  h-12 rounded-lg mx-2 text-md' onClick={()=>dispatch({type:"handleVisibleCat",payload:open1})} style={{border:"solid",borderColor:"#194376"}}>Category 
   {
-    (open1==false)?
+    (state.open1==false)?
    <i class="ml-2 fa-sharp fa-solid fa-caret-down "></i>:<i class="ml-2 fa-solid fa-xmark font-bold"></i>
   }
  </button>
    
-   <button className='bg-white  text-drymeBlue w-1/6 h-12 rounded-lg  mx-2'onClick={handleVisibleSer} style={{border:"solid",borderColor:"#194376"}}>Select Service 
-   {(open2==false)?
+   <button className='bg-white  text-drymeBlue w-1/6 h-12 rounded-lg  mx-2'onClick={()=>dispatch({type:"handleVisibleSer",payload:open2})} style={{border:"solid",borderColor:"#194376"}}>Select Service 
+   {(state.open2==false)?
    <i class="ml-2   fa-sharp fa-solid fa-caret-down"></i>:<i class="ml-2 fa-solid fa-xmark font-bold"></i>
 }
    </button> 
@@ -281,7 +313,7 @@ const handleCart=()=>{
       <div className='bg-white w-full h-max flex flex-wrap ' style={{paddingTop:"12%"}}>
   
       {
-  (visibleCat==true)?<div className='Box1 bg-drymeBlue  fixed  rounded-b-lg z-10 h-auto'>
+  (state.visibleCat==true)?<div className='Box1 bg-drymeBlue  fixed  rounded-b-lg z-10 h-auto'>
 
 <ul>
     <li className='underline text-gray-400 my-1 cursor-pointer' onClick={()=>handleCategory("male")} style={{color:val1}}>Men</li>
@@ -302,7 +334,7 @@ const handleCart=()=>{
 
 }
 {
-  (visibleSer==true)?
+  (state.visibleSer==true)?
 <div className='Box2  bg-drymeBlue   rounded-b-lg  h-auto'>
 
 <ul>
