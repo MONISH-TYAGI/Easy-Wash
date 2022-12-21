@@ -317,7 +317,7 @@ const handleCart=()=>{
 
 <ul>
     <li className='underline text-gray-400 my-1 cursor-pointer' onClick={()=>handleCategory("male")} style={{color:val1}}>Men</li>
-    <li className='underline text-gray-400 my-1  cursor-pointer'onClick={()=>handleCategory("female")} style={{color:val2}}>Female</li>
+    <li className='underline text-gray-400 my-1 cursor-pointer'onClick={()=>handleCategory("female")} style={{color:val2}}>Female</li>
     {/* <li className='underline text-gray-400 my-1 text-white'>Others</li> */}
   </ul>
 </div>
