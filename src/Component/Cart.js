@@ -8,6 +8,7 @@ function Bag() {
     const {setObj,BigObj,BillId,setBillId,totalItems,setItems,totalAmt,setAmt}=useContext(CartContext);
     // localStorage.setItem("totalItems",totalItems);
     // localStorage.setItem("totalAmt",totalAmt);
+    console.log("BigObj.length"+BigObj.length);
  const [run,setRun]=useState(true);
     const {user}=useContext(AuthContext);
   const navigate=useNavigate();
@@ -121,7 +122,7 @@ useEffect(()=>{
         
             {
             (change!=obj.ProdId)?
- <button className='w-1/4 bg-drymeBlue h-4 text-white rounded' onClick={()=>EditQuantiy(obj.ProdId)} style={{height:"60%"}}>Edit Quantity1</button> 
+ <button className='w-1/4 bg-drymeBlue h-4 text-white rounded' onClick={()=>EditQuantiy(obj.ProdId)} style={{height:"60%"}}>Edit Quantity</button> 
  :
 <div className='ItemsChangeDiv flex row'>
 <input type='number' id={obj.ProdId} className='' autoFocus defaultValue={obj.Quantity}></input>

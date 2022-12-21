@@ -71,6 +71,7 @@ try{
             localStorage.setItem("cart",false);
             localStorage.setItem("selectedItems",0);
             setCart(false);
+            setObj([])
           
         }else
         {
@@ -81,13 +82,14 @@ try{
             localStorage.setItem("cart",false);
             localStorage.setItem("selectedItems",0);
             setCart(false);
+            setObj([])
         }
     navigate("/Bag");
 }
 catch(err)
 {
 console.log("Fail save");
-// alert("Fail Save");
+alert("Order Failed");
 document.getElementById("COD").classList.add("bg-drymeBlue");
     document.getElementById("COD").classList.remove("bg-black");
 console.log(err);
