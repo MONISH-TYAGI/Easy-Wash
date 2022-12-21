@@ -26,6 +26,9 @@ function Reviews() {
     fontSize:"0.8rem",
     
   })
+  
+
+  
   const [change2,setChange2]=useState(false);
     const handleInput=()=>{
         let upload=document.getElementById("file");
@@ -60,6 +63,7 @@ function Reviews() {
       // console.log("first"+reviews[0].Star);
       setChange(!change);
     }
+ 
     const handleHighToLow=()=>{
       // console.log("low to high");
       setVal2({
@@ -299,7 +303,7 @@ setChange2(!change2);
             </div>
             
             <div className='First w-full h-3/5 bg-gray-200'>
-              <textarea className='w-full h-full p-2' autoFocus onChange={(e)=>setText(e.target.value)} value={text}></textarea>
+              <textarea className='w-full h-full p-2 border-2 border-drymeBlue' id="box" autoFocus onChange={(e)=>setText(e.target.value)} value={text}></textarea>
             </div>
             <div className='First w-full h-1/5 bg-drymeBlue text-white'>
            <button className='w-full h-full text-3xl ' id="saveReview"  onClick={SaveImage}>Add Review</button>
