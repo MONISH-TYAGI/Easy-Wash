@@ -125,7 +125,7 @@ useEffect(()=>{
  <button className='w-1/4 bg-drymeBlue h-4 text-white rounded' onClick={()=>EditQuantiy(obj.ProdId)} style={{height:"60%"}}>Edit Quantity</button> 
  :
 <div className='ItemsChangeDiv flex row'>
-<input type='number' id={obj.ProdId} className='' autoFocus defaultValue={obj.Quantity}></input>
+<input type='number' id={obj.ProdId} className='' autoFocus defaultValue={obj.Quantity} min={0}></input>
 <button className='bg-drymeBlue text-white' onClick={()=>handleItemsChange(obj.ProdId)}>Done</button>
 </div>
 }

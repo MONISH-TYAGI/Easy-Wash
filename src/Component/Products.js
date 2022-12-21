@@ -397,7 +397,7 @@ const handleCart=()=>{
 </div>
 <div className='flex'>
 <div className='bg-white font-bold text-xl w-1/2 flex flex-start pl-2'>{obj.Name}</div>
-<div className='bg-white font-bold text-xl w-1/2 flex justify-end pr-2'><span>{obj.Price}</span></div>
+<div className='bg-white font-bold text-xl w-1/2 flex justify-end pr-2'><span>Rs {obj.Price}</span></div>
 </div>
 
 <div className='bg-drymeBlue h-10 flex'>{

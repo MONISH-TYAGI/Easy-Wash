@@ -31,6 +31,9 @@ function Bag() {
     });
     // console.log("Len "+arr.length)
     // console.log(JSON.stringify(arr));
+    arr=arr.sort((a,b)=>{
+        return parseInt(b.UniqueId)-parseInt(a.UniqueId);
+    })
     setArr([...arr]);
         }
    useEffect(()=>{
@@ -42,6 +45,9 @@ function Bag() {
     }else
     getData();
    },[])
+   const CancelOrder=()=>{
+    alert("Cancellation Request Send to Admin");
+   }
    const handleViewDetails=(Id)=>{
 
 
@@ -76,7 +82,7 @@ function Bag() {
         </div>
     </div>
     <div className='Heading h-1/3  flex flex-start items-center '>
-        <button className='bg-drymeBlue text-white h-1/2 px-4 pt-2 pb-2 ml-4'>Cancel Order</button>
+        <button className='bg-drymeBlue text-white h-1/2 px-4 pt-2 pb-2 ml-4' onClick={CancelOrder}>Cancel Order</button>
         <button className='bg-drymeBlue text-white h-1/2  px-4 pt-2 pb-2 ml-4' onClick={()=>handleViewDetails(obj[0])}>View Order</button>
     </div>
    </div>

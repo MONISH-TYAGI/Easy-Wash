@@ -40,7 +40,8 @@ const saveOrderInDB= async()=>{
     let date=common.getDate()+"-"+common.getMonth()+"-"+common.getFullYear();
     // console.log("date ",date);
     let time=common.getHours()+":"+common.getMinutes()+":"+common.getSeconds();
-    let Id=common.getFullYear()+common.getMonth()+common.getDate()+time;
+    let Id=common.getFullYear()+common.getMonth()+common.getDate()+""+common.getHours()+common.getMinutes()+common.getSeconds()+"";
+    console.log("id "+Id);
     let userEmailId=localStorage.getItem("email");
     // console.log("name ",name);
     // console.log("email",address);
@@ -88,7 +89,7 @@ try{
 }
 catch(err)
 {
-// console.log("Fail save");
+console.log("err"+err);
 alert("Order Failed");
 document.getElementById("COD").classList.add("bg-drymeBlue");
     document.getElementById("COD").classList.remove("bg-black");

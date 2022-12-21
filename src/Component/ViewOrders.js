@@ -40,6 +40,7 @@ useEffect(()=>{
   if(run==false&&doc.id==BillId){
 //   console.log("true ",doc.id);
 localArr=doc.data().BigObj;
+
 setDetailsArr([...localArr])
 
 setName(doc.data().Name);
@@ -101,18 +102,20 @@ sethide(true);
             </small>
         </h1>
 
-        <div class="page-tools">
+        <div class="page-tools ">
             <div class="action-buttons">
               {/* <button className='bg-black text-white' onClick={generatePDF}>Print</button> */}
               {
               (hide==false)?
-              <button onClick={generatePDF} className="">
-                <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="Print">
+              <div onClick={generatePDF} className=" ">
+                <a class="btn bg-white btn-light  text-lg" href="#" data-title="Print">
+                    <div className='w-96 bg-red-400'></div>
+                   
                 <i class="mr-1 fa fa-file-pdf-o text-danger-m1 text-120  w-2"></i>
                     {/* <i class="mr-1 fa fa-print text-primary-m1 text-120 w-2"></i> */}
-                    Print
+                      <span>    </span><span>  </span>Print
                 </a>
-                </button>:<></>
+                </div>:<></>
  }
                 {/* <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="PDF">
                     <i class="mr-1 fa fa-file-pdf-o text-danger-m1 text-120 w-2"></i>
