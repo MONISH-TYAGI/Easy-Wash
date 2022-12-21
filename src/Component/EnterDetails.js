@@ -23,10 +23,10 @@ function EnterDetails() {
     // console.log("totalAmt-> ",totalAmt);
     let totalItems=localStorage.getItem("totalItems");
     let totalAmt=localStorage.getItem("totalAmt");
-    console.log("Arr->"+JSON.parse(localStorage.getItem("BigObj")));
+    // console.log("Arr->"+JSON.parse(localStorage.getItem("BigObj")));
     
     let newArr=[...JSON.parse(localStorage.getItem("BigObj"))];
-    console.log("newArr"+newArr.length);
+    // console.log("newArr"+newArr.length);
     const navigate=useNavigate();
     useEffect(()=>{
 if(user==null)
@@ -35,7 +35,7 @@ navigate("/login");
 const saveOrderInDB= async()=>{
     document.getElementById("COD").classList.remove("bg-drymeBlue");
     document.getElementById("COD").classList.add("bg-black");
-  console.log("Save");
+//   console.log("Save");
     let common=new Date();
     let date=common.getDate()+"-"+common.getMonth()+"-"+common.getFullYear();
     // console.log("date ",date);
@@ -65,7 +65,7 @@ try{
         if(docSnap.exists())
         {
             let res=await updateDoc(doc(db, userEmailId, Id), subData);
-            console.log("save update success");
+            // console.log("save update success");
             // alert("Booking Update Done Returning to Home")
             localStorage.removeItem("BigObj");
             localStorage.setItem("cart",false);
@@ -76,7 +76,7 @@ try{
         }else
         {
             let res=await setDoc(doc(db,userEmailId, Id), subData);
-            console.log("save set success");
+            // console.log("save set success");
             // alert("Booking Set Done Returning to Home")
             localStorage.removeItem("BigObj");
             localStorage.setItem("cart",false);
@@ -88,14 +88,14 @@ try{
 }
 catch(err)
 {
-console.log("Fail save");
+// console.log("Fail save");
 alert("Order Failed");
 document.getElementById("COD").classList.add("bg-drymeBlue");
     document.getElementById("COD").classList.remove("bg-black");
-console.log(err);
+// console.log(err);
 }
 finally{
-console.log("finally");
+// console.log("finally");
 }
 }
   return (

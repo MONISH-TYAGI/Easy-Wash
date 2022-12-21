@@ -13,28 +13,28 @@ function Bag() {
    const [change,setChange]=useState(false);
    const {user}=useContext(AuthContext);
    let userEmailId=localStorage.getItem("email");
-   console.log("userEmailId"+userEmailId);
+//    console.log("userEmailId"+userEmailId);
     const navigate=useNavigate();
-    console.log("userOuter"+userEmailId)
+    // console.log("userOuter"+userEmailId)
  const {setObj,BigObj,BillId,setBillId}=useContext(CartContext);
  const getData=async()=>{
     // console.log("getDoc")
     let arr=[];
-    console.log("user"+userEmailId);
+    // console.log("user"+userEmailId);
             const querySnapshot = await getDocs(collection(db, userEmailId+""));
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
     //   console.log(doc.id, " => ", doc.data());
       
       arr.push([doc.id,doc.data()]);
-      console.log("Obj ",doc.data());
+    //   console.log("Obj ",doc.data());
     });
     // console.log("Len "+arr.length)
     // console.log(JSON.stringify(arr));
     setArr([...arr]);
         }
    useEffect(()=>{
-    console.log("user Navigate ->",user);
+    // console.log("user Navigate ->",user);
     if(user==null)
     {
       navigate("/Login");
@@ -46,7 +46,7 @@ function Bag() {
 
 
     setBillId(Id);
-    console.log("Id ",Id);
+    // console.log("Id ",Id);
     localStorage.setItem("BillId",Id);
     navigate("/Bill")
     // console.log(JSON.stringify(arr));
@@ -59,7 +59,7 @@ function Bag() {
 <div className='h-full bg-white w-full  OrderMainCenterDiv grid grid-cols-2'>
     {
         arr.map((obj)=>{
-            {console.log("hello")}
+            // {console.log("hello")}
             return (
    <div className='h-56  border-solid m-1' style={{border:"solid"}}>
     <div className='Heading h-1/3  flex justify-center items-center'>

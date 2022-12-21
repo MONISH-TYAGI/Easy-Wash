@@ -16,7 +16,7 @@ function Products() {
   let cartVal=false;
   if(localStorage.getItem("cart")!=null){
   cartVal=localStorage.getItem("cart");
-  console.log("cartValA"+cartVal);
+  // console.log("cartValA"+cartVal);
   }
   // setCart(false);
   let BigObj=(localStorage.getItem("BigObj")!=null)?[...JSON.parse(localStorage.getItem("BigObj"))]:[];
@@ -43,7 +43,7 @@ function Products() {
 
 
   const handleService=(e)=>{
-    console.log("action"+e);
+    // console.log("action"+e);
     if(e=="Wash")
     {
   setValue1("gray");
@@ -193,8 +193,8 @@ for(let i=2;i<=val;i++)
 arr.push(i);
 setPagesArr([...arr]);
 localStorage.setItem("products",JSON.stringify([...data]));
-console.log("CartVal"+cartVal)
-console.log("CartVal"+cart)
+// console.log("CartVal"+cartVal)
+// console.log("CartVal"+cart)
 setCart(cartVal);
 
 })

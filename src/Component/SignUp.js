@@ -32,26 +32,26 @@ function SignUp() {
         if(docSnap.exists())
         {
             let res=await updateDoc(doc(db, "SignUpUserData", email), {name});
-            console.log("save update email and name success");
+            // console.log("save update email and name success");
             
           
         }else
         {
             let res=await setDoc(doc(db, "SignUpUserData", email), {name});
-            console.log("save set email and name success");
+            // console.log("save set email and name success");
             
         }
     
 }
 catch(err)
 {
-console.log("Fail name and email save");
-console.log(err);
+// console.log("Fail name and email save");
+// console.log(err);
 
 // console.log(err);
 }
 finally{
-console.log("finally");
+// console.log("finally");
 }
 
     }
@@ -61,7 +61,7 @@ navigate("/login")
   const handelSignUp=async()=>{
    
       let response=await  googleSignIn();
-      console.log("response ->"+response);
+      // console.log("response ->"+response);
       if(response==true){
         try{
     let email=localStorage.getItem("email");
@@ -71,7 +71,7 @@ navigate("/login")
     let res= await saveEmailIdAndItsName();
         }
       catch(err){
-        console.log("errDB->"+err);
+        // console.log("errDB->"+err);
       }
     setEmail('')
   setPassword('')
@@ -109,7 +109,7 @@ document.getElementById("signUp").classList.add("bg-black");
 navigate("/login");
         }catch(err)
         {
-          console.log("eror->"+err.message);
+          // console.log("eror->"+err.message);
           if(err.message=="Firebase: Error (auth/email-already-in-use).")
           setError("Email Already In Use");
           else if(err.message=="Firebase: Password should be at least 6 characters (auth/weak-password).")
@@ -120,10 +120,10 @@ navigate("/login");
             setError('')
 
           },4000);
-          console.log("fail");
+          // console.log("fail");
           // alert("Fail signIn")
         }finally{
-      console.log("done");
+      // console.log("done");
       
         }
 }

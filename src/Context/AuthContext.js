@@ -17,13 +17,13 @@ function googleSignIn(){
   const provider=new GoogleAuthProvider();
 let res=  signInWithPopup(auth,provider).then((result)=>{
 // console.log("Result -> "+JSON.stringify(result));
-console.log("Result Name"+result.user.displayName);
+// console.log("Result Name"+result.user.displayName);
 localStorage.setItem("name",result.user.displayName)
-console.log("Result Email"+result.user.email);
+// console.log("Result Email"+result.user.email);
 localStorage.setItem("email",result.user.email);
 return true;
   }).catch((error)=>{
-    console.log("error signOut ->"+error);
+    // console.log("error signOut ->"+error);
     return false;
   });
   return res;
@@ -35,7 +35,7 @@ export function AuthProvider({children}) {
     // e.preventDefault();
     function signUp(email,password)
     {
-        console.log("signUp firebase");
+        // console.log("signUp firebase");
        return  createUserWithEmailAndPassword(auth,email, password)
         
     }

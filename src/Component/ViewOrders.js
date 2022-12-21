@@ -10,11 +10,11 @@ import { AuthContext } from '../Context/AuthContext';
  function  ViewDetails() {
     // document.getElementById("App").style.zoom="80%";
     let BillId=localStorage.getItem("BillId");
-  console.log("BillId ",BillId);
+//   console.log("BillId ",BillId);
   const {user}=useContext(AuthContext);
   let i=1
   let userEmailId=localStorage.getItem("email");
-  console.log("email ->"+userEmailId);
+//   console.log("email ->"+userEmailId);
 const [DetailsArr,setDetailsArr]=useState([]);
 const [run,setRun]=useState(false);
 const [name,setName]=useState("");
@@ -38,7 +38,7 @@ useEffect(()=>{
     //   console.log(doc.id, " => ", doc.data());
       
   if(run==false&&doc.id==BillId){
-  console.log("true ",doc.id);
+//   console.log("true ",doc.id);
 localArr=doc.data().BigObj;
 setDetailsArr([...localArr])
 
@@ -63,14 +63,14 @@ setRun(true);
 const [hide,sethide]=useState(false);
 // console.log(" final details -> "+name);
 // console.log("DetailsArr Len ",DetailsArr.length);
-    console.log(JSON.stringify(DetailsArr));
+    // console.log(JSON.stringify(DetailsArr));
     const generatePDF = () => {
         document.getElementById("App").style.zoom="90%";
         document.getElementById("report").style.marginLeft="5rem";
         
-console.log("generating");
+// console.log("generating");
 sethide(true);
-console.log("hide ",hide);
+// // console.log("hide ",hide);
       const report = new JsPDF('potrait','pt','a0');
     //   margin={
     //     left:80,

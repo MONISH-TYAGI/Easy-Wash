@@ -47,7 +47,7 @@ function Reviews() {
     const [error, setError] = useState('');
     const navigate=useNavigate();
     const handleLowToHigh=()=>{
-      console.log("low to high");
+      // console.log("low to high");
       reviews.sort(function(a, b){return a.Star - b.Star});
       setVal3({
         fontSize: "0.8rem",
@@ -57,11 +57,11 @@ function Reviews() {
       })
       setVal2({fontSize:"0.8rem"})
       setVal1({fontSize:"0.8rem"})
-      console.log("first"+reviews[0].Star);
+      // console.log("first"+reviews[0].Star);
       setChange(!change);
     }
     const handleHighToLow=()=>{
-      console.log("low to high");
+      // console.log("low to high");
       setVal2({
         fontSize: "0.8rem",
         color: "rgb(209 213 219)",
@@ -71,11 +71,11 @@ function Reviews() {
       setVal1({fontSize:"0.8rem"})
       setVal3({fontSize:"0.8rem"})
       reviews.sort(function(a, b){return b.Star - a.Star});
-      console.log("first"+reviews[0].Star);
+      // console.log("first"+reviews[0].Star);
       setChange(!change);
     }
     const handleDateWise=()=>{
-      console.log("low to high");
+      // console.log("low to high");
       setVal1({
         fontSize: "0.8rem",
         color: "rgb(209 213 219)",
@@ -93,7 +93,7 @@ function Reviews() {
         const docRef = doc(db, "Reviews", userEmailId);
         const docSnap = await getDoc(docRef);
   let name=localStorage.getItem("name");
-  console.log("name"+name);
+  // console.log("name"+name);
   let common=new Date();
   let date=common.getDate()+"-"+common.getMonth()+"-"+common.getFullYear();
   // console.log("date ",date);
@@ -121,7 +121,7 @@ function Reviews() {
         }else
         {
             let res=await setDoc(doc(db, "Reviews", userEmailId), subData);
-            console.log("data set");
+            // console.log("data set");
             
         }
         // alert("Please Wait & Refresh");
@@ -129,18 +129,18 @@ function Reviews() {
 }
 catch(err)
 {
-console.log("Data Not Set");
-console.log(err);
+// console.log("Data Not Set");
+// console.log(err);
 
-console.log(err);
+// console.log(err);
 }
 finally{
-console.log("finally");
+// console.log("finally");
 }
 
     }
    const handleDisplayImage=(e)=>{
-    console.log("hello");
+    // console.log("hello");
     setFile(e.target.files[0]);
     setImage(URL.createObjectURL(e.target.files[0]));
 
@@ -159,18 +159,18 @@ console.log("finally");
           (snapshot) => {
             const progress =
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log("Upload is " + progress + "% done");
+            // console.log("Upload is " + progress + "% done");
           },
           (error) => {
           
             alert("Upload fail");
-              console.log(error)
+              // console.log(error)
           
           },
           () => {
            
             getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-              console.log("File available at", downloadURL);
+              // console.log("File available at", downloadURL);
           
 let res=await saveReviews(downloadURL);
 setStar(0);
@@ -186,7 +186,7 @@ setChange2(!change2);
         }
          
           catch (err) {
-            console.log("err", err);
+            // console.log("err", err);
        alert("Failed To Upload Review");
        document.getElementById("saveReview").classList.remove("bg-black");
        document.getElementById("saveReview").classList.add("bg-drymeBlue");
@@ -216,10 +216,10 @@ setChange2(!change2);
     }
     fetchData();
     
-      console.log("len1"+reviews.length);
+      // console.log("len1"+reviews.length);
 
     },[change2])
-    console.log("len2"+reviews.length);
+    // console.log("len2"+reviews.length);
     // console.log("star"+star);
   return (
     
@@ -245,29 +245,29 @@ setChange2(!change2);
           {
             reviews.map((obj)=>{
               return  (
-        <div className='w-5/6  h-48 ml-12 mt-4 flex drop-shadow-2xl mb-4 '>
-                <div className='w-1/3 h-full  '>
+        <div className='w-5/6  h-44 ml-12 mt-4 flex drop-shadow-2xl mb-4 '>
+                <div className='w-1/4 h-full  '>
                     <img className='w-full h-full ' src={obj.Image} style={{borderRadius:"50%"}}></img>
                 </div>
-                <div className='w-2/3 h-full bg-white'>
+                <div className='w-3/4 h-full bg-white'>
                     <div className="Text w-full h-2/3  flex items-center  ">
-                   <span className='pl-2 text-xl' > 
+                   <span className='pl-2 text-lg' > 
                    {obj.Text}
                     .</span>
                     </div>
                     <div className='Star w-full h-1/3 bg-white flex items-center justify-start '>
                         <div className='w-1/2 h-full flex items-center'>
-            {(obj.Star>=1)?<i class="fa-solid fa-star text-drymeBlue text-4xl"></i>: <i class="fa-regular fa-star text-4xl"></i>}
-            {(obj.Star>=2)? <i class="fa-solid fa-star text-drymeBlue text-4xl"></i>: <i class="fa-regular fa-star text-4xl"></i>}
-            {(obj.Star>=3)?<i class="fa-solid fa-star text-drymeBlue text-4xl"></i>: <i class="fa-regular fa-star text-4xl"></i>}
-            {(obj.Star>=4)?<i class="fa-solid fa-star text-drymeBlue text-4xl"></i>: <i class="fa-regular fa-star text-4xl"></i>}
-            {(obj.Star>=5)?<i class="fa-solid fa-star text-drymeBlue text-4xl"></i>: <i class="fa-regular fa-star text-4xl"></i>}
+            {(obj.Star>=1)?<i class="fa-solid fa-star text-drymeBlue text-3xl"></i>: <i class="fa-regular fa-star text-3xl"></i>}
+            {(obj.Star>=2)? <i class="fa-solid fa-star text-drymeBlue text-3xl"></i>: <i class="fa-regular fa-star text-3xl"></i>}
+            {(obj.Star>=3)?<i class="fa-solid fa-star text-drymeBlue text-3xl"></i>: <i class="fa-regular fa-star text-3xl"></i>}
+            {(obj.Star>=4)?<i class="fa-solid fa-star text-drymeBlue text-3xl"></i>: <i class="fa-regular fa-star text-3xl"></i>}
+            {(obj.Star>=5)?<i class="fa-solid fa-star text-drymeBlue text-3xl"></i>: <i class="fa-regular fa-star text-3xl"></i>}
                    
 </div>
 <div className='w-1/2 h-full flex flex-column justify-end items-end pr-2'>
-<span><span className='text-drymeBlue'>Review By:</span> {obj.Name}</span>
-<span><span className='text-drymeBlue'>Dated:</span> {obj.Date}</span>
-<span><span className='text-drymeBlue'>Time:</span> {obj.Time} {obj.zone}</span>
+<span><span className='text-drymeBlue text-md'>Review By:</span> {obj.Name}</span>
+<span><span className='text-drymeBlue text-md'>Dated:</span> {obj.Date}</span>
+<span><span className='text-drymeBlue text-md'>Time:</span> {obj.Time} {obj.zone}</span>
 </div>
                     </div>
                 </div>

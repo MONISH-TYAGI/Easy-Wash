@@ -8,29 +8,29 @@ function Bag() {
     const {setObj,BigObj,BillId,setBillId,totalItems,setItems,totalAmt,setAmt}=useContext(CartContext);
     // localStorage.setItem("totalItems",totalItems);
     // localStorage.setItem("totalAmt",totalAmt);
-    console.log("BigObj.length"+BigObj.length);
+    // console.log("BigObj.length"+BigObj.length);
  const [run,setRun]=useState(true);
     const {user}=useContext(AuthContext);
   const navigate=useNavigate();
     const [change,setChange]=useState("1");
 const EditQuantiy=(e)=>{
-    console.log("edit1"+change);
+    // console.log("edit1"+change);
     setChange(e);   
-    console.log("edit2"+e);
+    // console.log("edit2"+e);
 setRun(!run);
 }
-console.log("edit3"+change);
+// console.log("edit3"+change);
 const handleCart=()=>{
   localStorage.setItem("BigObj",JSON.stringify(BigObj));
   localStorage.setItem("totalItems",totalItems);
   localStorage.setItem("totalAmt",totalAmt);
-console.log("save");
-console.log("BigObj"+localStorage.getItem("BigObj"));
+// console.log("save");
+// console.log("BigObj"+localStorage.getItem("BigObj"));
     navigate("/EnterDetails");
     setRun(!run);
   }
 const handleItemsChange=(e)=>{
-  console.log(JSON.stringify(BigObj));
+  // console.log(JSON.stringify(BigObj));
     function findObjIndex(obj)
     {
         if(obj.ProdId==e) 
@@ -41,7 +41,7 @@ const handleItemsChange=(e)=>{
     //     return (obj.ProdId==e);
     // })
     let index=BigObj.findIndex(findObjIndex)
-    console.log("index"+index);
+    // console.log("index"+index);
     let val=document.getElementById(e).value;
     BigObj[index].Quantity=val;
     let newBigObj=BigObj;
@@ -51,7 +51,7 @@ const handleItemsChange=(e)=>{
         return (obj.ProdId!=e);
       })
     }
-    console.log("Try"+BigObj[index].Quantity);
+    // console.log("Try"+BigObj[index].Quantity);
     setObj([...newBigObj]);
     setChange("1");
     localStorage.setItem("BigObj",JSON.stringify(newBigObj));
@@ -62,7 +62,7 @@ const handleItemsChange=(e)=>{
     //  setObj(newBigObj);
 }
 useEffect(()=>{
-  console.log("user Navigate ->",user);
+  // console.log("user Navigate ->",user);
     if(user==null)
     {
       navigate("/Login");

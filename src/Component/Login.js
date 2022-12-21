@@ -24,16 +24,16 @@ const {user,setUserEmail,userEmailId,login,googleSignIn}=useContext(AuthContext)
       try{
       let userObj = await login(email,password)
       setUserEmail(email);
-      console.log("email->"+email);
+      // console.log("email->"+email);
       localStorage.setItem("email", email);
       setEmail('')
     setPassword('')
-    console.log("outerEmail"+userEmailId)
+    // console.log("outerEmail"+userEmailId)
     // alert("successful Login")
     navigate("/");
       }catch(err)
       {
-        console.log("fail");
+        // console.log("fail");
         document.getElementById("login").classList.remove("bg-black");
         setError("Wrong EmailId Or Password");
         setTimeout(()=>{
@@ -41,7 +41,7 @@ setError('')
         },3000)
         // alert("Fail Login")
       }finally{
-    console.log("done");
+    // console.log("done");
     
       }
   }
