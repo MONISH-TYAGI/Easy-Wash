@@ -5,6 +5,9 @@ import { AuthContext } from '../Context/AuthContext';
 function Services() {
     const navigate=useNavigate();
     const {user}=useContext(AuthContext);
+    const handleService=()=>{
+        navigate("/services")
+    }
     useEffect(()=>{
         if(user==null)
         {
@@ -26,7 +29,7 @@ function Services() {
         <div className='bg-white h-1/3 flex items-center text-start '><h1 className='ml-2 text-xl font-medium text-drymeBlue'>Wash & Fold</h1></div>
         <div className='bg-white h-1/3 flex text-start ml-2'>All your regular wear garments will be washed, steam ironed and neatly packed for delivery.</div>
         <div className='bg-white h-1/3 flex items-center justify-end '>
-            <button className='bg-drymeBlue w-1/3 h-10 text-white rounded-bl-lg rounded-tl-lg rounded-tl-3xl rounded-bl-3xl'>Continue</button>
+            <button className='bg-drymeBlue w-1/3 h-10 text-white rounded-bl-lg rounded-tl-lg rounded-tl-3xl rounded-bl-3xl' onClick={handleService}>Continue</button>
         </div>
         </div>
     </div>
@@ -38,7 +41,7 @@ function Services() {
         <div className='bg-white h-1/3 flex items-center text-start '><h1 className='ml-2 text-xl font-medium text-drymeBlue'>Iron & Fold</h1></div>
         <div className='bg-white h-1/3 flex text-start ml-2'>Get back your dirty clothes. Your clothes we will ironed and pressed to look the best for you.</div>
         <div className='bg-white h-1/3 flex items-center justify-end '>
-            <button className='bg-drymeBlue w-1/3 h-10 text-white rounded-bl-lg rounded-tl-lg rounded-tl-3xl rounded-bl-3xl'>Continue</button>
+            <button className='bg-drymeBlue w-1/3 h-10 text-white rounded-bl-lg rounded-tl-lg rounded-tl-3xl rounded-bl-3xl' onClick={handleService}>Continue</button>
         </div>
         </div>
     </div>
@@ -50,7 +53,7 @@ function Services() {
         <div className='bg-white h-1/3 flex items-center text-start '><h1 className='ml-2 text-xl font-medium text-drymeBlue'>Dry Cleaning</h1></div>
         <div className='bg-white h-1/3 flex text-start ml-2'>All your sensitive and special garments will be individually treated for any stains and dry cleaned.</div>
         <div className='bg-white h-1/3 flex items-center justify-end '>
-            <button className='bg-drymeBlue w-1/3 h-10 text-white rounded-bl-lg rounded-tl-lg rounded-tl-3xl rounded-bl-3xl'>Continue</button>
+            <button className='bg-drymeBlue w-1/3 h-10 text-white rounded-bl-lg rounded-tl-lg rounded-tl-3xl rounded-bl-3xl' onClick={handleService}>Continue</button>
         </div>
         </div>
     </div>
