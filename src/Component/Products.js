@@ -400,9 +400,9 @@ const handleCart=()=>{
 <div className='bg-white font-bold text-xl w-1/2 flex justify-end pr-2'><span>Rs {obj.Price}</span></div>
 </div>
 
-<div className='bg-drymeBlue h-10 flex'>{
+<div className='bg-drymeBlue h-10 flex '>{
 (obj.ProdId!=100)?
-  <input type="number" id={obj.ProdId} className='h-full w-1/2 p-2 text-2xl ' defaultValue={1} ></input>:
+  <input type="number" id={obj.ProdId} className='h-full w-1/2 p-2 text-2xl border-2 border-drymeBlue ' defaultValue={1} ></input>:
   <input type="number" id={obj.ProdId} className='h-full w-1/2 p-2 text-2xl' defaultValue={1} autoFocus></input>
 }
   <button className='w-1/2 h-full bg-drymeBlue text-white hover:bg-black' onClick={(e)=>addToBag(obj)}>AddToBag</button> 
