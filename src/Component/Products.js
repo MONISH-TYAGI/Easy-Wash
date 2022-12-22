@@ -264,7 +264,7 @@ const handleCart=()=>{
   return (
     <div className='w-full h-full '>
       <Navbar></Navbar>
-      <div className='bg-white w-full h-1/4 flex items-end justify-start fixed z-10'>
+      <div className='bg-white w-full h-1/4 flex items-end justify-start fixed z-10 p-3 mt-4'>
      
    <div className="w-11/12  h-12  flex items-center  rounded mx-2 "style={{border:"solid"}}>
  
