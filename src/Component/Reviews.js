@@ -42,7 +42,7 @@ function Reviews() {
     }
     const [reviews,setReviews]=useState([])
    const [show,setShow]=useState(false);
-    
+    let i=0;
     const [text,setText]=useState("");
     let userEmailId=localStorage.getItem("email");
     const [file,setFile]=useState(null);
@@ -229,6 +229,7 @@ setChange2(!change2);
       // console.log("len1"+reviews.length);
 
     },[change2])
+    let s1="";
     // console.log("len2"+reviews.length);
     // console.log("star"+star);
   return (
@@ -253,10 +254,13 @@ setChange2(!change2);
       <div className='w-full h-fit   flex'>
         <div className='w-2/3  h-full   flex flex-column pb-4 mt-48'>
           {
-            reviews.map((obj)=>{
-              {console.log("obj"+obj.Image)}
+            reviews.map((obj,index)=>{
+              // {console.log("obj"+obj.Image)}
+            {(index%2==1)?s1="row-reverse":s1=""} 
               return  (
-        <div className='w-5/6  h-44 ml-12 mt-4 flex drop-shadow-2xl mb-4 '>
+            
+        <div className='w-5/6  h-44 ml-12 mt-4 flex drop-shadow-2xl mb-4 ' style={{flexDirection:s1}}>
+               
                 <div className='w-1/4 h-full  '>
                     <img className='w-full h-full ' src={obj.Image} style={{borderRadius:"50%"}}></img>
                 </div>
