@@ -17,7 +17,7 @@ import { AuthProvider } from './Context/AuthContext';
 function App() {
   
   return (
-    <div className="App" id="App">
+    <div className="App" id="App" style={{zoom:"90%"}}>
  <BrowserRouter>
  <AuthProvider>
  <CartContextProvider>
