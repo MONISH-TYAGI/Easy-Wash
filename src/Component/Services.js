@@ -9,6 +9,7 @@ function Services() {
         navigate("/services")
     }
     useEffect(()=>{
+        // console.log("user "+user);
         if(user==null)
         {
             // navigate("/login");

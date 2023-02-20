@@ -205,6 +205,8 @@ setValue1("gray");
  }
 
  useEffect(()=>{
+  console.log("user "+JSON.stringify(user));
+  // console.log("user "+user.email);
   if(user==null){
     navigate("/login");
     return;
@@ -237,7 +239,20 @@ setCart(cartVal);
     if(cart==false)
    setCart(true);
     let val=document.getElementById(obj.ProdId).value;
-    // console.log("Prev BigObj"+BigObj.length);
+    // let present=false;
+    let idx=-1;
+    for(let i=0;i<BigObj.length;i++)
+    {
+      console.log("Prev BigObj "+BigObj[0].Quantity);
+     if(BigObj[i].ProdId==obj.ProdId)
+     idx=i;
+    }
+    if(idx!=-1)
+    {
+BigObj[idx].Quantity=Number(BigObj[idx].Quantity)+Number(val);
+      
+    }else{
+   
  BigObj.push({
   
     Name:obj.Name,
@@ -249,6 +264,8 @@ setCart(cartVal);
     Service:service
   
  })
+}
+console.log("Prev BigObj "+BigObj[0].Quantity);
 //  console.log("Updated BigObj"+BigObj.length);
  setSelectedItems(BigObj.length);
  localStorage.setItem("BigObj",JSON.stringify(BigObj));

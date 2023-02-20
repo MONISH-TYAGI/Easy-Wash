@@ -101,7 +101,7 @@ useEffect(()=>{
    {
     BigObj.map((obj)=>{
         return (
-  <div className=' w-full h-1/4  flex drop-shadow  mb-4 'style={{border:"solid",height:"10rem"}} >
+  <div className=' w-full h-1/4  flex drop-shadow  mb-4  'style={{border:"solid",height:"10rem"}} >
     <img className='w-2/6  h-full' src={obj.Image}>
        
     </img>
@@ -112,11 +112,11 @@ useEffect(()=>{
         <span className='text-xl'>X</span>
         <span className='text-xl'>{obj.Quantity}</span>
         <span className='text-xl'>=</span>
-        <span className='text-xl'>{obj.Quantity*obj.Price}</span>
+        <span className='text-xl'>Rs. {obj.Quantity*obj.Price}</span>
         </div>
-        <div className=' h-1/4 flex justify-between p-3'>
+        <div className=' h-1/4 flex  p-3'>
           <span className='text-xl'>Service:</span>
-          <span className='text-xl'>{obj.Service}</span>
+          <span className='text-xl ml-2'>{obj.Service}</span>
           </div> 
         <div className='secondHalfSecond w-full  h-2/4 flex justify-center items-center'>
         
@@ -154,7 +154,7 @@ useEffect(()=>{
     </div>
     <div className='Bill3 w-full  h-1/4 flex justify-between px-2'>
         <span>Total Price</span>
-        <span>{totalAmt}</span>
+        <span>Rs. {totalAmt}</span>
     </div>
     <div className='Bill4 w-full bg-drymeBlue h-1/4 flex justify-center'>
         <button className='text-white'onClick={handleCart}>Place Order</button>

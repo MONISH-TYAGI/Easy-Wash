@@ -5,7 +5,7 @@ import HowItWorks from './HowItWorks'
 function Carousel() {
   useEffect(()=>{
   let button=document.getElementById("next");
-  setTimeout(function() {button.click()}, 1500);
+  setTimeout(function() {button.click()}, 1000);
   },[])
   const navigate=useNavigate();
   const handleServices=()=>{
@@ -65,7 +65,7 @@ navigate("/services");
         alt="..."
         style={{height:"27.8rem"}} />
       <div class="carousel-caption hidden md:block absolute text-center  ">
-        <h5 class="text-xl">First slide label</h5>
+        <h5 class="text-xl">Laundry Services</h5>
         <p>Some representative placeholder content for the first slide.</p>
       </div>
     </div>
@@ -77,7 +77,7 @@ navigate("/services");
         style={{height:"27.8rem"}}
       />
       <div class="carousel-caption hidden md:block absolute text-center">
-        <h5 class="text-xl">Second slide label</h5>
+        <h5 class="text-xl">Free Delievery Services</h5>
         <p>Some representative placeholder content for the second slide.</p>
       </div>
     </div>
@@ -89,7 +89,7 @@ navigate("/services");
         style={{height:"27.8rem"}}
          />
       <div class="carousel-caption hidden md:block absolute text-center">
-        <h5 class="text-xl">Third slide label</h5>
+        <h5 class="text-xl">SPOTLESS SERVICES</h5>
         <p>Some representative placeholder content for the third slide.</p>
       </div>
     </div>

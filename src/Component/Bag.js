@@ -67,18 +67,18 @@ function Bag() {
         arr.map((obj)=>{
             // {console.log("hello")}
             return (
-   <div className='h-56  border-solid m-1' style={{border:"solid"}}>
+   <div className='h-56  border-solid m-1 font-bold' style={{border:"solid"}}>
     <div className='Heading h-1/3  flex justify-center items-center'>
         <h1 className='text-4xl'>Order is Placed on {obj[1].Date} at {obj[1].Time}</h1>
     </div>
     <div className='Heading h-1/3 ' >
-        <div className='heading2First w-full h-1/2 flex justify-between p-2'>
+        <div className='heading2First w-full h-1/2 flex justify-between p-2 '>
         <span>Total Quantity:-</span>
             <span>{obj[1].Items}</span>
         </div>
         <div className='heading2Second w-full h-1/2  flex justify-between p-2'>
-        <span>Total Quantity</span>
-            <span>{obj[1].Amount}</span>
+        <span>Total Price</span>
+            <span>Rs. {obj[1].Amount}</span>
         </div>
     </div>
     <div className='Heading h-1/3  flex flex-start items-center '>
