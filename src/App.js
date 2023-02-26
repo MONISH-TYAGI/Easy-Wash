@@ -10,7 +10,7 @@ import EnterDetails from './Component/EnterDetails';
 import Review from './Component/Reviews';
 import Login from './Component/Login';
 import SignUp from './Component/SignUp';
-import { CartContextProvider } from './Context/CartContextProvider';
+import { CartContextProvider } from './Context/CartContextProvider'  ;
 import ViewDetails from './Component/ViewOrders';
 import { AuthProvider } from './Context/AuthContext';
 
