@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthContext';
-
+//Second Start
 function Navbar() {
   const { logout } = useContext(AuthContext);
   const [icon,setIcon]=useState(false);
