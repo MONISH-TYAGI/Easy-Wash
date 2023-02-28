@@ -29,7 +29,7 @@ const handleCart=()=>{
     navigate("/EnterDetails");
     setRun(!run);
   }
-const handleItemsChange=(e)=>{
+const handleItemsChange=(e,check)=>{
   // console.log(JSON.stringify(BigObj));
     function findObjIndex(obj)
     {
@@ -42,7 +42,13 @@ const handleItemsChange=(e)=>{
     // })
     let index=BigObj.findIndex(findObjIndex)
     // console.log("index"+index);
-    let val=document.getElementById(e).value;
+    
+    let val;
+    if(check==true)
+    val=document.getElementById(e).value;
+    else
+    val=document.getElementById("A"+e).value;
+    
     BigObj[index].Quantity=val;
     let newBigObj=BigObj;
     if(val==0)
@@ -94,7 +100,7 @@ useEffect(()=>{
  
     <div className='w-full h-full bg-white'>
   <Navbar></Navbar>
-  <div className='w-full mt-40   p-4 flex  OuterMarginBox'>
+  <div className='w-full mt-40   p-4   OuterMarginBox hidden sm:flex'>
    <div className='OuterMarginBoxFirstHalf h-full  w-3/6 '> 
 
    
@@ -126,7 +132,7 @@ useEffect(()=>{
  :
 <div className='ItemsChangeDiv flex row'>
 <input type='number' id={obj.ProdId} className='' autoFocus defaultValue={obj.Quantity} min={0}></input>
-<button className='bg-drymeBlue text-white' onClick={()=>handleItemsChange(obj.ProdId)}>Done</button>
+<button className='bg-drymeBlue text-white' onClick={()=>handleItemsChange(obj.ProdId,true)}>Done</button>
 </div>
 }
         </div>
@@ -161,6 +167,75 @@ useEffect(()=>{
     </div>
   </div>
   </div>
+  </div>
+  <div className='w-full     flex  flex-col OuterMarginBox block sm:hidden   '>
+   <div className='z-20 bg-white h-44 mt-30 z-10 fixed z-10 w-full'>ff</div>
+  <div className='OuterMarginBoxSecondHalf  w-full h-full   bg-orange-200 mb-7   '>
+  <div className='OuterHalf2 w-full h-1/6   fixed p-2 right-0  bg-white z-20 top-40'style={{border:"solid"}}>
+    <div className='Bill1 w-full bg-drymeBlue h-1/4 '><span className='text-white'>Bill Generated</span></div>
+    <div className='Bill2 w-full h-1/4 flex justify-between px-2'>
+        <span>Total Items</span>
+        <span>{totalItems}</span>
+    </div>
+    <div className='Bill3 w-full  h-1/4 flex justify-between px-2'>
+        <span>Total Price</span>
+        <span>Rs. {totalAmt}</span>
+    </div>
+    <div className='Bill4 w-full bg-drymeBlue h-1/4 flex justify-center'>
+        <button className='text-white text-sm'onClick={handleCart}>Place Order</button>
+    </div>
+  </div>
+  </div>
+  <div className='OuterMarginBoxFirstHalf h-1/2  w-full  mt-56'> 
+
+   
+{
+ BigObj.map((obj)=>{
+     return (
+<div className=' w-full h-1/4  flex drop-shadow  mb-4  z-0'style={{border:"solid",height:"10rem"}} >
+ <img className='w-2/6  h-full' src={obj.Image}>
+    
+ </img>
+ <div className='w-4/6    '>
+     <div className='secondHalfFirst w-full  h-1/4 flex justify-around '> 
+ <span className='text-xl font-bold'>{obj.Name}</span>
+ <span className='text-xl'>{obj.Price}</span>
+     <span className='text-xl'>X</span>
+     <span className='text-xl'>{obj.Quantity}</span>
+     <span className='text-xl'>=</span>
+     <span className='text-xl'>Rs. {obj.Quantity*obj.Price}</span>
+     </div>
+     <div className=' h-1/4 flex  p-3'>
+       <span className='text-xl'>Service:</span>
+       <span className='text-xl ml-2'>{obj.Service}</span>
+       </div> 
+     <div className='secondHalfSecond w-full  h-2/4 flex justify-center items-center'>
+     
+         {
+         (change!=obj.ProdId)?
+<button className='w-2/4  bg-drymeBlue  text-white rounded pb-2' onClick={()=>EditQuantiy(obj.ProdId)} style={{height:"30%"}}>Edit Quantity</button> 
+:
+<div className='ItemsChangeDiv flex row w-1/2'>
+<input type='number ' id={"A"+obj.ProdId} className='w-1/2' autoFocus defaultValue={obj.Quantity} min={0}></input>
+<button className='bg-drymeBlue text-white w-1/2' onClick={()=>handleItemsChange(obj.ProdId,false)}>Done</button>
+</div>
+}
+     </div>
+     </div   >
+
+</div>
+     )
+})
+}
+
+
+
+
+
+
+
+
+</div>
   </div>
     </div>
    

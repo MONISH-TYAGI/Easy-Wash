@@ -18,7 +18,7 @@ function App()  {
   
   
   return (
-    <div className="App" id="App" style={{zoom:"90%"}}>
+    <div className="App  " id="App" style={{zoom:"90%"}} >
  <BrowserRouter>
  <AuthProvider>
  <CartContextProvider>

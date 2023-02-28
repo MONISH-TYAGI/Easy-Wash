@@ -58,16 +58,17 @@ function Bag() {
     // console.log(JSON.stringify(arr));
         }
   return (
+    
     (arr.length!=0)?
     <div className='w-full h-screen bg-white pt-36 Main 'style={{backgroundColor:"white"}}>
         <Navbar></Navbar>
-        <div className='   p-4 flex justify-center OrdersMainDiv'>
+        <div className='   p-4  justify-center OrdersMainDiv hidden sm:flex '>
 <div className='h-full bg-white w-full  OrderMainCenterDiv grid grid-cols-2'>
     {
         arr.map((obj)=>{
             // {console.log("hello")}
             return (
-   <div className='h-56  border-solid m-1 font-bold' style={{border:"solid"}}>
+   <div className='OrderStart h-56  border-solid m-1 font-bold ' style={{border:"solid"}}>
     <div className='Heading h-1/3  flex justify-center items-center'>
         <h1 className='text-4xl'>Order is Placed on {obj[1].Date} at {obj[1].Time}</h1>
     </div>
@@ -86,6 +87,43 @@ function Bag() {
         <button className='bg-drymeBlue text-white h-1/2  px-4 pt-2 pb-2 ml-4' onClick={()=>handleViewDetails(obj[0])}>View Order</button>
     </div>
    </div>
+   
+            )       
+        }
+        )
+}
+   
+   
+   
+  
+</div>
+</div>
+<div className='   p-4  justify-center OrdersMainDiv flex  sm:hidden bg-white '>
+<div className='h-full bg-white w-full  OrderMainCenterDiv grid grid-cols-1'>
+    {
+        arr.map((obj)=>{
+            // {console.log("hello")}
+            return (
+   <div className='OrderStart h-56  border-solid m-1 font-bold ' style={{border:"solid"}}>
+    <div className='Heading h-1/3  flex justify-center items-center'>
+        <h1 className='text-xl'>Order is Placed on {obj[1].Date} at {obj[1].Time}</h1>
+    </div>
+    <div className='Heading h-1/3 ' >
+        <div className='heading2First w-full h-1/2 flex justify-between p-2 '>
+        <span>Total Quantity:-</span>
+            <span>{obj[1].Items}</span>
+        </div>
+        <div className='heading2Second w-full h-1/2  flex justify-between p-2'>
+        <span>Total Price</span>
+            <span>Rs. {obj[1].Amount}</span>
+        </div>
+    </div>
+    <div className='Heading h-1/3  flex flex-start items-center '>
+        <button className='bg-drymeBlue text-white h-1/2 px-4 pt-2 pb-2 ml-4' onClick={CancelOrder}>Cancel Order</button>
+        <button className='bg-drymeBlue text-white h-1/2  px-4 pt-2 pb-2 ml-4 mr-4' onClick={()=>handleViewDetails(obj[0])}>View Order</button>
+    </div>
+   </div>
+   
             )       
         }
         )
@@ -106,6 +144,8 @@ function Bag() {
             <span className='text-4xl font-bold text-gray-300'>No Orders Till Yet</span>
         </div>
         </div>
+
+    
   )
   
 }

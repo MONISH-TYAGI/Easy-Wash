@@ -5,6 +5,7 @@
   margin:0%;
   padding:0%;
 }
+
 .imageUploadIcon{
   top: 50%;
     right: 12%;
@@ -86,7 +87,7 @@
   color: #61dafb;
 }
 .play{
-  font-size: 5rem;
+  font-size: 3rem;
     color: red;
     background-color: white;
     background: transparent;
@@ -221,6 +222,8 @@
 body {
   /* background-image: url("ForestBackground.jpg"); */
   background-repeat: no-repeat;
+ /* overflow-x:hidden ; */
+ /* overflow-y: scroll; */
 }
 
 
@@ -289,3 +292,65 @@ transition: 0.3s;
     /* border-color: setFile(URL.createObjectURL(e.target.files[0])); */
     border-color: #194376;
 }
+.stick{
+  /* background-color: red; */
+  height: 15rem;
+}
+@media screen and (max-width: 426px) {
+ .App{
+  overflow-x: hidden;
+ }
+  .setImage{
+    /* border-radius: 55%; */
+      /* width: 50%; */
+      transition: 8%;
+      /* padding: 1rem; */
+      border: solid;
+      /* border-color: setFile(URL.createObjectURL(e.target.files[0])); */
+      border-color: #194376;
+  }
+ 
+ .sort{
+  width: auto;
+  /* font-size: 1rem; */
+  left: 64%;
+  /* right:10%; */
+  top: 29.5%;
+  z-index: 30;
+
+
+}
+.Box1{
+  display: inline-block;
+    left: 2.5%;
+    width: 45%;
+    /* height: 6rem; */
+    top: 32.3%;
+}
+.Box2 {
+  position: fixed;
+  display: inline-block;
+  left: 52.6%;
+  width: 45%;
+  top: 32.5%;
+  height: 6rem;
+  z-index: 10;
+}
+ 
+}
+@media screen and (max-width: 426px) and (min-width:321px){
+  .App{
+   overflow-x: hidden;
+   
+  }
+  .sort{
+   width: auto;
+   /* font-size: 1rem; */
+   left: 69%;
+   /* right:10%; */
+   top: 29.5%;
+   z-index: 30;
+ 
+ }
+  
+ }

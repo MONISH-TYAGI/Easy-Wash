@@ -236,6 +236,7 @@ setChange2(!change2);
     
     <div className="h-full bg-white">
         <Navbar></Navbar>
+        <div className='hidden sm:block'>
         <div className=' bg-white h-52  fixed w-full flex items-end z-10'>
         <div className=' w-2/3 h-20  flex justify-between items-end border-b-4 fixed z-10 bg-white'>
 <span className='ml-2 text-5xl items-end text-drymeBlue font-bold'>Reviews</span>
@@ -321,6 +322,97 @@ setChange2(!change2);
             </div>
           </div>
         </div>
+      </div>
+      </div>
+      <div className='block sm:hidden '>
+        <div className=' bg-white h-52  fixed w-full flex items-end z-10'>
+        <div className=' w-full h-20  flex justify-between items-end border-b-4 fixed z-10 bg-white'>
+<span className='ml-2 text-5xl items-end text-drymeBlue font-bold'>Reviews</span>
+<button className="bg-drymeBlue text-1xl text-white mr-2  px-4 py-1 rounded-md" onClick={()=>setShow(!show)}>Sort By<i class="fa-solid fa-caret-down ml-2"></i></button>
+        </div>
+        <br></br>
+        </div>
+        {
+        (show==true)?
+        <div className='w-20 h-auto bg-drymeBlue text-white fixed flex flex-column sort rounded p-1'>
+            <div style={val1} className="mb-1 cursor-pointer " onClick={handleDateWise} >Date</div>
+            <div style={val2} className='mb-1  cursor-pointer' onClick={handleHighToLow} >Ratings High to Low</div>
+            <div style={val3} className='mb-1 cursor-pointer' onClick={handleLowToHigh}>Ratings Low to High</div>
+        </div>:<></>
+}
+      <div className='w-full h-fit   flex'>
+        <div className='w-full  h-full   flex flex-col pb-4 mt-48'>
+          {
+            reviews.map((obj,index)=>{
+              // {console.log("obj"+obj.Image)}
+            {(index%2==1)?s1="row-reverse":s1=""} 
+              return  (
+            
+        <div className='w-full p-2 h-44  mt-4 flex drop-shadow-2xl mb-4 ' style={{flexDirection:s1}}>
+               
+                <div className='w-1/4 h-full  '>
+                    <img className='w-full h-full ' src={obj.Image} style={{borderRadius:"50%"}}></img>
+                </div>
+                <div className='w-3/4 h-full bg-white'>
+                    <div className="Text w-full h-2/3  flex items-center  ">
+                   <span className='pl-2 text-sm' > 
+                   {obj.Text}
+                    .</span>
+                    </div>
+                    <div className='Star w-full h-1/3 bg-white flex items-center justify-start '>
+                        <div className='w-1/3 h-full flex items-center z-1'>
+            {(obj.Star>=1)?<i class="fa-solid fa-star text-drymeBlue text-xl"></i>: <i class="fa-regular fa-star text-xl"></i>}
+            {(obj.Star>=2)? <i class="fa-solid fa-star text-drymeBlue text-xl"></i>: <i class="fa-regular fa-star text-xl"></i>}
+            {(obj.Star>=3)?<i class="fa-solid fa-star text-drymeBlue text-xl"></i>: <i class="fa-regular fa-star text-xl"></i>}
+            {(obj.Star>=4)?<i class="fa-solid fa-star text-drymeBlue text-xl"></i>: <i class="fa-regular fa-star text-xl"></i>}
+            {(obj.Star>=5)?<i class="fa-solid fa-star text-drymeBlue text-xl"></i>: <i class="fa-regular fa-star text-xl"></i>}
+                   
+</div>
+
+<div className='w-2/3 h-full flex flex-column  justify-end items-end pr-2 '>
+<span className='text-xs h-1/3'><span className='text-drymeBlue text-xs'>Review By:</span> {obj.Name}</span>
+<span className='text-xs  h-1/3'><span className='text-drymeBlue text-xs'>Dated:</span> {obj.Date}</span>
+<span className='text-xs h-1/3'><span className='text-drymeBlue text-xs'>Time:</span> {obj.Time} {obj.zone}</span>
+</div>
+                    </div>
+                </div>
+            </div>
+              )
+            })
+}
+
+  
+
+                       
+        </div>
+        <div className='w-full  h-24 fixed flex bg-white bottom-1 pb-2 '>
+          <img className='w-1/4 h-full   drop-shadow-2xl ' src={image} style={{borderRadius:"50%"}}></img>
+          <div className="file  inline    z-20   flex items-end fixed left-10 bottom-0" onClick={handleInput}>
+          <i class="fa-solid fa-camera text-2xl"></i>
+  <input type="file" id="file" style={{display:"none"}} onChange={handleDisplayImage} />
+  <i class="fa-solid fa-plus"></i>
+</div>
+          <div className='OuterCommentBox w-3/4 h-full   drop-shadow-2xl' style={{right:"5%"}} >
+            
+         <div className='First  h-2/5  flex items-center justify-center  '>
+       {  (star>=1)? <i class="fa-solid fa-star text-xl text-drymeBlue" onClick={()=>handleStar(0)}></i>:<i class="fa-regular fa-star text-xl " onClick={()=>handleStar(1)}></i>}
+       {  (star>=2)? <i class="fa-solid fa-star text-xl text-drymeBlue" onClick={()=>handleStar(2)}></i>:<i class="fa-regular fa-star text-xl " onClick={()=>handleStar(2)}></i>}
+       {  (star>=3)? <i class="fa-solid fa-star text-xl text-drymeBlue" onClick={()=>handleStar(3)}></i>:<i class="fa-regular fa-star text-xl " onClick={()=>handleStar(3)}></i>}
+       {  (star>=4)? <i class="fa-solid fa-star text-xl text-drymeBlue" onClick={()=>handleStar(4)}></i>:<i class="fa-regular fa-star text-xl " onClick={()=>handleStar(4)}></i>}
+       {  (star>=5)? <i class="fa-solid fa-star text-xl text-drymeBlue" onClick={()=>handleStar(5)}></i>:<i class="fa-regular fa-star text-xl " onClick={()=>handleStar(5)}></i>}
+                    
+            </div>
+            <div className='rem h-3/5 flex'>
+            <div className='First w-2/3 h-full bg-gray-200'>
+              <textarea className='w-full h-full p-2 border-2 border-drymeBlue' id="box" autoFocus onChange={(e)=>setText(e.target.value)} value={text}></textarea>
+            </div>
+            <div className='First w-1/3 h-full bg-drymeBlue text-white'>
+           <button className='w-full h-full text-xl ' id="saveReview"  onClick={SaveImage}>Add Review</button>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   )

@@ -107,7 +107,7 @@ sethide(true);
               {/* <button className='bg-black text-white' onClick={generatePDF}>Print</button> */}
               {
               (hide==false)?
-              <div onClick={generatePDF} className=" ">
+              <div onClick={generatePDF} className="mr-6 ">
                 <a class="btn bg-white btn-light  text-lg" href="#" data-title="Print">
                     <div className='w-96 bg-red-400'></div>
                    

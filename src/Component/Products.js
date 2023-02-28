@@ -158,10 +158,10 @@ setCurrPage(currPage-1);
   // } 
   const {user}=useContext(AuthContext);
 
-  const handleSearch=()=>{
+  const handleSearch=(text)=>{
     // setTimeout(()=>{},1000);
-    let curr=document.getElementById("search").value;
-    // console.log("curr "+curr)
+    let curr=document.getElementById(text).value;
+    console.log("curr "+curr)
        setSearch(curr);
       // console.log("searchVal"+curr.length); 
      let  currproducts=JSON.parse(localStorage.getItem("products"));
@@ -203,9 +203,9 @@ setValue1("gray");
   setValue4("white");
 // setAll(!all);
  }
-
+const [check,setCheck]=useState(false);
  useEffect(()=>{
-  console.log("user "+JSON.stringify(user));
+  // console.log("user "+JSON.stringify(user));
   // console.log("user "+user.email);
   if(user==null){
     navigate("/login");
@@ -232,7 +232,11 @@ localStorage.setItem("products",JSON.stringify([...data]));
 setCart(cartVal);
 
 })
-
+// console.log("window->"+window.innerWidth);
+// let checkVal=window.innerWidth;
+// console.log("checkVal->"+checkVal);
+// if(checkVal<427)
+// setCheck(true);
 },[category]);
   
   const addToBag=(obj)=>{
@@ -281,13 +285,14 @@ const handleCart=()=>{
   return (
     <div className='w-full h-full '>
       <Navbar></Navbar>
-      <div className='bg-white w-full h-1/4 flex items-end justify-start fixed z-10 p-3 mt-4'>
+<div className='product hidden sm:block bg-red-200 'id="check">
+      <div className='  w-full h-1/4 flex items-end justify-start fixed z-10 p-3 mt-4'>
      
    <div className="w-11/12  h-12  flex items-center  rounded mx-2 "style={{border:"solid"}}>
  
  <button ><i class="fa-solid fa-magnifying-glass ml-4"></i></button>
-   <input type="search"  id="search" className=" w-full h-1/2 p-2 outline-none  " placeholder="Search Here " onChange={handleSearch} value={searchValue} />
-   <button className='bg-drymeBlue text-white  rounded-lg px-4 h-3/4'onClick={handleSearch} >Search</button>
+   <input type="search"  id="search1" className=" w-full h-1/2 p-2 outline-none  " placeholder="Search Here " onChange={()=>handleSearch("search1")} value={searchValue} />
+   <button className='bg-drymeBlue text-white  rounded-lg px-4 h-3/4'onClick={()=>handleSearch("search1")} >Search</button>
    </div>
    <button className='bg-white  text-white w-1/6 h-12 rounded-lg  mx-2 text-3xl ' onClick={handleCart} style={{border:"solid",borderColor:"#194376"}}>
     {
@@ -310,20 +315,7 @@ const handleCart=()=>{
 }
    </button> 
    
-   {/* <div class="dropdown">
-{/* <div class="dropdown1 w-56">
-  <button class="dropbtn">Category 
-  <i class="ml-2 fa-sharp fa-solid fa-caret-down "></i>
-  </button>
-  <div class="dropdown-content ">
-    <a href="https://thepotatoshop.com/shop/mash/highland-burgundy-red-1kg/">Greenhouse Gases</a>
-    <a href="https://thepotatoshop.com/shop/mash/arran-victory-1kg/">Carbon Dioxide</a>
-    <a href="https://thepotatoshop.com/shop/mash/desiree-1kg/">Methane</a>
-    <a href="https://thepotatoshop.com/shop/salad/belle-de-fontenay-1kg/">Water Vapour</a>
-    <a href="https://thepotatoshop.com/shop/salad/belle-de-fontenay-1kg/">NF3</a>
-  </div> */}
-{/* </div> */}
-{/* </div>  */}
+  
 
 
       </div>
@@ -377,37 +369,14 @@ const handleCart=()=>{
 
 
 
-        
 
-{/* {
-  products.map((obj)=>
-  {
-    return(
-<div className='w-1/5 bg-red-400 h-1/2 m-8 justify-center drop-shadow-2xl	'>
-<div className='bg-gray-400 w-full h-64'>
-  <img src={obj.Image} className='w-full h-full'></img>
-</div>
-<div className='bg-white font-bold text-xl'>{obj.Name}</div>
-<div className=' w-full bg-white h-10 flex items-center justify-between'>
-<i class="fa-solid fa-circle-plus text-drymeBlue ml-1 hover:text-black"style={{fontSize:"2rem"}}></i>
-<span style={{fontSize:"2rem"}} >1</span>
-<i class="fa-solid fa-circle-minus text-drymeBlue hover:text-black" style={{fontSize:"2rem"}}></i>
-</div>
-<div className='bg-drymeBlue w-full h-10'>
-  <button className='w-full h-full bg-drymeBlue text-white hover:bg-black'>AddToBag</button>
-</div>
-
-</div> 
-    )
-})
-}   */}
 {
   
   products.map((obj)=>{
     // {console.log(JSON.stringify(products))}
 //  {console.log("currPage->"+currPage+" and i-> "+i)}
     return (
-      (i<currPage*12&&i++>=(currPage-1)*12)?
+      (window.innerWidth>427&&i<currPage*12&&i++>=(currPage-1)*12)?
 <div className='w-1/5 bg-red-400 h-1/2 m-8 justify-center drop-shadow-2xl	'>
 <div className='bg-gray-400 w-full h-64'>
   <img src={obj.Image} className='w-full h-full'></img>
@@ -432,22 +401,7 @@ const handleCart=()=>{
 }
 
 
-{/* <div className='w-1/5 bg-red-400 h-1/2 m-8 justify-center drop-shadow-2xl	'>
-<div className='bg-gray-400 w-full h-64'>
-  <img src="https://images.bestsellerclothing.in/data/selected/oct-07-2021/203923802_5.jpg?width=1080&height=1355&mode=fill&fill=blur&format=auto" className='w-full h-full'></img>
-</div>
-<div className='flex'>
-<div className='bg-white font-bold text-xl w-1/2 flex flex-start pl-2'>Name</div>
-<div className='bg-white font-bold text-xl w-1/2 flex justify-end pr-2'><span>Price</span></div>
-</div>
 
-<div className='bg-drymeBlue h-10 flex'>
-
-  <input type="number" className='h-full w-1/2 p-2 text-2xl' defaultValue={1} autoFocus></input>
-  <button className='w-1/2 h-full bg-drymeBlue text-white hover:bg-black'>AddToBag</button> 
-</div>
-
-</div>    */}
 
 
        </div>
@@ -480,6 +434,165 @@ const handleCart=()=>{
 </nav>
 </div>
 
+{/* /////////////////////////////////////////////////////////// */}
+
+</div>
+<div className='product block sm:hidden white'>
+      <div className=' bg-white w-full h-52 items-end flex flex-wrap fixed z-10  mt-4'>
+     <div className='SearchBoxandCard h-12 w-full  flex mt-28 mb-0'>
+   <div className="w-10/12     flex items-center  rounded mx-2 "style={{border:"solid"}}>
+ 
+ <button ><i class="fa-solid fa-magnifying-glass "></i></button>
+   <input type="search"  id="search2" className=" w-full h-2/3 p-2 outline-none  " placeholder="Search Here " onChange={()=>handleSearch("search2")} value={searchValue} />
+   <button className='bg-drymeBlue text-white  rounded-lg  h-2/3 text-sm p-1'onClick={()=>handleSearch("search2")} >Search</button>
+   </div>
+   <button className='  text-white w-2/12 h-12 rounded-lg  mx-2 text-3xl ' onClick={handleCart} style={{border:"solid",borderColor:"#194376"}}>
+    {
+      (BigObj.length==0)?
+      
+    <i class="fa-solid fa-cart-shopping text-drymeBlue"></i>
+    :<i class="fa-solid fa-cart-plus text-drymeBlue " style={{color:"#46C6CE"}}><span className='text-lg'>{BigObj.length}</span></i>
+}
+     </button> 
+     </div>
+   <div className='flex w-full pb-2'>
+     <button className='bg-white text-drymeBlue   h-8 rounded-lg mx-2 text-md w-1/2' onClick={()=>dispatch({type:"handleVisibleCat",payload:open1})} style={{border:"solid",borderColor:"#194376"}}>Category 
+  {
+    (state.open1==false)?
+   <i class="ml-2 fa-sharp fa-solid fa-caret-down "></i>:<i class="ml-2 fa-solid fa-xmark font-bold"></i>
+  }
+ </button>
+   
+   <button className='bg-white  text-drymeBlue h-8 rounded-lg  mx-2 w-1/2'onClick={()=>dispatch({type:"handleVisibleSer",payload:open2})} style={{border:"solid",borderColor:"#194376"}}>Select Service 
+   {(state.open2==false)?
+   <i class="ml-2   fa-sharp fa-solid fa-caret-down"></i>:<i class="ml-2 fa-solid fa-xmark font-bold"></i>
+}
+   </button> 
+   </div>
+
+      </div>
+      
+      <div className='bg-white w-full h-max flex flex-wrap ' style={{paddingTop:"60%"}}>
+  
+      {
+  (state.visibleCat==true)?<div className='Box1 bg-drymeBlue  fixed  rounded-b-lg z-10 h-auto'>
+
+<ul>
+    <li className='underline text-gray-400 my-1 cursor-pointer' onClick={()=>handleCategory("male")} style={{color:val1}}>Men</li>
+    <li className='underline text-gray-400 my-1 cursor-pointer'onClick={()=>handleCategory("female")} style={{color:val2}}>Female</li>
+    {/* <li className='underline text-gray-400 my-1 text-white'>Others</li> */}
+  </ul>
+</div>
+:
+
+<div className='Box1 bg-white  fixed  rounded-b-lg'style={{visibility:"hidden"}} >
+
+<ul>
+    <li className='underline text-gray-400 my-1 '>Men</li>
+    <li className='underline text-gray-400 my-1'>Female</li>
+    <li className='underline text-gray-400 my-1'>Others</li>
+  </ul>
+</div>
+
+}
+{
+  (state.visibleSer==true)?
+<div className='Box2  bg-drymeBlue   rounded-b-lg  h-auto'>
+
+<ul>
+    <li className='underline text-gray-400 my-1  cursor-pointer' onClick={()=>handleService("Wash")} style={{color:value1}}>Wash</li>
+    <li className='underline text-gray-400 my-1 cursor-pointer'onClick={()=>handleService("Iron")} style={{color:value2}}>Iron</li>
+    <li className='underline text-gray-400 my-1  cursor-pointer'onClick={()=>handleService("Wash&Iron")} style={{color:value3}}>Wash&Iron</li>
+    <li className='underline text-gray-400 my-1  cursor-pointer'onClick={()=>handleService("DryCleaning")} style={{color:value4}}>DryCleaning</li>
+  </ul>
+</div>
+:
+<div className='Box2 bg-white    'style={{visibility:"hidden"}} >
+
+<ul>
+    <li className='underline text-gray-400 my-1'>Wash</li>
+    <li className='underline text-gray-400 my-1'>Iron</li>
+    <li className='underline text-gray-400 my-1'>DryCleaning</li>
+  </ul>
+</div>
+}
+
+
+
+
+
+
+
+
+{
+//  console.log("products.length")}
+  products.map((obj)=>{
+    // {console.log(JSON.stringify(products))}
+ {console.log("currPage->"+currPage+" and i-> "+i)}
+ 
+    return (
+      (i<currPage*12&&i++>=(currPage-1)*12)?
+<div className='w-1/2  h-1/2  p-1 justify-center drop-shadow-2xl	'>
+<div className='bg-gray-400 w-full h-64'>
+  <img src={obj.Image} className='w-full h-full'></img>
+</div>
+<div className='flex'>
+<div className='bg-white font-bold text-xl w-1/2 flex flex-start pl-2'>{obj.Name}</div>
+<div className='bg-white font-bold text-xl w-1/2 flex justify-end pr-2'><span>Rs {obj.Price}</span></div>
+</div>
+
+<div className='bg-drymeBlue h-10 flex '>{
+(obj.ProdId!=100)?
+  <input type="number" id={obj.ProdId} className='h-full w-1/2 p-2 text-2xl border-2 border-drymeBlue ' defaultValue={1} ></input>:
+  <input type="number" id={obj.ProdId} className='h-full w-1/2 p-2 text-2xl' defaultValue={1} autoFocus></input>
+}
+  <button className='w-1/2 h-full bg-drymeBlue text-white hover:bg-black' onClick={(e)=>addToBag(obj)}>AddToBag</button> 
+</div>
+
+</div>   
+:<></>
+    )
+  })
+}
+
+
+
+
+
+       </div>
+       <div className='p-4 bg-white'>
+       <nav aria-label="Page navigation example ">
+  <ul class="inline-flex -space-x-px ">
+    <li>
+      <a href="#" class="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" onClick={handlePrevious}>Previous</a>
+    </li>
+    { 
+  pagesArr.map((obj)=>{
+    return (
+   (obj==currPage)? 
+    <li>
+      <a href="#" class="px-3 py-2 bg-drymeBlue text-white leading-tight text-gray-500  border border-gray-300  dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 "onClick={()=>handlePage(obj)}>{obj}</a>
+    </li>
+    :
+    <li>
+    <a href="#" class="px-3 py-2  text-drymeBlue  leading-tight text-gray-500  border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" onClick={()=>handlePage(obj)}>{obj}</a>
+  </li>
+    )
+    })
+  } 
+    
+
+    <li>
+      <a href="#" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" onClick={handleNext}>Next</a>
+    </li>
+  </ul>
+</nav>
+</div>
+
+{/* /////////////////////////////////////////////////////////// */}
+
+</div>
+
       </div>
 
    
@@ -488,61 +601,3 @@ const handleCart=()=>{
 }
 
 export default Products
-{/* <div className='w-1/5 bg-red-400 h-1/2 m-8 justify-center drop-shadow-2xl	'>
-<div className='bg-gray-400 w-full h-72'>
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_dBJaSfsFH-dw17KqI3FYyl01ZPgsy1ab2g&usqp=CAU" className='w-full h-full'></img>
-</div>
-<div className='bg-green-400 w-full h-10 flex items-center justify-between'>
-<i class="fa-solid fa-circle-plus text-drymeBlue ml-1 "style={{fontSize:"2rem"}}></i>
-<span style={{fontSize:"2rem"}}>4</span>
-<i class="fa-solid fa-circle-minus text-drymeBlue" style={{fontSize:"2rem"}}></i>
-</div>
-<div className='bg-drymeBlue w-full h-10'>
-  <button className='w-full h-full text-white'>AddToBag</button>
-</div>
-
-</div>    */}
-
-
-
-// {
-//   (visibleCat==false)?<div className='Box1 bg-red-400  relative  rounded-b-lg z-40' >
-
-// <ul>
-//     <li className='underline text-gray-400 my-1'>Men</li>
-//     <li className='underline text-gray-400 my-1'>Female</li>
-//     <li className='underline text-gray-400 my-1'>Others</li>
-//   </ul>
-// </div>
-// :
-
-// <div className='Box1 bg-white  relative  rounded-b-lg'style={{visibility:"hidden"}} >
-
-// <ul>
-//     <li className='underline text-gray-400 my-1'>Men</li>
-//     <li className='underline text-gray-400 my-1'>Female</li>
-//     <li className='underline text-gray-400 my-1'>Others</li>
-//   </ul>
-// </div>
-
-// }
-// {
-//   (visibleSer==true)?
-// <div className='Box2 bg-white  relative  rounded-b-lg'>
-
-// <ul>
-//     <li className='underline text-gray-400 my-1'>Wash</li>
-//     <li className='underline text-gray-400 my-1'>Iron</li>
-//     <li className='underline text-gray-400 my-1'>DryCleaning</li>
-//   </ul>
-// </div>
-// :
-// <div className='Box2 bg-white  relative  'style={{visibility:"hidden"}} >
-
-// <ul>
-//     <li className='underline text-gray-400 my-1'>Wash</li>
-//     <li className='underline text-gray-400 my-1'>Iron</li>
-//     <li className='underline text-gray-400 my-1'>DryCleaning</li>
-//   </ul>
-// </div>
-// }

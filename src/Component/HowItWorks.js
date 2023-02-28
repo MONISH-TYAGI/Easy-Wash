@@ -7,7 +7,7 @@ import Footer from './Footer'
 function HowItWorks() {
   return (
     <div className='h-full w-full'>
-     <div className='bg-gray-400 h-screen'>
+     <div className='bg-white h-screen'>
         <div className='bg-white h-2/3 mt-2'>
             <Process></Process>
         </div>
