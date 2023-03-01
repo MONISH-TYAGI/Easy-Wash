@@ -455,67 +455,55 @@ const handleCart=()=>{
 }
      </button> 
      </div>
-   <div className='flex w-full pb-2'>
-     <button className='bg-white text-drymeBlue   h-8 rounded-lg mx-2 text-md w-1/2' onClick={()=>dispatch({type:"handleVisibleCat",payload:open1})} style={{border:"solid",borderColor:"#194376"}}>Category 
+   <div className='flex w-full pb-2 h-24  flex-col'>
+    <div className='flex w-full  pt-2 '>
+     <button className='bg-white text-drymeBlue   h-full rounded-lg mx-2 text-md w-1/2' onClick={()=>dispatch({type:"handleVisibleCat",payload:open1})} style={{border:"solid",borderColor:"#194376"}}>Category 
   {
     (state.open1==false)?
    <i class="ml-2 fa-sharp fa-solid fa-caret-down "></i>:<i class="ml-2 fa-solid fa-xmark font-bold"></i>
   }
  </button>
    
-   <button className='bg-white  text-drymeBlue h-8 rounded-lg  mx-2 w-1/2'onClick={()=>dispatch({type:"handleVisibleSer",payload:open2})} style={{border:"solid",borderColor:"#194376"}}>Select Service 
+   <button className='bg-white  text-drymeBlue h-full rounded-lg  mx-2 w-1/2'onClick={()=>dispatch({type:"handleVisibleSer",payload:open2})} style={{border:"solid",borderColor:"#194376"}}>Select Service 
    {(state.open2==false)?
    <i class="ml-2   fa-sharp fa-solid fa-caret-down"></i>:<i class="ml-2 fa-solid fa-xmark font-bold"></i>
 }
-   </button> 
+   </button>
+   </div>
+<div className=' w-full h-full flex bg-white  '>
+  {
+       (state.open1==true)?
+   <div className=' bg-drymeBlue    rounded-b-lg z-10 w-1/2 h-full mx-2'>
+
+<ul>
+    <li className='underline text-gray-400 h-1/2  cursor-pointer' onClick={()=>handleCategory("male")} style={{color:val1}}>Men</li>
+    <li className='underline text-gray-400 h-1/2  cursor-pointer'onClick={()=>handleCategory("female")} style={{color:val2}}>Female</li>
+    {/* <li className='underline text-gray-400 my-1 text-white'>Others</li> */}
+  </ul>
+</div>:<div className='w-1/2 h-full bg-white mx-2'></div>
+}
+{
+   (state.open2==true)?
+<div className='  bg-drymeBlue     h-full w-1/2 mx-2 flex flex-wrap'>
+
+
+    <div className='underline text-gray-400 h-1/2 w-1/2 text-xs cursor-pointer pt-1 ' onClick={()=>handleService("Wash")} style={{color:value1}}>Wash</div>
+    <div className='underline text-gray-400 h-1/2 w-1/2 text-xs cursor-pointer pt-1'onClick={()=>handleService("Iron")} style={{color:value2}}>Iron</div>
+    <div className='underline text-gray-400 h-1/2 w-1/2 text-xs cursor-pointer'onClick={()=>handleService("Wash&Iron")} style={{color:value3}}>Wash&Iron</div>
+    <div className='underline text-gray-400 h-1/2 w-1/2 text-xs  rounded-b-lg cursor-pointer'onClick={()=>handleService("DryCleaning")} style={{color:value4}}>DryCleaning</div>
+  
+</div>
+:
+<div className='bg-white   h-full w-1/2 mx-2  '></div>
+}
+</div>
    </div>
 
       </div>
       
       <div className='bg-white w-full h-max flex flex-wrap ' style={{paddingTop:"60%"}}>
   
-      {
-  (state.visibleCat==true)?<div className='Box1 bg-drymeBlue  fixed  rounded-b-lg z-10 h-auto'>
 
-<ul>
-    <li className='underline text-gray-400 my-1 cursor-pointer' onClick={()=>handleCategory("male")} style={{color:val1}}>Men</li>
-    <li className='underline text-gray-400 my-1 cursor-pointer'onClick={()=>handleCategory("female")} style={{color:val2}}>Female</li>
-    {/* <li className='underline text-gray-400 my-1 text-white'>Others</li> */}
-  </ul>
-</div>
-:
-
-<div className='Box1 bg-white  fixed  rounded-b-lg'style={{visibility:"hidden"}} >
-
-<ul>
-    <li className='underline text-gray-400 my-1 '>Men</li>
-    <li className='underline text-gray-400 my-1'>Female</li>
-    <li className='underline text-gray-400 my-1'>Others</li>
-  </ul>
-</div>
-
-}
-{
-  (state.visibleSer==true)?
-<div className='Box2  bg-drymeBlue   rounded-b-lg  h-auto'>
-
-<ul>
-    <li className='underline text-gray-400 my-1  cursor-pointer' onClick={()=>handleService("Wash")} style={{color:value1}}>Wash</li>
-    <li className='underline text-gray-400 my-1 cursor-pointer'onClick={()=>handleService("Iron")} style={{color:value2}}>Iron</li>
-    <li className='underline text-gray-400 my-1  cursor-pointer'onClick={()=>handleService("Wash&Iron")} style={{color:value3}}>Wash&Iron</li>
-    <li className='underline text-gray-400 my-1  cursor-pointer'onClick={()=>handleService("DryCleaning")} style={{color:value4}}>DryCleaning</li>
-  </ul>
-</div>
-:
-<div className='Box2 bg-white    'style={{visibility:"hidden"}} >
-
-<ul>
-    <li className='underline text-gray-400 my-1'>Wash</li>
-    <li className='underline text-gray-400 my-1'>Iron</li>
-    <li className='underline text-gray-400 my-1'>DryCleaning</li>
-  </ul>
-</div>
-}
 
 
 

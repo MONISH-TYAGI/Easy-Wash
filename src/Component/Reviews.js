@@ -332,16 +332,20 @@ setChange2(!change2);
         </div>
         <br></br>
         </div>
-        {
+      
+      <div className='w-full h-fit   flex'>
+        <div className='w-full  h-full   flex flex-col  mt-48 '>
+          <div className='h-24  w-full flex '>
+            <div className='w-8/12 h-full'></div>
+          {
         (show==true)?
-        <div className='w-20 h-auto bg-drymeBlue text-white fixed flex flex-column sort rounded p-1'>
-            <div style={val1} className="mb-1 cursor-pointer " onClick={handleDateWise} >Date</div>
-            <div style={val2} className='mb-1  cursor-pointer' onClick={handleHighToLow} >Ratings High to Low</div>
-            <div style={val3} className='mb-1 cursor-pointer' onClick={handleLowToHigh}>Ratings Low to High</div>
+        <div className='w-4/12 h-full bg-drymeBlue text-white  flex flex-col  rounded   '>
+            <div style={val1} className=" cursor-pointer h-1/3     text-xs items-center pt-4" onClick={handleDateWise} ><span>Date</span></div>
+            <div style={val2} className='  cursor-pointer h-1/3   text-xs pt-3'  onClick={handleHighToLow} ><span>Ratings High to Low</span></div>
+            <div style={val3} className='cursor-pointer h-1/3   text-xs  flex   items-center pb-1 justify-center' onClick={handleLowToHigh}><span className=''>Ratings Low to High</span></div>
         </div>:<></>
 }
-      <div className='w-full h-fit   flex'>
-        <div className='w-full  h-full   flex flex-col pb-4 mt-48'>
+          </div>
           {
             reviews.map((obj,index)=>{
               // {console.log("obj"+obj.Image)}
