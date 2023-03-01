@@ -92,7 +92,7 @@ function Reviews() {
      
       setChange(!change);
     }
-    const saveReviews=async(downloadURL,curr)=>{
+    const saveReviews=async(downloadURL,curr,a,b)=>{
       try{
         const docRef = doc(db, "Reviews", userEmailId);
         const docSnap = await getDoc(docRef);
@@ -107,8 +107,8 @@ function Reviews() {
   let Id=common.getFullYear()+""+common.getMonth()+""+common.getDate()+""+common.getHours()+""+common.getMinutes()+""+common.getSeconds();
       let subData={
         Name:name,
-        Star:star,
-        Text:text,
+        Star:a,
+        Text:b,
         Date:date,
         Time:time,
         Image:downloadURL,
@@ -143,19 +143,30 @@ finally{
 }
 
     }
+    const [check,setCheck]=useState(false);
    const handleDisplayImage=(e)=>{
     // console.log("hello");
     setFile(e.target.files[0]);
     setImage(URL.createObjectURL(e.target.files[0]));
 
    }
-    const SaveImage=async()=>{
-      document.getElementById("saveReview").classList.remove("bg-drymeBlue");
-      document.getElementById("saveReview").classList.add("bg-black");
+    const SaveImage=async(id)=>{
+      setCheck(true)
+      let fileCon=file;
+      setFile(null);
+      document.getElementById(id).classList.remove("bg-drymeBlue");
+      document.getElementById(id).classList.add("bg-black");
+      let starCon=star;
+      let textCon=text;
+ 
+      
+setStar(0);
+setText('');
+
         const storageRef = ref(storage, `${user.email}/Profile`);
         // if(file==null)
         // setFile("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLlQ9DL2jP_heI_mtZXdw8cxNdGunsejk7FQ&usqp=CAU")
-        const uploadTask = uploadBytesResumable(storageRef, file);
+        const uploadTask = uploadBytesResumable(storageRef, fileCon);
   
       
         try{
@@ -180,16 +191,14 @@ finally{
               
          if(file==null)
          downloadURL="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLlQ9DL2jP_heI_mtZXdw8cxNdGunsejk7FQ&usqp=CAU";
-let res=await saveReviews(downloadURL,false);
+let res=await saveReviews(downloadURL,false,starCon,textCon);
 
 
-setStar(0);
-setText('');
-setFile(null);
 setImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLlQ9DL2jP_heI_mtZXdw8cxNdGunsejk7FQ&usqp=CAU")
-document.getElementById("saveReview").classList.remove("bg-black");
-document.getElementById("saveReview").classList.add("bg-drymeBlue");
+document.getElementById(id).classList.remove("bg-black");
+document.getElementById(id).classList.add("bg-drymeBlue");
 setChange2(!change2);
+setCheck(false)
             });
           }
         );
@@ -198,10 +207,10 @@ setChange2(!change2);
           catch (err) {
             // console.log("err", err);
        alert("Failed To Upload Review");
-       document.getElementById("saveReview").classList.remove("bg-black");
-       document.getElementById("saveReview").classList.add("bg-drymeBlue");
+       document.getElementById(id).classList.remove("bg-black");
+       document.getElementById(id).classList.add("bg-drymeBlue");
             // setTimeout(() => {
-             
+             setCheck(false)
             // }, 2000);
           }
       
@@ -318,7 +327,13 @@ setChange2(!change2);
               <textarea className='w-full h-full p-2 border-2 border-drymeBlue' id="box" autoFocus onChange={(e)=>setText(e.target.value)} value={text}></textarea>
             </div>
             <div className='First w-full h-1/5 bg-drymeBlue text-white'>
-           <button className='w-full h-full text-3xl ' id="saveReview"  onClick={SaveImage}>Add Review</button>
+              {
+            (check==false)?
+           <button className='w-full h-full text-xl ' id="saveReview2"  onClick={()=>SaveImage("saveReview2")}>Add Review</button>
+           :
+           <button className='w-full h-full text-xl ' >Please Wait</button>
+
+            }
             </div>
           </div>
         </div>
@@ -410,8 +425,13 @@ setChange2(!change2);
             <div className='First w-2/3 h-full bg-gray-200'>
               <textarea className='w-full h-full p-2 border-2 border-drymeBlue' id="box" autoFocus onChange={(e)=>setText(e.target.value)} value={text}></textarea>
             </div>
-            <div className='First w-1/3 h-full bg-drymeBlue text-white'>
-           <button className='w-full h-full text-xl ' id="saveReview"  onClick={SaveImage}>Add Review</button>
+            <div className='First w-1/3 h-full bg-drymeBlue text-white'>{
+              (check==false)?
+           <button className='w-full h-full text-lg ' id="saveReview1"  onClick={()=>SaveImage("saveReview1")}>Add Review</button>
+           :
+           <button className='w-full h-full text-lg ' >Please Wait</button>
+
+            }
             </div>
             </div>
           </div>
