@@ -115,7 +115,7 @@ setCategory(dryFemaleApi)
   
   const reducer=(state,action)=>{
    
-    console.log(action);
+    // console.log(action);
     let a={};
     switch(action.type)
     {
@@ -134,7 +134,7 @@ setCategory(dryFemaleApi)
       break;
       default:a={...state}
     }
-    console.log("open1"+JSON.stringify(a));
+    // console.log("open1"+JSON.stringify(a));
     return a;
   }
   const [state,dispatch]=useReducer(reducer,INITIAL_STATE);
@@ -161,7 +161,7 @@ setCurrPage(currPage-1);
   const handleSearch=(text)=>{
     // setTimeout(()=>{},1000);
     let curr=document.getElementById(text).value;
-    console.log("curr "+curr)
+    // console.log("curr "+curr)
        setSearch(curr);
       // console.log("searchVal"+curr.length); 
      let  currproducts=JSON.parse(localStorage.getItem("products"));
@@ -269,7 +269,7 @@ BigObj[idx].Quantity=Number(BigObj[idx].Quantity)+Number(val);
   
  })
 }
-console.log("Prev BigObj "+BigObj[0].Quantity);
+// console.log("Prev BigObj "+BigObj[0].Quantity);
 //  console.log("Updated BigObj"+BigObj.length);
  setSelectedItems(BigObj.length);
  localStorage.setItem("BigObj",JSON.stringify(BigObj));
@@ -515,8 +515,8 @@ const handleCart=()=>{
 {
 //  console.log("products.length")}
   products.map((obj)=>{
-    // {console.log(JSON.stringify(products))}
- {console.log("currPage->"+currPage+" and i-> "+i)}
+   
+ 
  
     return (
       (i<currPage*12&&i++>=(currPage-1)*12)?

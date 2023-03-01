@@ -41,7 +41,7 @@ const saveOrderInDB= async()=>{
     // console.log("date ",date);
     let time=common.getHours()+":"+common.getMinutes()+":"+common.getSeconds();
     let Id=common.getFullYear()+common.getMonth()+common.getDate()+""+common.getHours()+common.getMinutes()+common.getSeconds()+"";
-    console.log("id "+Id);
+    // console.log("id "+Id);
     let userEmailId=localStorage.getItem("email");
     // console.log("name ",name);
     // console.log("email",address);

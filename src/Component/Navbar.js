@@ -28,7 +28,7 @@ function Navbar() {
   }
   const [style,setStyle]=useState("none");
   const goToLoginPage=()=>{
-    console.log("name->"+name)
+    // console.log("name->"+name)
     if(name==="LogIn")
     navigate("/login")
   }
