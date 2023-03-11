@@ -62,7 +62,7 @@
   width: 10.6%;
   top: 26.4%;
   height: 6rem;
-  z-index: 10;
+  /* z-index: 10; */
 }
 
 .App-header {

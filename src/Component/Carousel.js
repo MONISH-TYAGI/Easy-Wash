@@ -5,7 +5,11 @@ import HowItWorks from './HowItWorks'
 function Carousel() {
   useEffect(()=>{
   let button=document.getElementById("next");
+  let button2=document.getElementById("next2");
+
   setTimeout(function() {button.click()}, 1000);
+
+  setTimeout(function() {button2.click()}, 1000);
   },[])
   const navigate=useNavigate();
   const handleServices=()=>{
@@ -197,7 +201,7 @@ navigate("/services");
     type="button"
     data-bs-target="#carouselExampleCaptions"
     data-bs-slide="next"
-    id="next"
+    id="next2"
   >
     <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>

@@ -285,8 +285,8 @@ const handleCart=()=>{
   return (
     <div className='w-full h-full '>
       <Navbar></Navbar>
-<div className='product hidden sm:block bg-red-200 'id="check">
-      <div className='  w-full h-1/4 flex items-end justify-start fixed z-10 p-3 mt-4'>
+<div className='product hidden sm:block  bg-white 'id="check">
+      <div className='bg-white  w-full h-1/4 flex items-end justify-start fixed z-20 p-3 mt-4'>
      
    <div className="w-11/12  h-12  flex items-center  rounded mx-2 "style={{border:"solid"}}>
  
@@ -319,10 +319,10 @@ const handleCart=()=>{
 
 
       </div>
-      <div className='bg-white w-full h-max flex flex-wrap ' style={{paddingTop:"12%"}}>
+      <div className='bg-white w-full h-max flex flex-wrap z-30' style={{paddingTop:"12%"}}>
   
       {
-  (state.visibleCat==true)?<div className='Box1 bg-drymeBlue  fixed  rounded-b-lg z-10 h-auto'>
+  (state.visibleCat==true)?<div className='Box1 bg-drymeBlue  fixed  rounded-b-lg z-30 h-auto'>
 
 <ul>
     <li className='underline text-gray-400 my-1 cursor-pointer' onClick={()=>handleCategory("male")} style={{color:val1}}>Men</li>
@@ -332,7 +332,7 @@ const handleCart=()=>{
 </div>
 :
 
-<div className='Box1 bg-white  fixed  rounded-b-lg'style={{visibility:"hidden"}} >
+<div className='Box1 bg-white  fixed  rounded-b-lg z-30'style={{visibility:"hidden"}} >
 
 <ul>
     <li className='underline text-gray-400 my-1 '>Men</li>
@@ -344,7 +344,7 @@ const handleCart=()=>{
 }
 {
   (state.visibleSer==true)?
-<div className='Box2  bg-drymeBlue   rounded-b-lg  h-auto'>
+<div className='Box2  bg-drymeBlue   rounded-b-lg  h-auto z-30'>
 
 <ul>
     <li className='underline text-gray-400 my-1  cursor-pointer' onClick={()=>handleService("Wash")} style={{color:value1}}>Wash</li>
@@ -354,7 +354,7 @@ const handleCart=()=>{
   </ul>
 </div>
 :
-<div className='Box2 bg-white    'style={{visibility:"hidden"}} >
+<div className='Box2 bg-white   z-30 'style={{visibility:"hidden"}} >
 
 <ul>
     <li className='underline text-gray-400 my-1'>Wash</li>

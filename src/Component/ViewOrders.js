@@ -66,8 +66,8 @@ const [hide,sethide]=useState(false);
 // console.log("DetailsArr Len ",DetailsArr.length);
     // console.log(JSON.stringify(DetailsArr));
     const generatePDF = () => {
-        document.getElementById("App").style.zoom="90%";
-        document.getElementById("report").style.marginLeft="5rem";
+        // document.getElementById("App").style.zoom="90%";
+        // document.getElementById("report").style.marginLeft="5rem";
         
 // console.log("generating");
 sethide(true);
@@ -82,11 +82,12 @@ sethide(true);
     report.save('report.pdf');
 
       }).then(()=>{
-        document.getElementById("report").style.marginLeft="0%";
+        // document.getElementById("report").style.marginLeft="0%";
+        sethide(false);
       }).catch((err)=>{
         // document.getElementById("report").style.marginLeft="0%";
       });
-      document.getElementById("App").style.zoom="100%";
+    //   document.getElementById("App").style.zoom="100%";
 
     }
   return (
@@ -115,7 +116,16 @@ sethide(true);
                     {/* <i class="mr-1 fa fa-print text-primary-m1 text-120 w-2"></i> */}
                       <span>    </span><span>  </span>Print
                 </a>
-                </div>:<></>
+                </div>:
+                <div onClick={generatePDF} className="mr-6 ">
+                <a class="btn bg-white btn-light  text-lg" href="#" data-title="Print">
+                    <div className='w-96 bg-red-400'></div>
+                   
+                <i class="mr-1 fa  text-danger-m1 text-120  w-2"></i>
+                    {/* <i class="mr-1 fa fa-print text-primary-m1 text-120 w-2"></i> */}
+                      <span>    </span><span>  </span>
+                </a>
+                </div>
  }
                 {/* <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="PDF">
                     <i class="mr-1 fa fa-file-pdf-o text-danger-m1 text-120 w-2"></i>
