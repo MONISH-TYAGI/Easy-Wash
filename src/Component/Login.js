@@ -8,7 +8,7 @@ function Login() {
   const navigate=useNavigate();
   useEffect(()=>{
     let button=document.getElementById("next");
-    setTimeout(function() {button.click()}, 1500);
+    setTimeout(function() {button.click()}, 1);
     },[])
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

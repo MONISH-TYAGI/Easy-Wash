@@ -7,9 +7,9 @@ function Carousel() {
   let button=document.getElementById("next");
   let button2=document.getElementById("next2");
 
-  setTimeout(function() {button.click()}, 1000);
+  setTimeout(function() {button.click()}, 2);
 
-  setTimeout(function() {button2.click()}, 1000);
+  setTimeout(function() {button2.click()},2);
   },[])
   const navigate=useNavigate();
   const handleServices=()=>{
