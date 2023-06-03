@@ -68,7 +68,7 @@ function Process() {
             
            </img>
            <span className='bg-white border-solid border-2 border-white  ' onClick={()=>playVideo(true)}>
-           <i class=" fa-brands fa-youtube fa-lg play relative bottom-48 "></i>
+           <i class=" fa-brands fa-youtube fa-lg play relative bottom-52 text-lg hello" style={{"fontSize":"9rem"}}></i>
            </span>
            </div>
             } 
@@ -90,7 +90,7 @@ function Process() {
             
            </img>
            <span className='bg-white border-solid border-2 border-white  ' onClick={()=>playVideo(false)}>
-           <i class=" fa-brands fa-youtube fa-lg play relative bottom-24  "></i>
+           <i class=" fa-brands fa-youtube fa-lg play relative bottom-24  "  style={{"fontSize":"4rem"}}></i>
            </span>
            </div>
             } 
