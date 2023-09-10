@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../Context/CartContextProvider';
 import { setDoc,doc, updateDoc,getDoc } from 'firebase/firestore';
 import {db,storage} from '../firebase'
-
+import StripeCheckout from 'react-stripe-checkout';
 import Navbar from './Navbar'
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthContext';
@@ -17,6 +17,10 @@ function EnterDetails() {
     let email=localStorage.getItem("email");
     const handleOnline=()=>{
         alert("Server Down Please Choose Cash on Delivery")
+    }
+    const handleToken = async (token) => {
+        console.log(token)
+        saveOrderInDB();
     }
     const {setObj,BigObj,BillId,setBillId,setItems,setAmt,cart,setCart}=useContext(CartContext)
     // console.log("totalQuan-> ",totalItems);
@@ -142,7 +146,16 @@ finally{
                  </div>
             <br />
             <button  className='bg-drymeBlue text-white  p-2 ' id="COD" onClick={saveOrderInDB} >Cash On Delivery</button>
-            <button  className='bg-drymeBlue     text-white ml-4 p-2      'onClick={handleOnline}>PayOnline</button>
+            {/* <button  className='bg-drymeBlue     text-white ml-4 p-2      'onClick={handleOnline}>PayOnline</button> */}
+            <StripeCheckout 
+              stripeKey='pk_test_51Hhu6bK4kL4WRmvGEUkTmdFw1lUtTAnadBSDb0eXGuA2JJGrntIBdm10llYu5RbPbLbaS1My74Rgdi0n5ePYIGB600p3V4GKmK'
+              token={handleToken}
+              billingAddress
+              shippingAddress
+              amount={totalAmt*100}
+              name='All Products'
+              className='bg-drymeBlue     text-white ml-4 p-2 '
+            ></StripeCheckout>
         
        
     </div>

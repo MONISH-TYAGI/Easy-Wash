@@ -90,12 +90,29 @@ navigate("/");
 //         console.log(error);
 //     }
     }
+    function validateName(name) {
+      const regex = /^[A-Za-z\s'-]+$/;
+      return regex.test(name);
+    }
   const signup = async(e) => {
     e.preventDefault();
 document.getElementById("signUp").classList.remove("bg-drymeBlue");
 document.getElementById("signUp").classList.add("bg-black");
     // alert("Sign In");
+    if (validateName(name)) {
+      console.log("Name is valid.");
+    } else {
+      setError("Name is not valid.");
+      document.getElementById("signUp").classList.remove("bg-black");
+      document.getElementById("signUp").classList.add("bg-drymeBlue");
+      setTimeout(()=>{
+        setError('')
+
+      },3000);
+      return ;
+    }
     try{
+
         let userObj = await signUp(email,password)
 
     setError('')
@@ -116,10 +133,13 @@ navigate("/login");
           setError('Password should be at least 6 characters')
           else
           setError("Check Email and PassWord Again");
+          document.getElementById("signUp").classList.remove("bg-black");
+          document.getElementById("signUp").classList.add("bg-drymeBlue");
+         
           setTimeout(()=>{
             setError('')
 
-          },4000);
+          },3000);
           // console.log("fail");
           // alert("Fail signIn")
         }finally{
