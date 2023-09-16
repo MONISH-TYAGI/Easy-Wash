@@ -17,6 +17,8 @@ function Home() {
     async function fetchData() {
       // console.log("Home2");
 let userEmailId=localStorage.getItem("email");
+if(userEmailId!=null){
+console.log("userEmailId"+userEmailId);
 const docRef = doc(db, "SignUpUserData", userEmailId);
 const docSnap = await getDoc(docRef);
 
@@ -35,6 +37,7 @@ localStorage.setItem("name",name);
 // console.log("Id-> "+doc.id+" data "+doc.data());
 
 })
+}
     }
 fetchData();
   },[])

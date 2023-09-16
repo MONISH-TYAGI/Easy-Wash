@@ -5,6 +5,7 @@ import { AuthContext } from '../Context/AuthContext';
 
 
 function Login() {
+
   const navigate=useNavigate();
   useEffect(()=>{
     let button=document.getElementById("next");
@@ -178,10 +179,11 @@ navigate("/");
                     <img src="https://cdn-teams-slug.flaticon.com/google.jpg"  className="rounded-xl h-full w-fit"width="25px"/>
                         <span class="mx-2 ">Login In with Google</span>
                         </div>
-                   
+               
                         </div>
         </div>
-       
+        <div className='text-drymeBlue underline text-xl font-medium cursor-pointer bh-yellow-200 mt-4 hover:text-black' ><i class="fa-solid fa-house cursor-pointer"></i><Link to="/" className='hover:text-black cursor-pointer'>Back</Link></div>
+
       </div>
       </div>
       <div className='SecondHalf w-full h-full   sm:hidden flex'>
@@ -220,7 +222,8 @@ navigate("/");
                    
                         </div>
         </div>
-       
+        <div className='text-drymeBlue underline text-xl font-medium cursor-pointer bh-yellow-200 mt-4 hover:text-black' ><i class="fa-solid fa-house cursor-pointer"></i><Link to="/" className='hover:text-black cursor-pointer'>Back</Link></div>
+
       </div>
       </div>
 

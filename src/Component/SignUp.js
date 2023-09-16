@@ -276,7 +276,8 @@ navigate("/login");
                         </div>
                         </div>
         </div>
-       
+        <div className='text-drymeBlue underline text-xl font-medium cursor-pointer bh-yellow-200 mt-8 hover:text-black' ><i class="fa-solid fa-house cursor-pointer"></i><Link to="/" className='hover:text-black cursor-pointer'>Back</Link></div>
+
       </div>
       </div>
       <div className='SecondHalf w-full h-full    flex sm:hidden '>
@@ -321,8 +322,10 @@ navigate("/login");
                         </div>
                         </div>
         </div>
-       
+        <div className='text-drymeBlue underline text-xl font-medium cursor-pointer bh-yellow-200 mt-4 hover:text-black ' ><i class="fa-solid fa-house cursor-pointer"></i><Link to="/" className='hover:text-black cursor-pointer'>Back</Link></div>
+
       </div>
+
       </div>
 
     </div>
