@@ -2,7 +2,9 @@ import React, { useState ,useContext, useEffect} from 'react'
 import {db,storage,auth} from '../firebase'
 import { Link ,useNavigate} from 'react-router-dom'
 import { AuthContext } from '../Context/AuthContext';
-
+import pic1 from '../img/Pic1.jpg'
+import pic2 from '../img/Pic2.jpg'
+import pic3 from '../img/Pic3.jpg'
 
 function Login() {
 
@@ -90,7 +92,7 @@ navigate("/");
   <div class="carousel-inner relative w-full overflow-hidden  h-full">
     <div class="carousel-item active relative float-left w-full  h-full">
       <img
-        src="https://i.ibb.co/xLz698n/Pic1.jpg"
+        src={pic1}
         class="block w-full h-full"
         alt="..."
         style={{height:"36.8rem"}} />
@@ -101,7 +103,7 @@ navigate("/");
     </div>
     <div class="carousel-item relative float-left w-full ">
       <img
-        src="https://i.ibb.co/VCGBqLr/Pic3.jpg"
+        src={pic2}
         class="block w-full h-full"
         alt="..."
         style={{height:"36.8rem"}}
@@ -113,7 +115,7 @@ navigate("/");
     </div>
     <div class="carousel-item relative float-left w-full h-full">
       <img
-        src="https://i.ibb.co/9qG8dny/Pic2.webp"
+        src={pic3}
         class="block w-full h-full"
         alt="..."
         style={{height:"36.8rem"}}

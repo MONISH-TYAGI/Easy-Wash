@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import HowItWorks from './HowItWorks'
-
+import pic1 from '../img/Pic1.jpg'
+import pic2 from '../img/Pic2.jpg'
+import pic3 from '../img/Pic3.jpg'
 function Carousel() {
   useEffect(()=>{
   let button=document.getElementById("next");
@@ -64,7 +66,7 @@ navigate("/services");
   <div class="carousel-inner relative w-full overflow-hidden  h-full">
     <div class="carousel-item active relative float-left w-full  h-full">
       <img
-        src="https://i.ibb.co/xLz698n/Pic1.jpg"
+        src={pic1}
         class="block w-full h-full"
         alt="..."
         style={{height:"27.8rem"}} />
@@ -75,7 +77,7 @@ navigate("/services");
     </div>
     <div class="carousel-item relative float-left w-full ">
       <img
-        src="https://i.ibb.co/VCGBqLr/Pic3.jpg"
+        src={pic2}
         class="block w-full h-full"
         alt="..."
         style={{height:"27.8rem"}}
@@ -87,7 +89,7 @@ navigate("/services");
     </div>
     <div class="carousel-item relative float-left w-full h-full">
       <img
-        src="https://i.ibb.co/9qG8dny/Pic2.webp"
+        src={pic3}
         class="block w-full h-full"
         alt="..."
         style={{height:"27.8rem"}}

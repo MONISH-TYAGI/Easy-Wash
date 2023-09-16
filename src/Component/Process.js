@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import videoImg from '../img/videoImg.jpg';
 // import Poster from '../../images/videoImg.jpg';
 // import VideoSrc from '../../images/works.mp4';
 // import VideoPlayer from 'react-video-js-player';
@@ -64,7 +65,8 @@ function Process() {
        <video  src="https://smart-dhopa-online-laundry-app.web.app/static/media/works.8c3f1824.mp4" className="w-full h-full pb-6" controls autoPlay/>
            :
            <div className='w-full h-full bg-black'>
-           <img src="https://raw.githubusercontent.com/PriontoAbdullah/Smart-Dhopa-React-App/main/src/images/videoImg.jpg" className='h-full w-full' loading="lazy">
+           {/* <img src="https://raw.githubusercontent.com/PriontoAbdullah/Smart-Dhopa-React-App/main/src/images/videoImg.jpg" className='h-full w-full' loading="lazy"> */}
+           <img src={videoImg} className='h-full w-full' loading="lazy">
             
            </img>
            <span className='bg-white border-solid border-2 border-white  ' onClick={()=>playVideo(true)}>
@@ -86,7 +88,7 @@ function Process() {
        <video  src="https://smart-dhopa-online-laundry-app.web.app/static/media/works.8c3f1824.mp4" className="w-full h-full pb-6" controls autoPlay/>
            :
            <div className='w-full h-full bg-black'>
-           <img src="https://raw.githubusercontent.com/PriontoAbdullah/Smart-Dhopa-React-App/main/src/images/videoImg.jpg" className='h-full w-full'>
+           <img src={videoImg} className='h-full w-full'>
             
            </img>
            <span className='bg-white border-solid border-2 border-white  ' onClick={()=>playVideo(false)}>
