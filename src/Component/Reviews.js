@@ -249,39 +249,33 @@ setCheck(false)
         <div className=' bg-white h-52  fixed w-full flex items-end z-10'>
         <div className=' w-2/3 h-20  flex justify-between items-end border-b-4 fixed z-10 bg-white'>
 <span className='ml-2 text-5xl items-end text-drymeBlue font-bold'>Reviews</span>
-<button className="bg-drymeBlue text-1xl text-white mr-2  px-4 py-1 rounded-md" onClick={()=>setShow(!show)}>Sort By<i class="fa-solid fa-caret-down ml-2"></i></button>
+<button className="bg-drymeBlue text-1xl text-white   px-4 py-1 rounded-md" style={{width:"12%"}} onClick={()=>setShow(!show)}>Sort By<i class="fa-solid fa-caret-down ml-2"></i></button>
         </div>
         <br></br>
         </div>
-        {
-        (show==true)?
-        <div className='w-20 h-auto bg-drymeBlue text-white fixed flex flex-column sort rounded p-1'>
-            <div style={val1} className="mb-1 cursor-pointer " onClick={handleDateWise} >Date</div>
-            <div style={val2} className='mb-1  cursor-pointer' onClick={handleHighToLow} >Ratings High to Low</div>
-            <div style={val3} className='mb-1 cursor-pointer' onClick={handleLowToHigh}>Ratings Low to High</div>
-        </div>:<></>
-}
+      
       <div className='w-full h-fit   flex'>
-        <div className='w-2/3  h-full   flex flex-column pb-4 mt-48'>
+        <div className='w-2/3  h-full   flex  pb-4 mt-52 '>
+          <div className=' h-full 'style={{width:"88%"}}>
           {
             reviews.map((obj,index)=>{
               // {console.log("obj"+obj.Image)}
             {(index%2==1)?s1="row-reverse":s1=""} 
               return  (
             
-        <div className='w-5/6  h-44 ml-12 mt-4 flex drop-shadow-2xl mb-4 ' style={{flexDirection:s1}}>
+        <div className='w-11/12  h-44 ml-12 mt-4 flex drop-shadow-2xlA mb-6  ' style={{flexDirection:s1}}>
                
                 <div className='w-1/4 h-full  '>
-                    <img className='w-full h-full ' src={obj.Image} style={{borderRadius:"50%"}}></img>
+                    <img className='w-full h-full border' src={obj.Image} style={{borderRadius:"50%"}}></img>
                 </div>
-                <div className='w-3/4 h-full bg-white'>
+                <div className='w-5/6 h-full bg-white border rounded-xl '>
                     <div className="Text w-full h-2/3  flex items-center  ">
                    <span className='pl-2 text-lg' > 
                    {obj.Text}
                     .</span>
                     </div>
-                    <div className='Star w-full h-1/3 bg-white flex items-center justify-start '>
-                        <div className='w-1/2 h-full flex items-center'>
+                    <div className='Star w-full h-1/3 bg-white flex items-center justify-start rounded-xl '>
+                        <div className='w-1/2 h-full flex items-center   rounded-xl pl-1'>
             {(obj.Star>=1)?<i class="fa-solid fa-star text-drymeBlue text-3xl"></i>: <i class="fa-regular fa-star text-3xl"></i>}
             {(obj.Star>=2)? <i class="fa-solid fa-star text-drymeBlue text-3xl"></i>: <i class="fa-regular fa-star text-3xl"></i>}
             {(obj.Star>=3)?<i class="fa-solid fa-star text-drymeBlue text-3xl"></i>: <i class="fa-regular fa-star text-3xl"></i>}
@@ -301,7 +295,17 @@ setCheck(false)
             })
 }
 
-  
+</div>
+<div className='h-24 rounded-lg  'style={{width:"12%"}}>
+{
+        (show==true)?
+        <div className='w-20 h-auto bg-drymeBlue text-white  flex flex-column sort rounded p-1 '>
+            <div style={val1} className="mb-1 cursor-pointer " onClick={handleDateWise} >Date</div>
+            <div style={val2} className='mb-1  cursor-pointer' onClick={handleHighToLow} >Ratings High to Low</div>
+            <div style={val3} className='mb-1 cursor-pointer' onClick={handleLowToHigh}>Ratings Low to High</div>
+        </div>:<></>
+}
+</div>
 
                        
         </div>

@@ -101,38 +101,38 @@ useEffect(()=>{
     <div className='w-full h-full bg-white'>
   <Navbar></Navbar>
   <div className='w-full mt-40   p-4   OuterMarginBox hidden sm:flex'>
-   <div className='OuterMarginBoxFirstHalf h-full  w-3/6 '> 
+   <div className='OuterMarginBoxFirstHalf h-full  w-3/6 scroll-y'> 
 
    
    {
     BigObj.map((obj)=>{
         return (
-  <div className=' w-full h-1/4  flex drop-shadow  mb-4  'style={{border:"solid",height:"10rem"}} >
+  <div className=' w-full h-64     flex drop-shadow  mb-4   shadow-2xl rounded-xl  border-drymeBlue border-4' >
     <img className='w-2/6  h-full' src={obj.Image}>
        
     </img>
     <div className='w-4/6    '>
-        <div className='secondHalfFirst w-full  h-1/4 flex justify-around '> 
-    <span className='text-xl'>{obj.Name}</span>
-    <span className='text-xl'>{obj.Price}</span>
-        <span className='text-xl'>X</span>
-        <span className='text-xl'>{obj.Quantity}</span>
-        <span className='text-xl'>=</span>
-        <span className='text-xl'>Rs. {obj.Quantity*obj.Price}</span>
+        <div className='secondHalfFirst w-full  h-1/4 flex justify-around pt-4'> 
+    <span className='text-2xl font-extrabold'>{obj.Name}</span>
+    <span className='text-2xl font-medium'>{obj.Price}</span>
+        <span className='text-2xl font-medium '>X</span>
+        <span className='text-2xl font-medium'>{obj.Quantity}</span>
+        <span className='text-2xl font-medium'>=</span>
+        <span className='text-2xl font-medium'>Rs. {obj.Quantity*obj.Price}</span>
         </div>
-        <div className=' h-1/4 flex  p-3'>
-          <span className='text-xl'>Service:</span>
-          <span className='text-xl ml-2'>{obj.Service}</span>
+        <div className=' h-1/4 flex  p-4'>
+          <span className='text-2xl  font-extrabold '>Service:    </span>
+          <span className='text-2xl ml-4 font-medium'>{obj.Service}</span>
           </div> 
         <div className='secondHalfSecond w-full  h-2/4 flex justify-center items-center'>
         
             {
             (change!=obj.ProdId)?
- <button className='w-1/4 bg-drymeBlue h-4 text-white rounded' onClick={()=>EditQuantiy(obj.ProdId)} style={{height:"60%"}}>Edit Quantity</button> 
+ <button className='w-1/4 bg-drymeBlue  text-white rounded-xl font-semibold text-xl rounded-lg ' onClick={()=>EditQuantiy(obj.ProdId)} style={{height:"33%"}}>Edit Quantity</button> 
  :
 <div className='ItemsChangeDiv flex row'>
 <input type='number' id={obj.ProdId} className='' autoFocus defaultValue={obj.Quantity} min={0}></input>
-<button className='bg-drymeBlue text-white' onClick={()=>handleItemsChange(obj.ProdId,true)}>Done</button>
+<button className='bg-drymeBlue text-white text-xl ' onClick={()=>handleItemsChange(obj.ProdId,true)}>Done</button>
 </div>
 }
         </div>
@@ -151,19 +151,19 @@ useEffect(()=>{
  
  
   </div>
-  <div className='OuterMarginBoxSecondHalf  w-1/2 '>
-  <div className='OuterHalf2 w-1/4 h-1/6  ml-60 fixed  bg-white'style={{border:"solid"}}>
-    <div className='Bill1 w-full bg-drymeBlue h-1/4 '><span className='text-white'>Bill Generated</span></div>
+  <div className='OuterMarginBoxSecondHalf  w-1/2  '>
+  <div className='OuterHalf2 w-1/4 h-1/6  ml-60 fixed shadow-2xl bg-white rounded-xl'style={{border:"solid"}}>
+    <div className='Bill1 w-full bg-drymeBlue h-1/4 '><span className='text-white text-2xl font-bold'>Bill Generated</span></div>
     <div className='Bill2 w-full h-1/4 flex justify-between px-2'>
-        <span>Total Items</span>
-        <span>{totalItems}</span>
+        <span className='text-xl font-bold'>Total Items</span>
+        <span className='text-xl font-bold'>{totalItems}</span>
     </div>
     <div className='Bill3 w-full  h-1/4 flex justify-between px-2'>
-        <span>Total Price</span>
-        <span>Rs. {totalAmt}</span>
+        <span className='text-xl font-bold'>Total Price</span>
+        <span className='text-xl font-bold'>Rs. {totalAmt}</span>
     </div>
     <div className='Bill4 w-full bg-drymeBlue h-1/4 flex justify-center'>
-        <button className='text-white'onClick={handleCart}>Place Order</button>
+        <button className='text-white text-xl font-bold'onClick={handleCart}>Place Order</button>
     </div>
   </div>
   </div>

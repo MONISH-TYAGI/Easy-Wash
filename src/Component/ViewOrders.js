@@ -206,7 +206,7 @@ DetailsArr.map((obj)=>{
  return (
 
 
-                    <div class="text-95 text-secondary-d3">
+                    <div class="text-95 text-secondary-d3 ">
                         <div class="row mb-2 mb-sm-0 py-25">
                             <div class="d-none d-sm-block col-1">{i++}</div>
                             <div class="col-9 col-sm-2">{obj.Name}</div>

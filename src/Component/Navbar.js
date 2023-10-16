@@ -52,9 +52,9 @@ function Navbar() {
    name="LogIn"
    
   return (
-    <div className='fixed z-40'>
-    <div className=' h-20 bg-drymeBlue fixed top-0 w-full z-30'>Head 1</div>
-    <div className=' hidden sm:flex  h-20 bg-white w-3/4 m-auto  fixed top-12 left-44 border-solid border-2 z-30'>
+    <div className='fixed z-40 '>
+    <div className=' h-20 bg-drymeBlue fixed top-0 w-full z-30  shadow-2xl'>Head 1</div>
+    <div className=' hidden sm:flex  h-20 bg-white w-3/4 m-auto  fixed top-12 left-44 border-solid border-2 z-30  shadow-xl'>
      <div className=' w-2/4 flex items-center pl-10 h-full '><span className=''><h1 className='EasyWashFirst'>Easy <span className='EasyWashSecond'>Wash</span></h1></span>
      </div>
      <div className='h-full w-2/4  flex  z-1'>
