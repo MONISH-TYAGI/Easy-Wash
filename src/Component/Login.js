@@ -11,7 +11,7 @@ function Login() {
   const navigate=useNavigate();
   useEffect(()=>{
     let button=document.getElementById("next");
-    setTimeout(function() {button.click()}, 1);
+    setInterval(function() {button.click()}, 2500);
     },[])
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
